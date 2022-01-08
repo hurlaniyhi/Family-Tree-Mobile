@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-const Profile: React.FC<any> = ({navigation}) => {
+const Profile = () => {
   
   return (
     <View style={styles.center}>
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile;
+export default Profile

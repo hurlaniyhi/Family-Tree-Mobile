@@ -1,11 +1,23 @@
 {
-  "extends": "expo/tsconfig.base",
+ "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "react-native",
+    "lib": ["dom", "esnext"],
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "noEmit": true,
     "strict": true,
-    "baseUrl": ".", 
+    "baseUrl": "./", 
     "paths": {
-      "@src/*": ["src/*"]
+      "@src/*": ["src/*"],
+      // "@screens": ["src/screens/index.ts"]
+      "@screens/*": ["src/screens/*"],
+      "@navigation/*": ["src/navigation/*"]
     }
-  }
+  },
+  "exclude": ["node_modules", "babel.config.js"]
 }

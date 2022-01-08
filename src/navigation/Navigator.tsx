@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabNavigator from './BottomNavigators'
-import Home from '../screens/home'
+import Home from '@screens/home'
 
 const Stack = createStackNavigator();
 
