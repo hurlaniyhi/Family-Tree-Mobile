@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import About from "@screens/about";
-import Contact from "@screens/contact";
+import { SignUp, SignIn, ForgetPassword } from "@screens/auth";
+
 
 const Stack = createStackNavigator();
 
@@ -14,21 +14,15 @@ const screenOptionStyle = {
     headerShown: false
   };
 
-const MainStackNavigator = () => {
+const AuthStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="About" component={About} />
-      <Stack.Screen name="Contact" component={Contact} />
+      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
     </Stack.Navigator>
   );
 }
 
-// const ContactStackNavigator = () => {
-//     return (
-//       <Stack.Navigator screenOptions={screenOptionStyle}>
-//         <Stack.Screen name="Contact" component={Contact} />
-//       </Stack.Navigator>
-//     );
-//   }
 
-export { MainStackNavigator };
+export { AuthStackNavigator };

@@ -9,7 +9,8 @@ module.exports = function(api) {
           alias: {
             "@src": './src',
             "@screens": './src/screens',
-            "@navigation": './src/navigation'
+            "@navigation": './src/navigation',
+            "@styles": './src/styles/index.ts'
           }
         }
       ]
