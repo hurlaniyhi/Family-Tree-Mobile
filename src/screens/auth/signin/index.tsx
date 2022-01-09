@@ -1,18 +1,31 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LoginContainer, WelcomeText } from '@styles'
-import { LogoTop } from '@component';
+
+import { LoginContainer, 
+    WelcomeText, 
+    InstructionText, 
+    LoginOptionContainer, 
+    RememberMeText, 
+    ForgetPassText,
+    SignUpLinkContainer,
+    SignUpLink
+} from '@styles'
+import { LogoTop, Input, Button } from '@component';
 
 
 export  const SignIn: React.FC<any> = ({ navigation }) => {
     return (
         <LoginContainer>
-            <SafeAreaView>
             <LogoTop />
             <WelcomeText>Welcome Back</WelcomeText>
-            {/* <Text onPress={() => navigation.navigate('SignUp')}>This is Signin screen</Text> */}
-            </SafeAreaView>
+            <InstructionText>Sign in to continue</InstructionText>
+            <Input />
+            <Input />
+            <LoginOptionContainer>
+                <RememberMeText>Remember me</RememberMeText>
+                <ForgetPassText>Forget Password?</ForgetPassText>
+            </LoginOptionContainer>
+            <Button />
+            <SignUpLinkContainer>Don't have an account? <SignUpLink>Sign up</SignUpLink></SignUpLinkContainer>
         </LoginContainer>
     );
 }

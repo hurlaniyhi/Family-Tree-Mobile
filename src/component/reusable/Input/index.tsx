@@ -1,11 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { InputContainer, InputIcon, TextInput } from '@styles';
 
-interface Props {
-
-}
-
-export const Input: React.FC<Props> = () => {
+export const Input: React.FC<any> = () => {
+    const [focus, setFocus] = useState(false)
+    function handleFocus(data: boolean) {
+        setFocus(data)
+    }
     return (
-        <></>
+        <InputContainer isFocus={focus}>
+            <InputIcon source={require("@icons/call-light.png")} />
+            <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholder="Enter Phone number"
+                onFocus={() => handleFocus(true)}
+                onBlur={() => handleFocus(false)}
+             />
+        </InputContainer>
     );
 }
