@@ -7,6 +7,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    // "noImplicitAny": false,
     "moduleResolution": "node",
     "skipLibCheck": true,
     "noEmit": true,
@@ -14,7 +15,6 @@
     "baseUrl": "./", 
     "paths": {
       "@src/*": ["src/*"],
-      // "@screens": ["src/screens/index.ts"]
       "@screens/*": ["src/screens/*"],
       "@navigation/*": ["src/navigation/*"],
       "@styles": ["src/styles/index.ts"]

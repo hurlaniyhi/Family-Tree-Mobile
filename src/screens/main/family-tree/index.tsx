@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface Props {
 
@@ -7,8 +8,8 @@ interface Props {
 
 export  const FamilyTree: React.FC<Props> = () => {
     return (
-        <View>
+        <SafeAreaView>
             <Text>This is FamilyTree screen</Text>
-        </View>
+        </SafeAreaView>
     );
 }

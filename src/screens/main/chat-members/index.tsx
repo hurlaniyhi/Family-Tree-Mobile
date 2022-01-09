@@ -1,14 +1,12 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-interface Props {
 
-}
-
-export  const ChatMembers: React.FC<Props> = () => {
+export  const ChatMembers: React.FC<any> = () => {
     return (
-        <View>
+        <SafeAreaView>
             <Text>This is Chat member list screen</Text>
-        </View>
+        </SafeAreaView>
     );
 }

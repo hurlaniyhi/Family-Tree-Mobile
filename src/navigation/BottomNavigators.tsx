@@ -26,8 +26,9 @@ const BottomTabNavigator = () => {
       },
       tabBarActiveTintColor: '#00BF4D',
       tabBarInactiveTintColor: 'gray',
+      headerShown: false
     })}>
-      <Tab.Screen options={{ headerShown: false }} name="Home" component={Dashboard} />
+      <Tab.Screen name="Home" component={Dashboard} />
       <Tab.Screen name="Family Tree" component={FamilyTree} />
       <Tab.Screen name="Messages" component={ChatMembers} />
       <Tab.Screen name="Settings" component={Settings} />
