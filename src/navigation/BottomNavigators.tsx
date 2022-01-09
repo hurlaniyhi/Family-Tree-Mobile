@@ -1,5 +1,5 @@
 import React from "react";
-import { Feather, AntDesign, Entypo, Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { AntDesign, Entypo, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dashboard, Settings, FamilyTree, ChatMembers } from "@screens/main";
 

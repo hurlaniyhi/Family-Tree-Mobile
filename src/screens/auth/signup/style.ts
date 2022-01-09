@@ -1,7 +1,11 @@
 import styled from 'styled-components/native'
 
-export const SignUpText = styled.Text`
-color: blue;
-`
+interface Theme {
+    theme: {
+        color: string
+    }
+}
 
-export const styleSignUp= {}
+export const SignUpText = styled.Text<Theme>`
+color: ${props => props.theme.color};
+`
