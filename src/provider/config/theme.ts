@@ -6,7 +6,6 @@ export const DarkTheme = {
     CARD_BACKGROUND: '#00140A',
     BORDER: '#C4C4C4',
     TEXT_COLOR: '#DADADA',
-    LOGO_IMAGE: require('@icons/logo-green-dark.png'),
     THEME: 'green'
 }
 
@@ -18,7 +17,6 @@ export const LightTheme = {
     CARD_BACKGROUND: '#FFFFFF',
     BORDER: '#C4C4C4',
     TEXT_COLOR: '#000000',
-    LOGO_IMAGE: require('@icons/logo-green-light.png'),
     THEME: 'green'
 }
 
@@ -26,9 +24,7 @@ export const Green = {
     FOCUS_THEME_COLOR: '#00BF4D',
     FOCUS_THEME_COLOR_LIGHT: '#D0FFE3',
     CARD_BACKGROUND: '#00140A',
-    THEME: 'green',
-    IMAGE_DARK: require('@icons/logo-green-dark.png'),
-    IMAGE_LIGHT: require('@icons/logo-green-light.png')
+    THEME: 'green'
 }
 
 export const Purple = {
@@ -36,6 +32,18 @@ export const Purple = {
     FOCUS_THEME_COLOR_LIGHT: '#F1E7FF',
     CARD_BACKGROUND: '#090016',
     THEME: 'purple',
-    IMAGE_DARK: require('@icons/logo-purple-dark.png'),
-    IMAGE_LIGHT: require('@icons/logo-purple-light.png')
+}
+
+export const Yellow = {
+    FOCUS_THEME_COLOR: '#FFA800',
+    FOCUS_THEME_COLOR_LIGHT: '#FFF0D0',
+    CARD_BACKGROUND: '#1A1100',
+    THEME: 'yellow',
+}
+
+export const Pink = {
+    FOCUS_THEME_COLOR: '#FF007C',
+    FOCUS_THEME_COLOR_LIGHT: '#FFD4E9',
+    CARD_BACKGROUND: '#17000B',
+    THEME: 'pink',
 }

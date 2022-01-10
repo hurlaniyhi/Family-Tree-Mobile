@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react'
-import { DarkTheme, LightTheme } from '@src/provider/confg/theme'
+import { DarkTheme, LightTheme } from '@src/provider/config/theme'
 import { AppTheme, ContextTheme } from '@model'
 import helpers from '@src/utility/helper'
 
@@ -21,9 +21,7 @@ export const ThemeProvider = (props: any) => {
     })
 
     async function switchTheme(themeData: AppTheme){
-        let data: any = helpers.getLogoImage(state.THEME_MODE, themeData)
-        data = {...themeData, LOGO_IMAGE: data.LOGO_IMAGE}
-        await dispatch({type: "switch-theme", payload: data})
+        await dispatch({type: "switch-theme", payload: themeData})
     }
 
     async function switchMode(mode: string){

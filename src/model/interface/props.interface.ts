@@ -1,4 +1,4 @@
-import { LightTheme} from '@src/provider/confg/theme'
+import { LightTheme} from '@src/provider/config/theme'
 import { GestureResponderEvent, ImageSourcePropType } from 'react-native';
 
 export interface Theme {
