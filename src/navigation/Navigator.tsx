@@ -20,9 +20,13 @@ const MainStackNavigator = () => {
    Poppins: require("../../assets/fonts/Poppins-Medium.ttf")
  });
 
+ if(!loaded){
+   return null
+ }
+
   return (
     <SafeAreaProvider>
-    <ThemeProvider theme={{color: theme?.color}}>
+    <ThemeProvider theme={theme}>
         <Stack.Navigator screenOptions = {{headerShown: false}}>
           <Stack.Screen name="Auth" component={AuthStackNavigator} />
           <Stack.Screen name="Dashboard" component={BottomTabNavigator} />

@@ -1,11 +1,6 @@
 import styled from 'styled-components/native'
-
-interface Theme {
-    theme: {
-        color: string
-    }
-}
+import { Theme } from '@model'
 
 export const SignUpText = styled.Text<Theme>`
-color: ${props => props.theme.color};
+    color: ${({theme}) => theme.FOCUS_THEME_COLOR};
 `

@@ -7,7 +7,7 @@ export const LogoTop: React.FC<TopLogoModel> = ({ img }) => {
     return (
         <SafeAreaView>
             <TopLogoContainer>
-                <TopLogo source={require("@icons/logo-green-light.png")}/>
+                <TopLogo source={img}/>
             </TopLogoContainer>
         </SafeAreaView>
     );

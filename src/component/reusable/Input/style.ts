@@ -1,17 +1,11 @@
 import styled from 'styled-components/native'
-
-interface Theme {
-    theme: {
-        color: string
-    },
-    isFocus: boolean
-}
+import { Theme } from '@model'
 
 
 export const InputContainer = styled.View<Theme>`
     height: 45px;
     width: 80%;
-    border: ${props => props.isFocus ? "3px" : "1px"} solid #00BF4D;
+    border: 1px solid ${props => props.isFocus ? props.theme.FOCUS_THEME_COLOR : props.theme.BORDER};
     border-radius: 5px;
     display: flex;
     flex-direction: row;
@@ -24,7 +18,10 @@ export const InputIcon = styled.Image`
     width: 10%;
     resize-mode: contain
 `
-export const TextInput = styled.TextInput`
+export const TextInput = styled.TextInput.attrs((props: Theme) => ({
+  placeholderTextColor: props.theme.BORDER,
+  color: props.theme.THEME_MODE === 'light'? `rgba(${props.theme.TEXT_COLOR, 0.3})` : props.theme.BORDER
+}))`
     width: 83%;
     height: 40px;
     padding-left: 2%

@@ -1,12 +1,13 @@
 import styled from 'styled-components/native'
+import { Theme } from '@model'
 
-export const ButtonContainer = styled.TouchableOpacity`
+export const ButtonContainer = styled.TouchableOpacity<Theme>`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
     height: 45px;
-    background-color: #00BF4D;
+    background-color: ${({theme}) => theme.FOCUS_THEME_COLOR};
     border-radius: 5px;
     margin-top: 30px
 `
