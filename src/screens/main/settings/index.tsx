@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink } from '@src/provider/config/theme'

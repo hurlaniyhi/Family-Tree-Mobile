@@ -5,6 +5,7 @@ import { AuthStackNavigator } from "./StackNavigators";
 import { ThemeProvider } from "styled-components";
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { fonts } from '@src/provider/config/constant'
 import { useFonts } from 'expo-font';
 
 const Stack = createStackNavigator();
@@ -16,9 +17,7 @@ const Stack = createStackNavigator();
 const MainStackNavigator = () => {
   const { theme } = useContext(ThemeContext)
 
- const [loaded] = useFonts({
-   Poppins: require("../../assets/fonts/Poppins-Medium.ttf")
- });
+ const [loaded] = useFonts(fonts);
 
  if(!loaded){
    return null
