@@ -22,7 +22,7 @@ export const FlexRow = styled.View<Theme>`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: ${({flexTopMargin}) => flexTopMargin ?? 10}px;
+    margin-top: ${({flexTopMargin}) => flexTopMargin ?? 12}px;
     width: ${({flexWidth}) => flexWidth ?? 100}%
     justify-content: ${({justify}) => justify ?? 'flex-start'}
 ` 
@@ -55,6 +55,6 @@ export const LogoutText = styled.Text`
     font-size: 20px;
     padding-top: 2px;
     margin: 0px;
-    padding-left: 2%;
+    padding-left: 3%;
     color: #FF007C
 `

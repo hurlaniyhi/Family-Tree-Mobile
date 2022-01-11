@@ -33,7 +33,7 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
             <Button onPress={() => navigation.navigate("Dashboard")} />
             <SignUpLinkContainer>
                 Don't have an account? 
-                <SignUpLink>Sign up</SignUpLink>
+                <SignUpLink> Sign up</SignUpLink>
             </SignUpLinkContainer>
         </LoginContainer>
     );

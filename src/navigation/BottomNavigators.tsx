@@ -34,7 +34,7 @@ const BottomTabNavigator = () => {
       tabBarStyle: {
         backgroundColor: theme.BODY
       }
-      //headerShown: false
+      
     })}>
       <Tab.Screen name="Home" component={Dashboard} />
       <Tab.Screen name="Family Tree" component={FamilyTree} />
@@ -44,7 +44,7 @@ const BottomTabNavigator = () => {
         headerStyle: {
           backgroundColor: theme.THEME_MODE === "light" ? 
             theme.FOCUS_THEME_COLOR_LIGHT: 
-            theme.BODY
+            theme.CARD_BACKGROUND
         }, 
         headerTitleStyle: {color: theme.TEXT_COLOR}
       }}

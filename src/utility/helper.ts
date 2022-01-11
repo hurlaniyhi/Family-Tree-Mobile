@@ -1,6 +1,7 @@
 import { AppMode, AppTheme } from '@model'
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink} from '@src/provider/config/theme'
 import { ImageSourcePropType } from 'react-native'
+import { icons } from '@src/provider/config/constant'
 
 const sortMode_Theme = (mode: string, themeData: AppTheme) => {
     let modeData = mode === 'dark' ? DarkTheme : LightTheme
@@ -17,24 +18,16 @@ const sortMode_Theme = (mode: string, themeData: AppTheme) => {
 
 const logoImage = (theme: AppMode): ImageSourcePropType => {
     if (theme.THEME === 'purple') {
-        return theme.THEME_MODE === 'dark' ? 
-            require('@icons/logo-purple-dark.png') :
-            require('@icons/logo-purple-light.png')
+        return theme.THEME_MODE === 'dark' ? icons.PURPLE_DARK : icons.PURPLE_LIGHT
     }
     else if (theme.THEME === "yellow") {
-        return theme.THEME_MODE === 'dark' ? 
-            require('@icons/logo-yellow-dark.png') :
-            require('@icons/logo-yellow-light.png')
+        return theme.THEME_MODE === 'dark' ? icons.YELLOW_DARK : icons.YELLOW_LIGHT
     }
     else if (theme.THEME === "pink") {
-        return theme.THEME_MODE === 'dark' ? 
-            require('@icons/logo-pink-dark.png') :
-            require('@icons/logo-pink-light.png')
+        return theme.THEME_MODE === 'dark' ? icons.PINK_DARK : icons.PINK_LIGHT
     }
     else {
-        return theme.THEME_MODE === 'dark' ? 
-            require('@icons/logo-green-dark.png') :
-            require('@icons/logo-green-light.png')
+        return theme.THEME_MODE === 'dark' ? icons.GREEN_DARK : icons.GREEN_LIGHT
     }
 }
 

@@ -4,11 +4,11 @@ import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink } from '@src/provider/config/theme'
 import { AppTheme } from '@model'
 import { Container, Card } from '@component'
+import { icons } from '@src/provider/config/constant'
 import { AppText, MildText, FlexRow, SettingIcon, FlexRowBetween, Circle, LogoutText} from '@styles'
 
 
 export  const Settings: React.FC<any> = ({ navigation }) => {
-
     const { switchTheme, switchMode } = useContext(ThemeContext)
 
     async function handleThemeSwitch(data: AppTheme|string) {
@@ -21,7 +21,7 @@ export  const Settings: React.FC<any> = ({ navigation }) => {
                 <Card cardTopMargin="25">
                     <AppText fontWeight="600" fontSize="20">Account</AppText>
                     <FlexRow>
-                        <SettingIcon source={require('@icons/user.png')}/>
+                        <SettingIcon source={icons.USER}/>
                         <MildText>Profile</MildText>
                     </FlexRow>
                 </Card>
@@ -29,7 +29,7 @@ export  const Settings: React.FC<any> = ({ navigation }) => {
                     <AppText fontWeight="600" fontSize="20">Preferences</AppText>
                     <FlexRowBetween>
                         <FlexRow flexWidth="50">
-                            <SettingIcon source={require('@icons/theme.png')}/>
+                            <SettingIcon source={icons.THEME}/>
                             <MildText>Theme Modes</MildText>
                         </FlexRow>
                         <FlexRow justify="flex-end" flexWidth="50">
@@ -39,7 +39,7 @@ export  const Settings: React.FC<any> = ({ navigation }) => {
                     </FlexRowBetween>
                     <FlexRowBetween>
                         <FlexRow flexWidth="50">
-                            <SettingIcon source={require('@icons/theme.png')}/>
+                            <SettingIcon source={icons.THEME}/>
                             <MildText>Themes</MildText>
                         </FlexRow>
                         <FlexRow justify="flex-end" flexWidth="50">
@@ -50,40 +50,31 @@ export  const Settings: React.FC<any> = ({ navigation }) => {
                         </FlexRow>
                     </FlexRowBetween>
                     <FlexRow>
-                        <SettingIcon source={require('@icons/notification.png')}/>
+                        <SettingIcon source={icons.NOTIFICATION}/>
                         <MildText>Notification Settings</MildText>
                     </FlexRow>
                 </Card>
                 <Card cardTopMargin="25">
                     <AppText fontWeight="600" fontSize="20">FamTree</AppText>
                     <FlexRow>
-                        <SettingIcon source={require('@icons/support.png')}/>
+                        <SettingIcon source={icons.SUPPORT}/>
                         <MildText>Support</MildText>
                     </FlexRow>
                     <FlexRow>
-                        <SettingIcon source={require('@icons/hash.png')}/>
+                        <SettingIcon source={icons.HASH}/>
                         <MildText>FamTree Community Forum</MildText>
                     </FlexRow>
                     <FlexRow>
-                        <SettingIcon source={require('@icons/about.png')}/>
+                        <SettingIcon source={icons.ABOUT}/>
                         <MildText>About</MildText>
                     </FlexRow>
                 </Card>
                 <Card cardBottomMargin="20">
                     <FlexRow flexTopMargin="0">
-                        <SettingIcon source={require('@icons/logout.png')}/>
+                        <SettingIcon source={icons.LOGOUT}/>
                         <LogoutText onPress = {() => navigation.navigate("SignIn")}>Logout</LogoutText>
                     </FlexRow>
                 </Card>
-                {/* <Card>
-                    <AppText fontWeight="500" onPress = {() => handleThemeSwitch(DarkTheme.THEME_MODE)}>Dark</AppText>
-                    <AppText fontWeight="500" onPress = {() => handleThemeSwitch(LightTheme.THEME_MODE)}>Light</AppText>
-                    <AppText fontWeight="500" onPress = {() => handleThemeSwitch(Green)}>Green</AppText>
-                    <AppText fontWeight="500" onPress = {() => handleThemeSwitch(Purple)}>Purple</AppText>
-                    <AppText fontWeight="500" onPress = {() => handleThemeSwitch(Yellow)}>Yellow</AppText>
-                    <AppText fontWeight="500" onPress = {() => handleThemeSwitch(Pink)}>Pink</AppText>
-                    <AppText fontWeight="500" onPress = {() => navigation.navigate("SignIn")}>Logout</AppText>
-                </Card> */}
             </Container>
         </ScrollView>
     );
