@@ -1,15 +1,17 @@
 import { AppMode, AppTheme } from '@model'
-import { DarkTheme, LightTheme } from '@src/provider/config/theme'
+import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink} from '@src/provider/config/theme'
 import { ImageSourcePropType } from 'react-native'
 
 const sortMode_Theme = (mode: string, themeData: AppTheme) => {
     let modeData = mode === 'dark' ? DarkTheme : LightTheme
+    themeData.CARD_BACKGROUND = mode === 'dark' ? getCardColor(themeData.THEME) : themeData.CARD_BACKGROUND
     const theme = { 
         FOCUS_THEME_COLOR: themeData.FOCUS_THEME_COLOR, 
         FOCUS_THEME_COLOR_LIGHT: themeData.FOCUS_THEME_COLOR_LIGHT,
-        CARD_BACKGROUND: themeData.CARD_BACKGROUND ?? null,
+        CARD_BACKGROUND: themeData.CARD_BACKGROUND,
         THEME: themeData.THEME
     }
+    //console.log({theme})
     return { ...modeData,  ...theme}
 }
 
@@ -36,7 +38,15 @@ const logoImage = (theme: AppMode): ImageSourcePropType => {
     }
 }
 
+const getCardColor = (theme: string): string => {
+    if (theme === 'purple') return Purple.CARD_BACKGROUND
+    else if (theme === 'pink') return Pink.CARD_BACKGROUND
+    else if (theme === 'yellow') return Yellow.CARD_BACKGROUND
+    else return Green.CARD_BACKGROUND
+}
+
 export default {
     sortMode_Theme,
-    logoImage
+    logoImage,
+    getCardColor
 }

@@ -1,5 +1,4 @@
 import { DarkTheme, LightTheme } from '@src/provider/config/theme'
-import { ImageSourcePropType } from 'react-native';
 
 export interface AppMode {
     THEME_MODE: string,
@@ -23,4 +22,9 @@ export interface ContextTheme {
     theme: typeof DarkTheme,
     switchTheme?: (themeData: any) => void,
     switchMode?: (mode: any) => void
+}
+
+export interface ThemeAction { 
+    type: string, 
+    payload: any 
 }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { InputContainer, InputIcon, TextInput } from '@styles';
 
-export const Input: React.FC<any> = () => {
+export const Input: React.FC<any> = React.memo(() => {
     const [focus, setFocus] = useState(false)
     function handleFocus(data: boolean) {
         setFocus(data)
@@ -18,4 +18,4 @@ export const Input: React.FC<any> = () => {
              />
         </InputContainer>
     );
-}
+})

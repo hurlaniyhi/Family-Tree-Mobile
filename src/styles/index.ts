@@ -8,3 +8,5 @@ export * from '@screens/main/settings/style'
 export * from '@src/component/reusable/TopLogo/style'
 export * from '@src/component/reusable/Input/style'
 export * from '@src/component/reusable/Button/style'
+export * from "@src/component/reusable/Card/style"
+export * from '@src/component/reusable/Container/style'

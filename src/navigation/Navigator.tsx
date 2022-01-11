@@ -10,18 +10,13 @@ import { useFonts } from 'expo-font';
 
 const Stack = createStackNavigator();
 
-// let customFonts = {
-//   'Poppins-Medium': require('../../assets/fonts/Poppins-MediumItalic.ttf')
-// };
-
 const MainStackNavigator = () => {
   const { theme } = useContext(ThemeContext)
+  const [loaded] = useFonts(fonts);
 
- const [loaded] = useFonts(fonts);
-
- if(!loaded){
-   return null
- }
+  if(!loaded){
+    return null
+  }
 
   return (
     <SafeAreaProvider>

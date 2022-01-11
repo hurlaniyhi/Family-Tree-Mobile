@@ -31,7 +31,10 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
                 <ForgetPassText>Forget Password?</ForgetPassText>
             </LoginOptionContainer>
             <Button onPress={() => navigation.navigate("Dashboard")} />
-            <SignUpLinkContainer>Don't have an account? <SignUpLink>Sign up</SignUpLink></SignUpLinkContainer>
+            <SignUpLinkContainer>
+                Don't have an account? 
+                <SignUpLink>Sign up</SignUpLink>
+            </SignUpLinkContainer>
         </LoginContainer>
     );
 }

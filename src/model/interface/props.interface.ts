@@ -3,7 +3,16 @@ import { GestureResponderEvent, ImageSourcePropType } from 'react-native';
 
 export interface Theme {
     theme: typeof LightTheme,
-    isFocus?: boolean
+    isFocus?: boolean,
+    cardTopMargin?: string,
+    cardBottomMargin?: string,
+    fontWeight?: string,
+    fontSize?: string,
+    justify?: string,
+    flexWidth?: string,
+    themeColor?: string,
+    textColor?: string;
+    flexTopMargin?: string,
 }
 
 export interface TopLogoModel {
@@ -12,4 +21,10 @@ export interface TopLogoModel {
 
 export interface ButtonProps {
     onPress: ((event: GestureResponderEvent) => void) | undefined
+}
+
+export interface CardProps {
+    children: React.ReactNode,
+    cardTopMargin?: string,
+    cardBottomMargin?: string
 }

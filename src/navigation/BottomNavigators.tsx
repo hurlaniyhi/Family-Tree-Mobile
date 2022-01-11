@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AntDesign, Entypo, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dashboard, Settings, FamilyTree, ChatMembers } from "@screens/main";
+import ThemeContext from '@src/provider/state-manager/themeProvider'
 
 
 const Tab = createBottomTabNavigator();
 
+
+
 const BottomTabNavigator = () => {
+  const { theme } = useContext(ThemeContext)
+
   return (
     <Tab.Navigator screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
@@ -24,14 +29,26 @@ const BottomTabNavigator = () => {
                 <Ionicons name="chatbox-ellipses-outline" size={size} color={color} />
         }
       },
-      tabBarActiveTintColor: '#00BF4D',
+      tabBarActiveTintColor: theme.FOCUS_THEME_COLOR,
       tabBarInactiveTintColor: 'gray',
-      headerShown: false
+      tabBarStyle: {
+        backgroundColor: theme.BODY
+      }
+      //headerShown: false
     })}>
       <Tab.Screen name="Home" component={Dashboard} />
       <Tab.Screen name="Family Tree" component={FamilyTree} />
       <Tab.Screen name="Messages" component={ChatMembers} />
-      <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen name="Settings" component={Settings} options={{
+        headerTitleAlign: 'center', 
+        headerStyle: {
+          backgroundColor: theme.THEME_MODE === "light" ? 
+            theme.FOCUS_THEME_COLOR_LIGHT: 
+            theme.BODY
+        }, 
+        headerTitleStyle: {color: theme.TEXT_COLOR}
+      }}
+      />
     </Tab.Navigator>
   );
 };
