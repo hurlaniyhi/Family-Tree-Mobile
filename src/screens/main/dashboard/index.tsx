@@ -1,15 +1,11 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { DashboardText } from '@styles'
+import { Container } from '@component'
 
-interface Props {
-
-}
-
-export  const Dashboard: React.FC<Props> = () => {
+export  const Dashboard: React.FC<any> = () => {
     return (
-        <SafeAreaView>
-            <Text>This is Dashboard screen</Text>
-        </SafeAreaView>
+        <Container>
+            <DashboardText>This is Dashboard screen</DashboardText>
+        </Container>
     );
 }

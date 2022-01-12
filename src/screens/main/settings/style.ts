@@ -33,7 +33,7 @@ export const FlexRowBetween = styled.View`
     align-items: center;
     justify-content: space-between;
 `
-export const Circle = styled.Text<Theme>`
+export const Circle = styled.TouchableOpacity<Theme>`
     width: 24px;
     height: 24px;
     border-radius: 100px
@@ -42,7 +42,10 @@ export const Circle = styled.Text<Theme>`
     border: 1px solid ${props => 
         props.theme.THEME_MODE === 'light' && props.themeColor === '#FFFFFF' ? 
         props.theme.TEXT_COLOR : props.themeColor
-    }
+    };
+    display: flex;
+    justify-content: center;
+    align-items: center
 `
 export const SettingIcon = styled.Image`
     resize-mode: contain;

@@ -1,15 +1,11 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { DashboardText } from '@styles'
+import { Container } from '@component'
 
-interface Props {
-
-}
-
-export  const FamilyTree: React.FC<Props> = () => {
+export  const FamilyTree: React.FC<any> = () => {
     return (
-        <SafeAreaView>
-            <Text>This is FamilyTree screen</Text>
-        </SafeAreaView>
+        <Container>
+            <DashboardText>This is Family Tree screen</DashboardText>
+        </Container>
     );
 }

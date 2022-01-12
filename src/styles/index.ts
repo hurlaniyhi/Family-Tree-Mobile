@@ -10,3 +10,8 @@ export * from '@src/component/reusable/Input/style'
 export * from '@src/component/reusable/Button/style'
 export * from "@src/component/reusable/Card/style"
 export * from '@src/component/reusable/Container/style'
+export * from '@src/component/reusable/FlowIndicator/style'
+export * from '@screens/auth/confirm-account/style'
+export * from '@screens/auth/family-details/style'
+export * from '@screens/auth/relative-data/style'
+export * from '@screens/auth/complete-account/style'

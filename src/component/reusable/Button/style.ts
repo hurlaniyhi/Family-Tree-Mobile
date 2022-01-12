@@ -9,7 +9,8 @@ export const ButtonContainer = styled.TouchableOpacity<Theme>`
     height: 45px;
     background-color: ${({theme}) => theme.FOCUS_THEME_COLOR};
     border-radius: 5px;
-    margin-top: 30px
+    margin-top: ${({flexTopMargin}) => flexTopMargin ?? 30}px;
+    margin-bottom: ${({flexBottomMargin}) => flexBottomMargin ?? 15}px
 `
 
 export const ButtonText = styled.Text`

@@ -31,6 +31,13 @@ const logoImage = (theme: AppMode): ImageSourcePropType => {
     }
 }
 
+const getUserIcon = (theme: AppMode): ImageSourcePropType => {
+    if (theme.THEME === 'purple') return icons.USER_PURPLE
+    else if (theme.THEME === "yellow") return icons.USER_YELLOW
+    else if (theme.THEME === "pink") return icons.USER_PINK
+    else return icons.USER_GREEN
+}
+
 const getCardColor = (theme: string): string => {
     if (theme === 'purple') return Purple.CARD_BACKGROUND
     else if (theme === 'pink') return Pink.CARD_BACKGROUND
@@ -41,5 +48,6 @@ const getCardColor = (theme: string): string => {
 export default {
     sortMode_Theme,
     logoImage,
-    getCardColor
+    getCardColor,
+    getUserIcon
 }

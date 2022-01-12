@@ -1,6 +1,6 @@
 export const DarkTheme = {
     THEME_MODE: 'dark',
-    BODY: '#080B0A',
+    BODY: '#0A0A0A',
     FOCUS_THEME_COLOR: '#00BF4D',
     FOCUS_THEME_COLOR_LIGHT: '#D0FFE3',
     CARD_BACKGROUND: '#00140A',

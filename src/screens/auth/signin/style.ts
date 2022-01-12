@@ -1,14 +1,24 @@
 import styled from 'styled-components/native'
 import { Theme } from '@model'
 
-export const LoginContainer = styled.View<Theme>`
+export const CenterContainer = styled.View<Theme>`
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: ${({theme}) => theme.BODY};
+    background-color: ${({theme}) => theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY};
+`
+
+export const CenterHorizontallyContainer = styled.View<Theme>`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    background-color: ${({theme}) => theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY};
 `
 export const WelcomeText = styled.Text<Theme>`
     font-style: normal;

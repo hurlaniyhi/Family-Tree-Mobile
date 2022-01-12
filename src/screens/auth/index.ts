@@ -1,3 +1,7 @@
 export * from './forget-password'
 export * from './signin'
 export * from './signup'
+export * from './confirm-account'
+export * from './family-details'
+export * from './relative-data'
+export * from './complete-account'

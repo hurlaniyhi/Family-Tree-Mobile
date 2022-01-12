@@ -20,12 +20,12 @@ const MainStackNavigator = () => {
 
   return (
     <SafeAreaProvider>
-    <ThemeProvider theme={theme}>
-        <Stack.Navigator screenOptions = {{headerShown: false}}>
-          <Stack.Screen name="Auth" component={AuthStackNavigator} />
-          <Stack.Screen name="Dashboard" component={BottomTabNavigator} />
-        </Stack.Navigator>
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+          <Stack.Navigator screenOptions = {{headerShown: false}}>
+            <Stack.Screen name="Auth" component={AuthStackNavigator} />
+            <Stack.Screen name="Dashboard" component={BottomTabNavigator} />
+          </Stack.Navigator>
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 };

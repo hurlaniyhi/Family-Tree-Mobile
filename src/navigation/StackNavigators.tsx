@@ -1,6 +1,14 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { SignUp, SignIn, ForgetPassword } from "@screens/auth";
+import { 
+  SignUp, 
+  SignIn, 
+  ForgetPassword, 
+  ConfirmAccount, 
+  FamilyDetails, 
+  RelativeData,
+  CompleteAccount
+} from "@screens/auth";
 
 
 const Stack = createStackNavigator();
@@ -9,7 +17,7 @@ const screenOptionStyle = {
     headerStyle: {
       backgroundColor: "#9AC4F8",
     },
-    headerTintColor: "white",
+    headerTintColor: "#E5E5E5",
     headerBackTitle: "Back",
     headerShown: false
   };
@@ -20,6 +28,10 @@ const AuthStackNavigator = () => {
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
+      <Stack.Screen name="ConfirmAccount" component={ConfirmAccount} />
+      <Stack.Screen name="FamilyDetails" component={FamilyDetails} />
+      <Stack.Screen name="RelativeData" component={RelativeData} />
+      <Stack.Screen name="CompleteAccount" component={CompleteAccount} />
     </Stack.Navigator>
   );
 }

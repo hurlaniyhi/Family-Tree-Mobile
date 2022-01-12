@@ -4,12 +4,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dashboard, Settings, FamilyTree, ChatMembers } from "@screens/main";
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 
-
 const Tab = createBottomTabNavigator();
 
-
-
 const BottomTabNavigator = () => {
+
+  const alignTitle = {
+    headerTitleAlign: 'center'
+  }
   const { theme } = useContext(ThemeContext)
 
   return (
@@ -32,13 +33,18 @@ const BottomTabNavigator = () => {
       tabBarActiveTintColor: theme.FOCUS_THEME_COLOR,
       tabBarInactiveTintColor: 'gray',
       tabBarStyle: {
+        backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY
+      },
+      headerTitleAlign: 'center',
+      headerStyle: {
         backgroundColor: theme.BODY
-      }
+      },
+      headerTitleStyle: {color: theme.TEXT_COLOR}
       
     })}>
-      <Tab.Screen name="Home" component={Dashboard} />
-      <Tab.Screen name="Family Tree" component={FamilyTree} />
-      <Tab.Screen name="Messages" component={ChatMembers} />
+      <Tab.Screen name="Home" component={Dashboard}/>
+      <Tab.Screen name="Family Tree" component={FamilyTree}/>
+      <Tab.Screen name="Messages" component={ChatMembers}/>
       <Tab.Screen name="Settings" component={Settings} options={{
         headerTitleAlign: 'center', 
         headerStyle: {

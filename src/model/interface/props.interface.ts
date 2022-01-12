@@ -13,6 +13,10 @@ export interface Theme {
     themeColor?: string,
     textColor?: string;
     flexTopMargin?: string,
+    flexBottomMargin?: string,
+    textMargin?: string,
+    flowCircleSize?: string
+    flowCircleColor?: string
 }
 
 export interface TopLogoModel {
@@ -20,7 +24,10 @@ export interface TopLogoModel {
 }
 
 export interface ButtonProps {
-    onPress: ((event: GestureResponderEvent) => void) | undefined
+    onPress: ((event: GestureResponderEvent) => void) | undefined,
+    text: string,
+    btnTopMargin?: string,
+    btnBottomMargin?: string
 }
 
 export interface CardProps {
@@ -28,3 +35,9 @@ export interface CardProps {
     cardTopMargin?: string,
     cardBottomMargin?: string
 }
+
+export interface InputProps {
+    placeHolder: string,
+    icon: ImageSourcePropType
+}
+

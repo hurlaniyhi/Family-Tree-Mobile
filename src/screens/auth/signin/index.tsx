@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import helpers from '@src/utility/helper'
-
-import { LoginContainer, 
+import { CenterContainer, 
     WelcomeText, 
     InstructionText, 
     LoginOptionContainer, 
@@ -12,7 +11,8 @@ import { LoginContainer,
 } from '@styles'
 import { LogoTop, Input, Button } from '@component';
 import ThemeContext from '@src/provider/state-manager/themeProvider'
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType, ScrollView } from 'react-native';
+import { icons } from '@src/provider/config/constant'
 
 
 export  const SignIn: React.FC<any> = ({ navigation }) => {
@@ -20,21 +20,23 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
     let logoImg: ImageSourcePropType = helpers.logoImage(theme)
 
     return (
-        <LoginContainer>
-            <LogoTop img={ logoImg } />
-            <WelcomeText>Welcome Back</WelcomeText>
-            <InstructionText>Sign in to continue</InstructionText>
-            <Input />
-            <Input />
-            <LoginOptionContainer>
-                <RememberMeText>Remember me</RememberMeText>
-                <ForgetPassText>Forget Password?</ForgetPassText>
-            </LoginOptionContainer>
-            <Button onPress={() => navigation.navigate("Dashboard")} />
-            <SignUpLinkContainer>
-                Don't have an account? 
-                <SignUpLink> Sign up</SignUpLink>
-            </SignUpLinkContainer>
-        </LoginContainer>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <CenterContainer>
+                <LogoTop img={ logoImg } />
+                <WelcomeText>Welcome Back</WelcomeText>
+                <InstructionText>Sign in to continue</InstructionText>
+                <Input placeHolder="Phone Number" icon={icons.CALL} />
+                <Input placeHolder="Password" icon={icons.LOCK} />
+                <LoginOptionContainer>
+                    <RememberMeText>Remember me</RememberMeText>
+                    <ForgetPassText>Forget Password?</ForgetPassText>
+                </LoginOptionContainer>
+                <Button text="Sign In" onPress={() => navigation.navigate("Dashboard")} />
+                <SignUpLinkContainer>
+                    Don't have an account? 
+                    <SignUpLink onPress={() => navigation.navigate("SignUp")}> Sign up</SignUpLink>
+                </SignUpLinkContainer>
+            </CenterContainer>
+        </ScrollView>
     );
 }

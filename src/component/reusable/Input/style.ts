@@ -12,7 +12,7 @@ export const InputContainer = styled.View<Theme>`
     align-items: center;
     padding-left: 2.5%;
     padding-right: 2.5%;
-    margin-top: 35px;
+    margin-top: 30px;
 `
 export const InputIcon = styled.Image`
     width: 10%;

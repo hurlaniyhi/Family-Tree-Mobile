@@ -1,9 +1,17 @@
 {
   "expo": {
-    "name": "family-tree-mobile",
-    "slug": "family-tree-mobile",
+    "name": "FamilyTree",
+    "slug": "family-tree",
     "version": "1.0.0",
     "orientation": "portrait",
+    "androidStatusBar": {
+      "backgroundColor": "#000000"
+    },
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -23,7 +31,10 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.lingonsoft.ShopWyse",
+      "versionCode": 1,
+      "icon": "./assets/icons/FamTree.png" 
     },
     "web": {
       "favicon": "./assets/favicon.png"
