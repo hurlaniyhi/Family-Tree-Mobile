@@ -35,7 +35,9 @@ const BottomTabNavigator = () => {
       headerStyle: {
         backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY
       },
-      headerTitleStyle: {color: theme.TEXT_COLOR}
+      headerTitleStyle: {color: theme.TEXT_COLOR},
+      animationEnabled: false,
+      sceneAnimatedEnabled: false
       
     })}>
       <Tab.Screen name="Home" component={Dashboard}/>

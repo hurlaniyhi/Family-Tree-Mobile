@@ -21,7 +21,8 @@ const screenOptionStyle = {
     },
     headerTintColor: "#E5E5E5",
     headerBackTitle: "Back",
-    headerShown: false
+    headerShown: false, 
+    animationEnabled: false
   };
 
 const AuthStackNavigator = () => {

@@ -4,7 +4,7 @@ import { Theme } from '@model'
 export const SelectFieldText = styled.Text<Theme>`
     width: 75%;
     padding-left: 2%;
-    color: ${({theme, selectedOption}) => selectedOption ? theme.TEXT_COLOR : theme.BORDER}
+    color: ${({theme, selectedOption}) => selectedOption ? theme.TEXT_COLOR : theme.BORDER};
 `
 export const ArrowDownIcon = styled.TouchableOpacity`
     position: absolute;

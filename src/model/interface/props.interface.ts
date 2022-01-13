@@ -39,8 +39,7 @@ export interface CardProps {
 }
 
 interface DropDownOption {
-    title: string,
-    //onPress?: ((event: GestureResponderEvent) => void) | undefined,
+    title: string
 }
 
 export interface InputProps {

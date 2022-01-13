@@ -4,7 +4,7 @@ import BottomTabNavigator from './BottomNavigators'
 import { AuthStackNavigator } from "./StackNavigators";
 import { ThemeProvider } from "styled-components";
 import ThemeContext from '@src/provider/state-manager/themeProvider'
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+//import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { fonts } from '@src/provider/config/constant'
 import { useFonts } from 'expo-font';
 
@@ -19,14 +19,12 @@ const MainStackNavigator = () => {
   }
 
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-          <Stack.Navigator screenOptions = {{headerShown: false}}>
-            <Stack.Screen name="Auth" component={AuthStackNavigator} />
-            <Stack.Screen name="Dashboard" component={BottomTabNavigator} />
-          </Stack.Navigator>
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <ThemeProvider theme={theme}>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Auth" component={AuthStackNavigator} options={{animationEnabled: false}} />
+          <Stack.Screen name="Dashboard" component={BottomTabNavigator} options={{animationEnabled: false}}/>
+        </Stack.Navigator>
+    </ThemeProvider>
   );
 };
 

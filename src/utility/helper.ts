@@ -12,7 +12,7 @@ const sortMode_Theme = (mode: string, themeData: AppTheme) => {
         CARD_BACKGROUND: themeData.CARD_BACKGROUND,
         THEME: themeData.THEME
     }
-    return { ...modeData,  ...theme}
+    return { ...modeData,  ...theme }
 }
 
 const logoImage = (theme: AppMode): ImageSourcePropType => {
