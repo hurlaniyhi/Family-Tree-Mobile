@@ -49,3 +49,22 @@ export const initialState = {
         dark: false
     }
 }
+
+export const dropDownOptions = {
+    STATE: [
+        {title: "Kwara"},  {title: "Oyo"},  {title: "Lagos"},  {title: "Cancel"}
+    ],
+    COUNTRY: [
+        {title: "Nigeria"},  
+        {title: "Brazil"},  
+        {title: "Portugal"},
+        {title: "Italy"},
+        {title: "France"},
+        {title: "Cancel"}
+    ],
+    GENDER: [
+        {title: "Male"},
+        {title: "Female"},
+        {title: "Cancel"}
+    ]
+}

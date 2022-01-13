@@ -92,3 +92,11 @@ export const RememberCheckWrapper = styled.Text<Theme>`
     justify-content: center;
     align-items: center;
 `
+export const ModalContent = styled.View<Theme>`
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: white
+`

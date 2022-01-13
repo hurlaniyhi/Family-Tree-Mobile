@@ -17,7 +17,8 @@ export interface Theme {
     textMargin?: string,
     flowCircleSize?: string
     flowCircleColor?: string,
-    isChecked?: boolean
+    isChecked?: boolean,
+    selectedOption?: string
 }
 
 export interface TopLogoModel {
@@ -37,9 +38,19 @@ export interface CardProps {
     cardBottomMargin?: string
 }
 
+interface DropDownOption {
+    title: string,
+    //onPress?: ((event: GestureResponderEvent) => void) | undefined,
+}
+
 export interface InputProps {
     placeHolder: string,
     icon: ImageSourcePropType
 }
 
+export interface SelectFieldProps extends InputProps {
+    selectOptions: DropDownOption[],
+    selectedText: string,
+    handleSelectedData: ((event: string, name?: string) => void) | undefined
+}
 
