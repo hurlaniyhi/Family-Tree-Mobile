@@ -12,7 +12,6 @@ const sortMode_Theme = (mode: string, themeData: AppTheme) => {
         CARD_BACKGROUND: themeData.CARD_BACKGROUND,
         THEME: themeData.THEME
     }
-    //console.log({theme})
     return { ...modeData,  ...theme}
 }
 

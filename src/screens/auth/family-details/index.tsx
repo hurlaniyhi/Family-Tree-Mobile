@@ -14,7 +14,7 @@ export const FamilyDetails: React.FC<any> = ({ navigation }) => {
                 <Input placeHolder="State" icon={icons.STATE} />
                 <Input placeHolder="HomeTown" icon={icons.HOME} />
                 <Button text="Continue" onPress={() => navigation.navigate("RelativeData")} />
-                <FlowIndicator pageNumber={2} />
+                <FlowIndicator pageNumber={2} flows={5} />
             </CenterHorizontallyContainer>
         </ScrollView>
     );

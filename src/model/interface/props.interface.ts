@@ -16,7 +16,8 @@ export interface Theme {
     flexBottomMargin?: string,
     textMargin?: string,
     flowCircleSize?: string
-    flowCircleColor?: string
+    flowCircleColor?: string,
+    isChecked?: boolean
 }
 
 export interface TopLogoModel {
@@ -40,4 +41,5 @@ export interface InputProps {
     placeHolder: string,
     icon: ImageSourcePropType
 }
+
 

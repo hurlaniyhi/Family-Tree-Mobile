@@ -19,7 +19,7 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
                 <Input placeHolder="Date of Birth" icon={icons.DATE} />
                 <Input placeHolder="Gender" icon={icons.GENDER} />
                 <Button text="Continue" onPress={() => navigation.navigate("Dashboard")} />
-                <FlowIndicator pageNumber={4} />
+                <FlowIndicator pageNumber={4} flows={5} />
             </CenterHorizontallyContainer>
         </ScrollView>
     );

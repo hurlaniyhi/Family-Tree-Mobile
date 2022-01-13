@@ -7,10 +7,6 @@ import ThemeContext from '@src/provider/state-manager/themeProvider'
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
-
-  const alignTitle = {
-    headerTitleAlign: 'center'
-  }
   const { theme } = useContext(ThemeContext)
 
   return (
@@ -37,7 +33,7 @@ const BottomTabNavigator = () => {
       },
       headerTitleAlign: 'center',
       headerStyle: {
-        backgroundColor: theme.BODY
+        backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY
       },
       headerTitleStyle: {color: theme.TEXT_COLOR}
       
@@ -46,7 +42,6 @@ const BottomTabNavigator = () => {
       <Tab.Screen name="Family Tree" component={FamilyTree}/>
       <Tab.Screen name="Messages" component={ChatMembers}/>
       <Tab.Screen name="Settings" component={Settings} options={{
-        headerTitleAlign: 'center', 
         headerStyle: {
           backgroundColor: theme.THEME_MODE === "light" ? 
             theme.FOCUS_THEME_COLOR_LIGHT: 

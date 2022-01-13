@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import helpers from '@src/utility/helper'
 import { CenterContainer, 
     WelcomeText, 
@@ -7,16 +7,22 @@ import { CenterContainer,
     RememberMeText, 
     ForgetPassText,
     SignUpLinkContainer,
-    SignUpLink
+    SignUpLink,
+    RememberContainer,
+    RememberCheckWrapper
 } from '@styles'
 import { LogoTop, Input, Button } from '@component';
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { ImageSourcePropType, ScrollView } from 'react-native';
 import { icons } from '@src/provider/config/constant'
+import { Feather } from '@expo/vector-icons'
+// import { Slide } from 'native-base'
 
 
 export  const SignIn: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
+    const [isChecked, setIsChecked] = useState<boolean>(true)
+
     let logoImg: ImageSourcePropType = helpers.logoImage(theme)
 
     return (
@@ -28,8 +34,13 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
                 <Input placeHolder="Phone Number" icon={icons.CALL} />
                 <Input placeHolder="Password" icon={icons.LOCK} />
                 <LoginOptionContainer>
-                    <RememberMeText>Remember me</RememberMeText>
-                    <ForgetPassText>Forget Password?</ForgetPassText>
+                    <RememberContainer>
+                        <RememberCheckWrapper isChecked={isChecked} onPress = {() => setIsChecked(!isChecked)}>
+                        { isChecked ? <Feather name="check" size={15} color="#ffffff" /> : null}
+                        </RememberCheckWrapper>
+                        <RememberMeText>Remember me</RememberMeText>
+                    </RememberContainer>
+                    <ForgetPassText onPress = {() => navigation.navigate("EnterEmail")}>Forget Password?</ForgetPassText>
                 </LoginOptionContainer>
                 <Button text="Sign In" onPress={() => navigation.navigate("Dashboard")} />
                 <SignUpLinkContainer>

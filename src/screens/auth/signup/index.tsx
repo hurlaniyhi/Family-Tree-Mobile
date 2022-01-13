@@ -23,7 +23,7 @@ export  const SignUp: React.FC<any> = ({ navigation }) => {
                 <Input placeHolder="Password" icon={icons.LOCK} />
                 <Input placeHolder="Confirm Password" icon={icons.LOCK} />
                 <Button text="Sign Up" onPress={() => navigation.navigate("ConfirmAccount")} />
-                <FlowIndicator pageNumber={0} />
+                <FlowIndicator pageNumber={0} flows={5} />
             </CenterContainer>
         </ScrollView>
     );

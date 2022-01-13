@@ -4,20 +4,22 @@ import { CenterHorizontallyContainer, OtpPageTitle, KeyIcon, OtpNotificationText
 import { icons } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator } from '@component'
 
-export const ConfirmAccount: React.FC<any> = ({ navigation }) => {
+
+export  const EnterEmail: React.FC<any> = ({ navigation }) => {
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <CenterHorizontallyContainer>
-                <OtpPageTitle>Confirm Your Account</OtpPageTitle>
+                <OtpPageTitle>Enter Your Email</OtpPageTitle>
                 <KeyIcon source={icons.KEY} />
                 <OtpNotificationText>
-                    We have sent a 
-                    <OtpNotificationText textColor="#FF007C"> One Time Password</OtpNotificationText>
+                    Enter the
+                    <OtpNotificationText textColor="#FF007C"> Email </OtpNotificationText>
+                    connected to
                 </OtpNotificationText>
-                <OtpNotificationText textMargin="-5">to your Phone Number</OtpNotificationText>
-                <Input placeHolder="Enter OTP" icon={icons.LOCK} />
-                <Button text="Continue" onPress={() => navigation.navigate("FamilyDetails")} />
-                <FlowIndicator pageNumber={1} flows={5} />
+                <OtpNotificationText textMargin="-5">your Account</OtpNotificationText>
+                <Input placeHolder="Enter Email" icon={icons.MAIL} />
+                <Button text="Continue" onPress={() => navigation.navigate("ConfirmEmail")} />
+                <FlowIndicator pageNumber={0} flows={3} />
             </CenterHorizontallyContainer>
         </ScrollView>
     );

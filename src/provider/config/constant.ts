@@ -30,7 +30,6 @@ export const icons = {
     DATE: require('@icons/date.png'),
     FAMILY_NAME: require('@icons/family-name.png'),
     NAME: require('@icons/name.png'),
-    NAMES: require('@icons/name.svg'),
     KEY: require('@icons/key.png'),
     USER_GREEN: require('@icons/user-green.png'),
     USER_PINK: require('@icons/user-pink.png'),

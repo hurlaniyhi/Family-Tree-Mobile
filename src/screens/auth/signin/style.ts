@@ -50,7 +50,8 @@ export const RememberMeText = styled.Text<Theme>`
     font-family: Poppins;
     font-weight: 600;
     font-size: 10px;
-    color: ${({theme}) => theme.TEXT_COLOR}
+    padding-top: 3.5px;
+    color: #727272
 `
 
 export const ForgetPassText = styled.Text<Theme>`
@@ -72,4 +73,22 @@ export const SignUpLinkContainer = styled.Text<Theme>`
 
 export const SignUpLink = styled.Text`
     color: #FF007C
+`
+export const RememberContainer = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+
+export const RememberCheckWrapper = styled.Text<Theme>`
+    height: 16px;
+    width: 16px;
+    border-radius: 2px;
+    border: 1px solid ${({theme}) => theme.FOCUS_THEME_COLOR}
+    background-color: ${({isChecked, theme}) => isChecked ? theme.FOCUS_THEME_COLOR : theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY};
+    margin-right: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `

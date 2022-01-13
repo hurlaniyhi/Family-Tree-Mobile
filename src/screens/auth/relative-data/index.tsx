@@ -17,12 +17,12 @@ export const RelativeData : React.FC<any> = ({ navigation }) => {
                 <Input placeHolder="Child's Name" icon={icons.NAME} />
                 <Input placeHolder="Child's Phone Number" icon={icons.CALL} />
                 <AddBtnContainer>
-                    <AddButton>
+                    <AddButton activeOpacity={0.8}>
                         <AddBtnText>Add Child</AddBtnText>
                     </AddButton>
                 </AddBtnContainer>
                 <Button text="Continue" btnBottomMargin="70" onPress={() => navigation.navigate("CompleteAccount")} />
-                <FlowIndicator pageNumber={3} />
+                <FlowIndicator pageNumber={3} flows={5} />
             </CenterHorizontallyContainer>
         </ScrollView>
     );
