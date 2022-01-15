@@ -38,7 +38,13 @@ export const icons = {
     DP_SM: require('@icons/profile-pics-small.png'),
     DP_LG: require('@icons/profile-pics-large.png'),
     DP3: require('@icons/dp3.jpg'),
-    DP: require('@icons/test.jpg')
+    DP: require('@icons/test.jpg'),
+    DP2: require('@icons/dp2.jpeg'),
+    DP4: require('@icons/dp4.jpeg'),
+    POST_IMAGE: require('@icons/post-image.png'),
+    POST_IMAGE2: require('@icons/post2.jpeg'),
+    POST_IMAGE3: require('@icons/post3.jpeg'),
+    POST_IMAGE1: require('@icons/post1.jpeg')
 }
 
 export const initialState = {

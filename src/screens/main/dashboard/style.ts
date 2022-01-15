@@ -87,12 +87,13 @@ export const StatusCircle = styled.View<Theme>`
     bottom: 3px;
     right: 5px
 `
-export const ChatListWrapper = styled.View`
+export const ChatListWrapper = styled.View<Theme>`
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 10px
+    margin-top: ${({flexTopMargin}) => flexTopMargin || 8}px;
+    margin-bottom: ${({flexBottomMargin}) => flexBottomMargin || 0}px;
 `
 export const ChatMemberTextWrapper = styled.View`
     margin-left: 10px;
@@ -122,4 +123,19 @@ export const SearchText = styled.Text`
     color: #CFCECC;
     padding-top: 0px;
     padding-left: 20px
+`
+
+export const PostContainer = styled.View`
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 15px
+
+`
+
+export const PostImage = styled.Image`
+    resize-mode: contain;
+    width: 100%;
+    height: 144px;
+    margin-bottom: 10px;
+    margin-top: 8px
 `

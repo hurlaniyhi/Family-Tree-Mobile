@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { 
     UserIntroWrapper, 
@@ -17,15 +17,20 @@ import {
     ChatListWrapper,
     ChatMemberTextWrapper,
     SearchContainer,
-    SearchText
+    SearchText,
+    PostContainer,
+    PostImage,
+    FlexRowBetween 
 } from '@styles'
 import { Container, Card } from '@component'
 import { icons } from '@src/provider/config/constant'
 import helpers from '@src/utility/helper'
-import { Feather } from '@expo/vector-icons'
+import { Feather, Entypo } from '@expo/vector-icons'
+import ThemeContext from '@src/provider/state-manager/themeProvider'
 
 
 export  const Dashboard: React.FC<any> = () => {
+    const { theme } = useContext(ThemeContext)
     return (
         <SafeAreaView style={{flex: 1}}>
             <ScrollView>
@@ -60,13 +65,13 @@ export  const Dashboard: React.FC<any> = () => {
                                             <StatusCircle flowCircleColor="#00BF4D"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="10">
-                                            {helpers.textToDisplay("Ganiy Kolawole", 14)}
+                                            {helpers.textToDisplay("Ridwan Kolawole", 14)}
                                         </AppText>
                                         <AppText fontWeight="600" fontSize="8" textColor="#A6A6A6">Father</AppText>
                                     </DataProfileChild>
                                     <DataProfileChild>
                                         <DataPictureWrapper>
-                                            <FamDataPicture source={icons.DP} />
+                                            <FamDataPicture source={icons.DP4} />
                                             <StatusCircle flowCircleColor="#C4C4C4"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="10">
@@ -93,7 +98,7 @@ export  const Dashboard: React.FC<any> = () => {
                                     </DataProfileChild>
                                     <DataProfileChild>
                                         <DataPictureWrapper>
-                                            <FamDataPicture source={icons.DP3} />
+                                            <FamDataPicture source={icons.DP2} />
                                             <StatusCircle flowCircleColor="#00BF4D"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="10">
@@ -134,7 +139,7 @@ export  const Dashboard: React.FC<any> = () => {
                         </ChatListWrapper >
                         <ChatListWrapper >
                             <DataPictureWrapper customWidth="30" flexBottomMargin="0">
-                                <FamDataPicture customWidth="30" source={icons.DP3} />
+                                <FamDataPicture customWidth="30" source={icons.DP2} />
                                 <StatusCircleSm flowCircleColor="#00BF4D"/>
                             </DataPictureWrapper>
                             <ChatMemberTextWrapper>
@@ -144,6 +149,79 @@ export  const Dashboard: React.FC<any> = () => {
                                 </AppText>
                             </ChatMemberTextWrapper>
                         </ChatListWrapper >
+                    </Card>
+    
+                    <Card cardPadding="0">
+                        <PostContainer>
+                            <ChatListWrapper flexTopMargin="0" flexBottomMargin="12" >
+                                <DataPictureWrapper customWidth="30" flexBottomMargin="0">
+                                    <FamDataPicture customWidth="30" source={icons.DP} />
+                                    <StatusCircleSm flowCircleColor="#00BF4D"/>
+                                </DataPictureWrapper>
+                                <ChatMemberTextWrapper>
+                                    <AppText fontSize="10" fontWeight="600">Akachukwu Ajulibe</AppText>
+                                    <AppText fontSize="8" textColor="#A6A6A6" fontWeight="500">
+                                        Sat - 27 Nov 2021
+                                    </AppText>
+                                </ChatMemberTextWrapper>
+                            </ChatListWrapper >
+                            <AppText fontWeight="600" fontSize="10">Y'all should checkout this sick wallpaper</AppText>
+                            <PostImage source={icons.POST_IMAGE} />
+                            <FlexRowBetween>
+                                <AppText fontWeight="600" fontSize="10">
+                                    <Entypo name="thumbs-up" size={15} color={theme.FOCUS_THEME_COLOR} /> 9
+                                </AppText>
+                                <AppText fontWeight="600" fontSize="10">5 Comments</AppText>
+                            </FlexRowBetween>
+                        </PostContainer>
+                    </Card>
+                    <Card cardPadding="0">
+                        <PostContainer>
+                            <ChatListWrapper flexTopMargin="0" flexBottomMargin="12" >
+                                <DataPictureWrapper customWidth="30" flexBottomMargin="0">
+                                    <FamDataPicture customWidth="30" source={icons.DP3} />
+                                    <StatusCircleSm flowCircleColor="#00BF4D"/>
+                                </DataPictureWrapper>
+                                <ChatMemberTextWrapper>
+                                    <AppText fontSize="10" fontWeight="600">Roshan Ridwan</AppText>
+                                    <AppText fontSize="8" textColor="#A6A6A6" fontWeight="500">
+                                        Sat - 27 Nov 2021
+                                    </AppText>
+                                </ChatMemberTextWrapper>
+                            </ChatListWrapper >
+                            <AppText fontWeight="600" fontSize="10">Omoh the 'i' don suffer my guy gan...lol</AppText>
+                            <PostImage source={icons.POST_IMAGE3} />
+                            <FlexRowBetween>
+                                <AppText fontWeight="600" fontSize="10">
+                                    <Entypo name="thumbs-up" size={15} color={theme.FOCUS_THEME_COLOR} /> 40
+                                </AppText>
+                                <AppText fontWeight="600" fontSize="10">25 Comments</AppText>
+                            </FlexRowBetween>
+                        </PostContainer>
+                    </Card>
+                    <Card cardBottomMargin="10">
+                        <PostContainer>
+                            <ChatListWrapper flexTopMargin="0" flexBottomMargin="12" >
+                                <DataPictureWrapper customWidth="30" flexBottomMargin="0">
+                                    <FamDataPicture customWidth="30" source={icons.DP3} />
+                                    <StatusCircleSm flowCircleColor="#00BF4D"/>
+                                </DataPictureWrapper>
+                                <ChatMemberTextWrapper>
+                                    <AppText fontSize="10" fontWeight="600">Habeeb Olanrewaju</AppText>
+                                    <AppText fontSize="8" textColor="#A6A6A6" fontWeight="500">
+                                        Sat - 27 Nov 2021
+                                    </AppText>
+                                </ChatMemberTextWrapper>
+                            </ChatListWrapper >
+                            <AppText fontWeight="600" fontSize="10">CSS na your mate ni...una never see anything</AppText>
+                            <PostImage source={icons.POST_IMAGE1} />
+                            <FlexRowBetween>
+                                <AppText fontWeight="600" fontSize="10">
+                                    <Entypo name="thumbs-up" size={15} color={theme.FOCUS_THEME_COLOR} /> 28
+                                </AppText>
+                                <AppText fontWeight="600" fontSize="10">10 Comments</AppText>
+                            </FlexRowBetween>
+                        </PostContainer>
                     </Card>
                 </Container>
             </ScrollView>
