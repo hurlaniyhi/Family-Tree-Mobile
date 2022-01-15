@@ -1,6 +1,5 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
-import { CenterHorizontallyContainer, OtpPageTitle, KeyIcon, InputWrapper } from '@styles';
+import { CenterHorizontallyContainer, OtpPageTitle, KeyIcon, InputWrapper, ScrollView } from '@styles';
 import { icons } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator } from '@component'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -9,7 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 export  const NewPassword: React.FC<any> = ({ navigation }) => {
     return (
         <SafeAreaProvider>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView>
                 <CenterHorizontallyContainer>
                     <OtpPageTitle>Enter your new password</OtpPageTitle>
                     <KeyIcon source={icons.KEY} />

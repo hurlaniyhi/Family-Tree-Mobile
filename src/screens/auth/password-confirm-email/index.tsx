@@ -1,6 +1,5 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
-import { CenterHorizontallyContainer, OtpPageTitle, KeyIcon, OtpNotificationText, GuideText } from '@styles';
+import { CenterHorizontallyContainer, OtpPageTitle, KeyIcon, OtpNotificationText, GuideText, ScrollView } from '@styles';
 import { icons } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator } from '@component'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -9,7 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 export  const ConfirmEmail: React.FC<any> = ({ navigation }) => {
     return (
         <SafeAreaProvider>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView >
                 <CenterHorizontallyContainer>
                     <OtpPageTitle>Confirm Your Email</OtpPageTitle>
                     <KeyIcon source={icons.KEY} />

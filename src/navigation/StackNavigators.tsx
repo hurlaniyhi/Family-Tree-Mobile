@@ -27,7 +27,7 @@ const screenOptionStyle = {
 
 const AuthStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions = {screenOptionStyle}>
+    <Stack.Navigator detachInactiveScreens={false} screenOptions = {screenOptionStyle}>
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="EnterEmail" component={EnterEmail} />

@@ -35,12 +35,9 @@ const BottomTabNavigator = () => {
       headerStyle: {
         backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY
       },
-      headerTitleStyle: {color: theme.TEXT_COLOR},
-      animationEnabled: false,
-      sceneAnimatedEnabled: false
-      
+      headerTitleStyle: {color: theme.TEXT_COLOR}
     })}>
-      <Tab.Screen name="Home" component={Dashboard}/>
+      <Tab.Screen name="Home" component={Dashboard} options={{headerShown: false}}/>
       <Tab.Screen name="Family Tree" component={FamilyTree}/>
       <Tab.Screen name="Messages" component={ChatMembers}/>
       <Tab.Screen name="Settings" component={Settings} options={{

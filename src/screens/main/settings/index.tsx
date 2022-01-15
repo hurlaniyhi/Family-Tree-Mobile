@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { ScrollView } from 'react-native'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink } from '@src/provider/config/theme'
 import { AppTheme } from '@model'
 import { Container, Card } from '@component'
 import { icons, initialState } from '@src/provider/config/constant'
-import { AppText, MildText, FlexRow, SettingIcon, FlexRowBetween, Circle, LogoutText} from '@styles'
+import { AppText, MildText, FlexRow, SettingIcon, FlexRowBetween, Circle, LogoutText, ScrollView} from '@styles'
 import { Feather } from '@expo/vector-icons'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -28,7 +27,7 @@ export  const Settings: React.FC<any> = ({ navigation }) => {
 
     return (
         <SafeAreaProvider>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView>
                 <Container>
                     <Card cardTopMargin="25">
                         <AppText fontWeight="600" fontSize="20">Account</AppText>

@@ -1,6 +1,5 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
-import { CenterHorizontallyContainer, RelativeDataTitle, AddButton, AddBtnText, AddBtnContainer } from '@styles';
+import { CenterHorizontallyContainer, RelativeDataTitle, AddButton, AddBtnText, AddBtnContainer, ScrollView } from '@styles';
 import { icons } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator } from '@component'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -9,7 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 export const RelativeData : React.FC<any> = ({ navigation }) => {
     return (
         <SafeAreaProvider>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView>
                 <CenterHorizontallyContainer>
                     <RelativeDataTitle>Immediate Family</RelativeDataTitle>
                     <Input placeHolder="Father's Name" icon={icons.NAME} />

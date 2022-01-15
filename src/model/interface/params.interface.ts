@@ -28,3 +28,8 @@ export interface ThemeAction {
     type: string, 
     payload: any 
 }
+
+export interface FamilyDetails {
+    country: string,
+    state: string
+}

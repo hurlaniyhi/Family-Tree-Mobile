@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { TitleText, CenterContainer } from '@styles'
+import { TitleText, CenterContainer, ScrollView } from '@styles'
 import helpers from '@src/utility/helper'
 import { LogoTop, Input, Button, FlowIndicator } from '@component';
 import ThemeContext from '@src/provider/state-manager/themeProvider'
-import { ImageSourcePropType, ScrollView } from 'react-native';
+import { ImageSourcePropType } from 'react-native';
 import { icons } from '@src/provider/config/constant'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -15,7 +15,7 @@ export  const SignUp: React.FC<any> = ({ navigation }) => {
     
     return (
         <SafeAreaProvider>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView>
                 <CenterContainer>
                     <LogoTop img={ logoImg } />
                     <TitleText>Create New Account</TitleText>

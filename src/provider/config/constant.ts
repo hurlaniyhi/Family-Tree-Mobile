@@ -34,7 +34,11 @@ export const icons = {
     USER_GREEN: require('@icons/user-green.png'),
     USER_PINK: require('@icons/user-pink.png'),
     USER_PURPLE: require('@icons/user-purple.png'),
-    USER_YELLOW: require('@icons/user-yellow.png')
+    USER_YELLOW: require('@icons/user-yellow.png'),
+    DP_SM: require('@icons/profile-pics-small.png'),
+    DP_LG: require('@icons/profile-pics-large.png'),
+    DP3: require('@icons/dp3.jpg'),
+    DP: require('@icons/test.jpg')
 }
 
 export const initialState = {
@@ -47,6 +51,10 @@ export const initialState = {
     THEME_MODE: {
         light: false,
         dark: false
+    },
+    FAMILY_DETAILS: {
+        country: '',
+        state: ''
     }
 }
 

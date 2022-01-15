@@ -9,11 +9,12 @@ import { CenterContainer,
     SignUpLinkContainer,
     SignUpLink,
     RememberContainer,
-    RememberCheckWrapper
+    RememberCheckWrapper,
+    ScrollView
 } from '@styles'
 import { LogoTop, Input, Button } from '@component';
 import ThemeContext from '@src/provider/state-manager/themeProvider'
-import { ImageSourcePropType, ScrollView } from 'react-native';
+import { ImageSourcePropType } from 'react-native';
 import { icons } from '@src/provider/config/constant'
 import { Feather } from '@expo/vector-icons'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -27,7 +28,7 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
 
     return (
         <SafeAreaProvider>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView>
                 <CenterContainer>
                     <LogoTop img={ logoImg } />
                     <WelcomeText>Welcome Back</WelcomeText>

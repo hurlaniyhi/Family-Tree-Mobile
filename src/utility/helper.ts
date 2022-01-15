@@ -44,9 +44,15 @@ const getCardColor = (theme: string): string => {
     else return Green.CARD_BACKGROUND
 }
 
+const textToDisplay = (text: string, length: number): string => {
+    if (text.length > length) return `${text.substring(0, length-4)}...`
+    else return text
+}
+
 export default {
     sortMode_Theme,
     logoImage,
     getCardColor,
-    getUserIcon
+    getUserIcon,
+    textToDisplay
 }

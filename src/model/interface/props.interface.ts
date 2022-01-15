@@ -15,10 +15,11 @@ export interface Theme {
     flexTopMargin?: string,
     flexBottomMargin?: string,
     textMargin?: string,
-    flowCircleSize?: string
+    flowCircleSize?: string,
     flowCircleColor?: string,
     isChecked?: boolean,
-    selectedOption?: string
+    selectedOption?: string;
+    customWidth?: string
 }
 
 export interface TopLogoModel {
@@ -35,7 +36,8 @@ export interface ButtonProps {
 export interface CardProps {
     children: React.ReactNode,
     cardTopMargin?: string,
-    cardBottomMargin?: string
+    cardBottomMargin?: string,
+    cardPadding?: string
 }
 
 interface DropDownOption {

@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabNavigator from './BottomNavigators'
 import { AuthStackNavigator } from "./StackNavigators";
 import { ThemeProvider } from "styled-components";
 import ThemeContext from '@src/provider/state-manager/themeProvider'
-//import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { fonts } from '@src/provider/config/constant'
 import { useFonts } from 'expo-font';
 

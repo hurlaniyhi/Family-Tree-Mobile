@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
-import { ScrollView } from 'react-native'
-import { CenterHorizontallyContainer, FamilyDetailsTitle } from '@styles';
-import { icons, dropDownOptions } from '@src/provider/config/constant'
+import { CenterHorizontallyContainer, FamilyDetailsTitle, ScrollView } from '@styles';
+import { icons, dropDownOptions, initialState } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator, SelectField } from '@component'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { FamilyDetails as DataModel } from '@model'
 
 export const FamilyDetails: React.FC<any> = ({ navigation }) => {
-    const [input, setInput] = useState({country: '', state: ''})
+    const [input, setInput] = useState<DataModel>(initialState.FAMILY_DETAILS)
 
-    function handleSelectedData (data: string, name: string) {
+    function handleSelectedData (data: string, name: string): void {
         setInput({...input, [name]: data})
         console.log(name, data)
     }
 
     return (
         <SafeAreaProvider>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView>
                 <CenterHorizontallyContainer>
                     <FamilyDetailsTitle>Family Details</FamilyDetailsTitle>
                     <Input placeHolder="Family Name" icon={icons.FAMILY_NAME} />

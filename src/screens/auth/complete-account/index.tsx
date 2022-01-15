@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { ImageSourcePropType, ScrollView } from 'react-native'
-import { CenterHorizontallyContainer, CompleteAccountTitle, ProfilePicture } from '@styles';
+import { ImageSourcePropType } from 'react-native'
+import { CenterHorizontallyContainer, CompleteAccountTitle, ProfilePicture, ScrollView } from '@styles';
 import { icons, dropDownOptions } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator, SelectField } from '@component'
 import helpers from '@src/utility/helper'
@@ -20,7 +20,7 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
 
     return (
         <SafeAreaProvider>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView>
                 <CenterHorizontallyContainer>
                     <CompleteAccountTitle>Complete Your Account</CompleteAccountTitle>
                     <ProfilePicture source={userIcon} />

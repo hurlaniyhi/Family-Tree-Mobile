@@ -20,7 +20,7 @@ export const InputIcon = styled.Image`
 `
 export const TextInput = styled.TextInput.attrs((props: Theme) => ({
   placeholderTextColor: props.theme.BORDER,
-  color: props.theme.THEME_MODE === 'light'? `rgba(${props.theme.TEXT_COLOR, 0.3})` : props.theme.BORDER
+  color: props.theme.THEME_MODE === 'light'? props.theme.TEXT_COLOR : props.theme.BORDER
 }))`
     width: 83%;
     height: 40px;
