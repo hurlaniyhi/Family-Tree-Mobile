@@ -20,7 +20,8 @@ import {
     SearchText,
     PostContainer,
     PostImage,
-    FlexRowBetween 
+    FlexRowBetween,
+    MemberListText
 } from '@styles'
 import { Container, Card } from '@component'
 import { icons } from '@src/provider/config/constant'
@@ -38,10 +39,10 @@ export  const Dashboard: React.FC<any> = () => {
                     <UserIntroWrapper>
                         <AppText>
                             Hi 
-                            <AppText fontWeight="bold"> Jake </AppText>
+                            <AppText fontWeight="bold"> Ridwan </AppText>
                         </AppText>
                         <ProfilePicsWrapper>
-                            <Picture source={icons.DP_LG} />
+                            <Picture source={icons.DP3} />
                         </ProfilePicsWrapper>
                     </UserIntroWrapper>
 
@@ -120,9 +121,9 @@ export  const Dashboard: React.FC<any> = () => {
                             </DataPictureWrapper>
                             <ChatMemberTextWrapper>
                                 <AppText fontSize="10" fontWeight="600">Habeeb Olanrewaju</AppText>
-                                <AppText fontSize="8" textColor="#A6A6A6" fontWeight="500">
-                                    {helpers.textToDisplay("Weldone Newton, we will start the design soon.", 65)}
-                                </AppText>
+                                <MemberListText fontSize="8" textColor="#A6A6A6" fontWeight="500">
+                                    {helpers.textToDisplay("Weldone Newton, we will start the design soon.", 75)}
+                                </MemberListText>
                             </ChatMemberTextWrapper>
                         </ChatListWrapper >
                         <ChatListWrapper >
@@ -132,9 +133,9 @@ export  const Dashboard: React.FC<any> = () => {
                             </DataPictureWrapper>
                             <ChatMemberTextWrapper>
                                 <AppText fontSize="10" fontWeight="600">Imtiyaaz Ridwan</AppText>
-                                <AppText fontSize="8" textColor="#A6A6A6" fontWeight="500">
-                                    {helpers.textToDisplay("Weldone Newton, we will start the design soon.", 65)}
-                                </AppText>
+                                <MemberListText fontSize="8" textColor="#A6A6A6" fontWeight="500">
+                                    {helpers.textToDisplay("Let us start developing the mobile app using React-native. We will use styled-components for CSS.", 75)}
+                                </MemberListText>
                             </ChatMemberTextWrapper>
                         </ChatListWrapper >
                         <ChatListWrapper >
@@ -144,9 +145,9 @@ export  const Dashboard: React.FC<any> = () => {
                             </DataPictureWrapper>
                             <ChatMemberTextWrapper>
                                 <AppText fontSize="10" fontWeight="600">Diyah Ridwan</AppText>
-                                <AppText fontSize="8" textColor="#A6A6A6" fontWeight="500">
-                                    {helpers.textToDisplay("Weldone Newton, we will start the design soon.", 65)}
-                                </AppText>
+                                <MemberListText fontSize="8" textColor="#A6A6A6" fontWeight="500">
+                                    {helpers.textToDisplay("Weldone Newton, we will start the design soon.", 75)}
+                                </MemberListText>
                             </ChatMemberTextWrapper>
                         </ChatListWrapper >
                     </Card>
@@ -156,7 +157,7 @@ export  const Dashboard: React.FC<any> = () => {
                             <ChatListWrapper flexTopMargin="0" flexBottomMargin="12" >
                                 <DataPictureWrapper customWidth="30" flexBottomMargin="0">
                                     <FamDataPicture customWidth="30" source={icons.DP} />
-                                    <StatusCircleSm flowCircleColor="#00BF4D"/>
+                                    <StatusCircleSm flowCircleColor="#FF007C"/>
                                 </DataPictureWrapper>
                                 <ChatMemberTextWrapper>
                                     <AppText fontSize="10" fontWeight="600">Akachukwu Ajulibe</AppText>

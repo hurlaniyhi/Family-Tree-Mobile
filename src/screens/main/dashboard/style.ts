@@ -92,11 +92,11 @@ export const ChatListWrapper = styled.View<Theme>`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: ${({flexTopMargin}) => flexTopMargin || 8}px;
+    margin-top: ${({flexTopMargin}) => flexTopMargin || 10}px;
     margin-bottom: ${({flexBottomMargin}) => flexBottomMargin || 0}px;
 `
-export const ChatMemberTextWrapper = styled.View`
-    margin-left: 10px;
+export const ChatMemberTextWrapper = styled.View<Theme>`
+    margin-left: ${({textMargin}) => textMargin || 10}px;
     margin-top: 2px
 `
 
