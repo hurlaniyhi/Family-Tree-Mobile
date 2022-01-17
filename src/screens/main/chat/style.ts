@@ -68,13 +68,14 @@ export const ChatInputContainer = styled.View<Theme>`
     padding-left: 5%;
     padding-right: 5%;
     border-radius: 10px;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+    border: 2px solid ${({theme}) => theme.THEME_MODE === 'light' ?"#CFCECC" : 'transparent'};
     background-color: ${({theme}) => theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.FOCUS_THEME_COLOR_DEEP}
 `
 export const ChatButton = styled.TouchableOpacity<Theme>`
     width: 12%;
     margin-left: 2%;
-    height: 45px;
+    height: 43px;
     background-color: ${({theme}) => theme.FOCUS_THEME_COLOR};
     border-radius: 10px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -82,3 +83,12 @@ export const ChatButton = styled.TouchableOpacity<Theme>`
     justify-content: center;
     align-items: center;
 `
+export const ChatInput = styled.TextInput.attrs((props: Theme) => ({
+    placeholderTextColor: "#CFCECC",
+    color: props.theme.THEME_MODE === 'light'? props.theme.TEXT_COLOR : props.theme.BORDER
+  }))`
+      width: 86%;
+      height: 45px;
+      padding-left: 3%;
+      font-size: 16px
+  `

@@ -20,7 +20,8 @@ import {
     ChatsWrapper,
     ChatButton,
     ChatInputContainer,
-    EnterChatWrapper
+    EnterChatWrapper,
+    ChatInput
 } from '@styles'
 
 
@@ -68,7 +69,13 @@ export const Chat: React.FC<any> = () => {
                     </ScrollView>
                     <EnterChatWrapper>
                         <ChatInputContainer>
-                        <Fontisto name="smiley" color="#CFCECC" size={22} />
+                            <Fontisto name="smiley" color="#CFCECC" size={22} />
+                            <ChatInput 
+                                autoCapitalize="none"
+                                multiline={true}
+                                autoCorrect={false}
+                                placeholder="Message"
+                            />
                         </ChatInputContainer>
                         <ChatButton>
                             <Ionicons name="send-outline" color="#FFFFFF" size={20} />
