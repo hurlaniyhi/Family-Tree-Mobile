@@ -33,7 +33,7 @@ const BottomTabNavigator = () => {
       },
       headerTitleAlign: 'center',
       headerStyle: {
-        backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY
+        backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.CARD_BACKGROUND
       },
       headerTitleStyle: {color: theme.TEXT_COLOR}
     })}>

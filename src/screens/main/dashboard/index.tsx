@@ -114,7 +114,7 @@ export  const Dashboard: React.FC<any> = () => {
 
                     <Card>
                         <AppText fontSize="12" fontWeight="bold">Messages</AppText>
-                        <ChatListWrapper >
+                        <ChatListWrapper activeOpacity={1} >
                             <DataPictureWrapper customWidth="30" flexBottomMargin="0">
                                 <FamDataPicture customWidth="30" source={icons.DP3} />
                                 <StatusCircleSm flowCircleColor="#00BF4D"/>
@@ -126,7 +126,7 @@ export  const Dashboard: React.FC<any> = () => {
                                 </MemberListText>
                             </ChatMemberTextWrapper>
                         </ChatListWrapper >
-                        <ChatListWrapper >
+                        <ChatListWrapper activeOpacity={1} >
                             <DataPictureWrapper customWidth="30" flexBottomMargin="0">
                                 <FamDataPicture customWidth="30" source={icons.DP} />
                                 <StatusCircleSm  flowCircleColor="#00BF4D"/>
@@ -138,7 +138,7 @@ export  const Dashboard: React.FC<any> = () => {
                                 </MemberListText>
                             </ChatMemberTextWrapper>
                         </ChatListWrapper >
-                        <ChatListWrapper >
+                        <ChatListWrapper activeOpacity={1} >
                             <DataPictureWrapper customWidth="30" flexBottomMargin="0">
                                 <FamDataPicture customWidth="30" source={icons.DP2} />
                                 <StatusCircleSm flowCircleColor="#00BF4D"/>

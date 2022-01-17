@@ -11,6 +11,7 @@ import {
   ConfirmEmail,
   NewPassword
 } from "@screens/auth";
+import { Chat } from '@screens/main'
 
 
 const Stack = createStackNavigator();
@@ -41,5 +42,13 @@ const AuthStackNavigator = () => {
   );
 }
 
+const OtherStackNavigator = () => {
+  return (
+    <Stack.Navigator detachInactiveScreens={false} screenOptions = {screenOptionStyle}>
+      <Stack.Screen name="Chat" component={Chat} />
+    </Stack.Navigator>
+  )
+}
 
-export { AuthStackNavigator };
+
+export { AuthStackNavigator, OtherStackNavigator };

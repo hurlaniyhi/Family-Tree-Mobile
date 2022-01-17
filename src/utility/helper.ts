@@ -1,7 +1,7 @@
 import { AppMode, AppTheme } from '@model'
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink} from '@src/provider/config/theme'
 import { ImageSourcePropType } from 'react-native'
-import { icons } from '@src/provider/config/constant'
+import { icons, images } from '@src/provider/config/constant'
 
 const sortMode_Theme = (mode: string, themeData: AppTheme) => {
     let modeData = mode === 'dark' ? DarkTheme : LightTheme
@@ -44,6 +44,11 @@ const getCardColor = (theme: string): string => {
     else return Green.CARD_BACKGROUND
 }
 
+const getChatBackground = (theme: AppMode): ImageSourcePropType=> {
+    if(theme.THEME_MODE === 'light') return images.CHAT_BACKGROUND_LIGHT
+    else return images.CHAT_BACKGROUND_DARK
+}
+
 const textToDisplay = (text: string, length: number): string => {
     if (text.length > length) return `${text.substring(0, length-4)}...`
     else return text
@@ -54,5 +59,6 @@ export default {
     logoImage,
     getCardColor,
     getUserIcon,
-    textToDisplay
+    textToDisplay,
+    getChatBackground
 }

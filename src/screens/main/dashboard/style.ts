@@ -87,7 +87,7 @@ export const StatusCircle = styled.View<Theme>`
     bottom: 3px;
     right: 5px
 `
-export const ChatListWrapper = styled.View<Theme>`
+export const ChatListWrapper = styled.TouchableOpacity<Theme>`
     width: 100%;
     display: flex;
     flex-direction: row;

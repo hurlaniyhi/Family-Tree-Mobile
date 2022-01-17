@@ -15,12 +15,12 @@ import { Container } from '@component'
 import { icons } from '@src/provider/config/constant'
 import helpers from '@src/utility/helper'
 
-export  const ChatMembers: React.FC<any> = () => {
+export  const ChatMembers: React.FC<any> = ({ navigation }) => {
     return (
         <ScrollView>
             <Container>
                 <MemberListWrapper>
-                    <ChatListWrapper flexTopMargin="13" flexBottomMargin="12" >
+                    <ChatListWrapper onPress={()=> navigation.navigate('Others', { screen: 'Chat'})} flexTopMargin="13" flexBottomMargin="12" >
                         <DataPictureWrapper customWidth="42" flexBottomMargin="0">
                             <FamDataPicture customWidth="42" source={icons.DP3} />
                             <MemberStatusCircle flowCircleColor="#00BF4D"/>

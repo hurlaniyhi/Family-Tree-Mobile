@@ -5,6 +5,7 @@ export interface AppMode {
     BODY: string,
     FOCUS_THEME_COLOR: string,
     FOCUS_THEME_COLOR_LIGHT: string,
+    FOCUS_THEME_COLOR_DEEP: string,
     CARD_BACKGROUND: string,
     BORDER: string,
     TEXT_COLOR: string,
