@@ -25,15 +25,15 @@ export const UserIntroWrapper = styled.View`
     margin-top: 30px
 `
 export const ProfilePicsWrapper = styled.View`
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     border-radius: 100px;
     background-color: #C4C4C4
 `
 export const Picture = styled.Image`
     resize-mode: cover;
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     border-radius: 100px
 `
 export const ParentChildContainer = styled.View`
@@ -65,16 +65,16 @@ export const DataProfileChild = styled.View`
     width: 47%;
 `
 export const DataPictureWrapper = styled.View<Theme>`
-    width: ${({customWidth}) => customWidth || 64}px;
-    height: ${({customWidth}) => customWidth || 64}px;
+    width: ${({customWidth}) => customWidth || 66}px;
+    height: ${({customWidth}) => customWidth || 66}px;
     border-radius: 100px;
     background-color: #C4C4C4;
     margin-bottom: ${({flexBottomMargin}) => flexBottomMargin || 10}px
 `
 export const FamDataPicture = styled.Image<Theme>`
     resize-mode: cover;
-    width: ${({customWidth}) => customWidth || 64}px;
-    height: ${({customWidth}) => customWidth || 64}px;
+    width: ${({customWidth}) => customWidth || 66}px;
+    height: ${({customWidth}) => customWidth || 66}px;
     border-radius: 100px
 `
 export const StatusCircle = styled.View<Theme>`
@@ -85,7 +85,7 @@ export const StatusCircle = styled.View<Theme>`
     background-color: ${({flowCircleColor}) => flowCircleColor};
     position: absolute;
     bottom: 3px;
-    right: 5px
+    right: 3px
 `
 export const ChatListWrapper = styled.TouchableOpacity<Theme>`
     width: 100%;
@@ -118,7 +118,7 @@ export const SearchContainer = styled.View`
     align-items: center;
 `
 export const SearchText = styled.Text`
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #CFCECC;
     padding-top: 0px;

@@ -71,8 +71,8 @@ export const ChatInputContainer = styled.View<Theme>`
     padding-right: 5%;
     border-radius: 10px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
-    border: 2px solid ${({theme}) => theme.THEME_MODE === 'light' ?"#CFCECC" : 'transparent'};
-    background-color: ${({theme}) => theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.FOCUS_THEME_COLOR_DEEP}
+    border: 1px solid ${({theme}) => theme.THEME_MODE === 'light' ?"#CFCECC" : 'transparent'};
+    background-color: ${({theme}) => theme.THEME_MODE === 'light' ? '#DADADA' : '#2B2B2B'}
 `
 export const ChatButton = styled.TouchableOpacity<Theme>`
     width: 11%;
@@ -86,7 +86,7 @@ export const ChatButton = styled.TouchableOpacity<Theme>`
     align-items: center;
 `
 export const ChatInput = styled.TextInput.attrs((props: Theme) => ({
-    placeholderTextColor: "#CFCECC",
+    placeholderTextColor: "rgba(0,0,0,0.3)",
     color: props.theme.THEME_MODE === 'light'? props.theme.TEXT_COLOR : props.theme.BORDER
   }))`
       width: 86%;

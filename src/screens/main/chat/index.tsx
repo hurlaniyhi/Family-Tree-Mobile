@@ -79,14 +79,14 @@ export const Chat: React.FC<any> = () => {
                                     item.chatId === 'me' ? 
                                     <RightChatWrapper>
                                         <ChatTextWrapper justify="right">
-                                            <AppText fontSize="10">{item.chatText}</AppText>
+                                            <AppText fontSize="12">{item.chatText}</AppText>
                                             {/* <AppText fontSize="8">{item.time}</AppText> */}
                                         </ChatTextWrapper>
                                     </RightChatWrapper>
                                     :
                                     <LeftChatWrapper>
                                         <ChatTextWrapper>
-                                            <AppText fontSize="10" >{item.chatText}</AppText>
+                                            <AppText fontSize="12" >{item.chatText}</AppText>
                                             {/* <AppText fontSize="8" >{item.time}</AppText> */}
                                         </ChatTextWrapper>
                                     </LeftChatWrapper>
@@ -97,7 +97,7 @@ export const Chat: React.FC<any> = () => {
                     </ChatsWrapper>
                     <EnterChatWrapper>
                         <ChatInputContainer>
-                            <Fontisto name="smiley" color="#CFCECC" size={22} onPress={toggleKeyboards} />
+                            <Fontisto name="smiley" color="rgba(0,0,0,0.3)" size={22} onPress={toggleKeyboards} />
                             <ChatInput 
                                 autoCapitalize="none"
                                 value={input}
