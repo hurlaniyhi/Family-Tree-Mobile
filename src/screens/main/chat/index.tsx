@@ -24,28 +24,44 @@ import {
     EnterChatWrapper,
     ChatInput
 } from '@styles'
-import { TextInput } from 'react-native';
+import { TextInput, Keyboard } from 'react-native';
 
 
 export const Chat: React.FC<any> = () => {
     const { theme } = useContext(ThemeContext)
-    const [input, setInput] = useState('')
-    const [showEmoji, setShowEmoji] = useState(false)
+    const [chats, setChats] = useState<typeof chatData>(chatData)
+    const [input, setInput] = useState<string>('')
+    const [showEmoji, setShowEmoji] = useState<boolean>(false)
     const inputRef: React.RefObject<TextInput> = React.createRef();
 
     const chatBackground = helpers.getChatBackground(theme)
 
     function handleEmojiBoard(emoji: any){
         inputRef.current!.focus()
-        console.log(emoji.code)
         setInput(input+emoji.code)
         setShowEmoji(false)
+    }
+
+    function toggleKeyboards(){
+        Keyboard.dismiss()
+        setShowEmoji(true)
+    }
+
+    function sendChat(){
+        Keyboard.dismiss()
+        const newChat = {
+            chatText: input,
+            time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+            chatId: 'me'
+        }
+        setInput('')
+        setChats([...chats, newChat])
     }
 
     return (
         <SafeAreaView>
             <Container>
-                <BackgroundImage source={chatBackground} >
+                <BackgroundImage source={chatBackground}>
                     <ChatHeader>
                         <DataPictureWrapper customWidth="40" flexBottomMargin="0">
                             <FamDataPicture customWidth="40" source={icons.DP3} />
@@ -59,7 +75,7 @@ export const Chat: React.FC<any> = () => {
                         <ScrollView>
                         {
                             React.Children.toArray(
-                                chatData.map(item => (
+                                chats.map(item => (
                                     item.chatId === 'me' ? 
                                     <RightChatWrapper>
                                         <ChatTextWrapper justify="right">
@@ -81,7 +97,7 @@ export const Chat: React.FC<any> = () => {
                     </ChatsWrapper>
                     <EnterChatWrapper>
                         <ChatInputContainer>
-                            <Fontisto name="smiley" color="#CFCECC" size={22} onPress={() => setShowEmoji(!showEmoji)} />
+                            <Fontisto name="smiley" color="#CFCECC" size={22} onPress={toggleKeyboards} />
                             <ChatInput 
                                 autoCapitalize="none"
                                 value={input}
@@ -92,10 +108,15 @@ export const Chat: React.FC<any> = () => {
                                 ref={inputRef}
                             />
                         </ChatInputContainer>
-                        <ChatButton>
+                        <ChatButton activeOpacity={0.8} onPress={sendChat}>
                             <Ionicons name="send-outline" color="#FFFFFF" size={20} />
                         </ChatButton>
-                        <EmojiBoard showBoard={showEmoji} onClick={handleEmojiBoard} onRemove={() => setShowEmoji(false)} />
+                        <EmojiBoard 
+                            showBoard={showEmoji} 
+                            onClick={handleEmojiBoard} 
+                            onRemove={() => setShowEmoji(false)} 
+                            containerStyle={{backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : '#121212'}}
+                            />
                     </EnterChatWrapper>
                 </BackgroundImage>
             </Container>
