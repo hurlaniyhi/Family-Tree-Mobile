@@ -42,7 +42,7 @@ export const Purple = {
 export const Yellow = {
     FOCUS_THEME_COLOR: '#FFA800',
     FOCUS_THEME_COLOR_LIGHT: '#FFF0D0',
-    FOCUS_THEME_COLOR_DEEP: '#462E00',
+    FOCUS_THEME_COLOR_DEEP: '#490024',
     CARD_BACKGROUND: '#1A1100',
     THEME: 'yellow',
 }

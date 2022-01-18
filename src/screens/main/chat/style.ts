@@ -47,7 +47,9 @@ export const ChatTextWrapper = styled.View<Theme>`
 `
 export const ChatsWrapper = styled.View`
     width: 100%;
-    margin-top: 60px
+    margin-top: 60px;
+    margin-bottom: 60px;
+    height: 83%
 `
 export const EnterChatWrapper = styled.View`
     width: 94%;
@@ -73,9 +75,9 @@ export const ChatInputContainer = styled.View<Theme>`
     background-color: ${({theme}) => theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.FOCUS_THEME_COLOR_DEEP}
 `
 export const ChatButton = styled.TouchableOpacity<Theme>`
-    width: 12%;
+    width: 11%;
     margin-left: 2%;
-    height: 43px;
+    height: 40px;
     background-color: ${({theme}) => theme.FOCUS_THEME_COLOR};
     border-radius: 10px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);

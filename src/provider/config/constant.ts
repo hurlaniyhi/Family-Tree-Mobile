@@ -100,6 +100,31 @@ export const chatData = [
         chatId: 'other'
     },
     {
+        chatText: "Hello Ridwan, I wont be coming to work tomorrow. I will start the design as soon as the UI is ready. lets start with the mobile first",
+        time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+        chatId: 'me'
+    },
+    {
+        chatText: "Hello Ridwan, I wont be coming to work tomorrow",
+        time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+        chatId: 'me'
+    },
+    {
+        chatText: "Hello Ridwan, I wont be coming to work tomorrow",
+        time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+        chatId: 'other'
+    },
+    {
+        chatText: "Hello Ridwan, I wont be coming to work tomorrow",
+        time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+        chatId: 'other'
+    },
+    {
+        chatText: "Hello Ridwan, I wont be coming to work tomorrow",
+        time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+        chatId: 'other'
+    },
+    {
         chatText: "Hello Ridwan, I wont be coming to work tomorrow",
         time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
         chatId: 'me'
@@ -113,5 +138,20 @@ export const chatData = [
         chatText: "Hello Ridwan, I wont be coming to work tomorrow",
         time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
         chatId: 'other'
+    },
+    {
+        chatText: "Hello Ridwan, I wont be coming to work tomorrow",
+        time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+        chatId: 'me'
+    },
+    {
+        chatText: "Hello Ridwan, I wont be coming to work tomorrow",
+        time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+        chatId: 'other'
+    },
+    {
+        chatText: "Hello Ridwan, I wont be coming to work tomorrow",
+        time: new Date().getHours()+':'+new Date().getMinutes()+':'+new Date().getSeconds(),
+        chatId: 'me'
     }
 ]

@@ -33,7 +33,7 @@ export const Chat: React.FC<any> = () => {
     return (
         <SafeAreaView>
             <Container>
-                <BackgroundImage style={{zIndex: 10}} source={chatBackground} >
+                <BackgroundImage source={chatBackground} >
                     <ChatHeader>
                         <DataPictureWrapper customWidth="40" flexBottomMargin="0">
                             <FamDataPicture customWidth="40" source={icons.DP3} />
@@ -43,8 +43,8 @@ export const Chat: React.FC<any> = () => {
                             <AppText fontSize="17" fontWeight="600">Imtiyaaz Ridwan</AppText>
                         </ChatMemberTextWrapper>
                     </ChatHeader>                 
-                    <ScrollView >
-                        <ChatsWrapper>
+                    <ChatsWrapper>
+                        <ScrollView>
                         {
                             React.Children.toArray(
                                 chatData.map(item => (
@@ -52,21 +52,21 @@ export const Chat: React.FC<any> = () => {
                                     <RightChatWrapper>
                                         <ChatTextWrapper justify="right">
                                             <AppText fontSize="10">{item.chatText}</AppText>
-                                            <AppText fontSize="8">{item.time}</AppText>
+                                            {/* <AppText fontSize="8">{item.time}</AppText> */}
                                         </ChatTextWrapper>
                                     </RightChatWrapper>
                                     :
                                     <LeftChatWrapper>
                                         <ChatTextWrapper>
                                             <AppText fontSize="10" >{item.chatText}</AppText>
-                                            <AppText fontSize="8" >{item.time}</AppText>
+                                            {/* <AppText fontSize="8" >{item.time}</AppText> */}
                                         </ChatTextWrapper>
                                     </LeftChatWrapper>
                                 ))
                             )
                         }
-                        </ChatsWrapper>
-                    </ScrollView>
+                        </ScrollView>
+                    </ChatsWrapper>
                     <EnterChatWrapper>
                         <ChatInputContainer>
                             <Fontisto name="smiley" color="#CFCECC" size={22} />
