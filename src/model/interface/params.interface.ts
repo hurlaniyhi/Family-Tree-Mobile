@@ -13,6 +13,7 @@ export interface AppMode {
 }
 
 export interface AppTheme {
+    FOCUS_THEME_COLOR_DEEP: string;
     FOCUS_THEME_COLOR: string,
     FOCUS_THEME_COLOR_LIGHT: string,
     CARD_BACKGROUND?: string,

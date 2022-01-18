@@ -10,7 +10,7 @@ const BottomTabNavigator = () => {
   const { theme } = useContext(ThemeContext)
 
   return (
-    <Tab.Navigator screenOptions={({ route }) => ({
+    <Tab.Navigator detachInactiveScreens= {false} screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         if (route.name === 'Home') {
             return focused ? <Entypo name="home" size={24} color={color} />:
@@ -35,7 +35,8 @@ const BottomTabNavigator = () => {
       headerStyle: {
         backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.CARD_BACKGROUND
       },
-      headerTitleStyle: {color: theme.TEXT_COLOR}
+      headerTitleStyle: {color: theme.TEXT_COLOR},
+      animationEnabled: false
     })}>
       <Tab.Screen name="Home" component={Dashboard} options={{headerShown: false}}/>
       <Tab.Screen name="Family Tree" component={FamilyTree}/>

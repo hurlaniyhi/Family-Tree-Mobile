@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useRef } from 'react'
+import EmojiBoard from 'react-native-emoji-board'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Container } from '@component'
 import helpers from '@src/utility/helper'
@@ -23,12 +24,23 @@ import {
     EnterChatWrapper,
     ChatInput
 } from '@styles'
+import { TextInput } from 'react-native';
 
 
 export const Chat: React.FC<any> = () => {
     const { theme } = useContext(ThemeContext)
+    const [input, setInput] = useState('')
+    const [showEmoji, setShowEmoji] = useState(false)
+    const inputRef: React.RefObject<TextInput> = React.createRef();
 
     const chatBackground = helpers.getChatBackground(theme)
+
+    function handleEmojiBoard(emoji: any){
+        inputRef.current!.focus()
+        console.log(emoji.code)
+        setInput(input+emoji.code)
+        setShowEmoji(false)
+    }
 
     return (
         <SafeAreaView>
@@ -69,17 +81,21 @@ export const Chat: React.FC<any> = () => {
                     </ChatsWrapper>
                     <EnterChatWrapper>
                         <ChatInputContainer>
-                            <Fontisto name="smiley" color="#CFCECC" size={22} />
+                            <Fontisto name="smiley" color="#CFCECC" size={22} onPress={() => setShowEmoji(!showEmoji)} />
                             <ChatInput 
                                 autoCapitalize="none"
+                                value={input}
                                 multiline={true}
                                 autoCorrect={false}
                                 placeholder="Message"
+                                onChangeText={(e) => setInput(e)}
+                                ref={inputRef}
                             />
                         </ChatInputContainer>
                         <ChatButton>
                             <Ionicons name="send-outline" color="#FFFFFF" size={20} />
                         </ChatButton>
+                        <EmojiBoard showBoard={showEmoji} onClick={handleEmojiBoard} onRemove={() => setShowEmoji(false)} />
                     </EnterChatWrapper>
                 </BackgroundImage>
             </Container>

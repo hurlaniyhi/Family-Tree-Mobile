@@ -10,6 +10,7 @@ const sortMode_Theme = (mode: string, themeData: AppTheme) => {
         FOCUS_THEME_COLOR: themeData.FOCUS_THEME_COLOR, 
         FOCUS_THEME_COLOR_LIGHT: themeData.FOCUS_THEME_COLOR_LIGHT,
         CARD_BACKGROUND: themeData.CARD_BACKGROUND,
+        FOCUS_THEME_COLOR_DEEP: themeData.FOCUS_THEME_COLOR_DEEP,
         THEME: themeData.THEME
     }
     return { ...modeData,  ...theme }
