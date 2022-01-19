@@ -11,7 +11,7 @@ import {
   ConfirmEmail,
   NewPassword
 } from "@screens/auth";
-import { Chat } from '@screens/main'
+import { Chat, Profile, EditProfile } from '@screens/main'
 
 
 const Stack = createStackNavigator();
@@ -46,6 +46,8 @@ const OtherStackNavigator = () => {
   return (
     <Stack.Navigator detachInactiveScreens={false} screenOptions = {screenOptionStyle}>
       <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
     </Stack.Navigator>
   )
 }

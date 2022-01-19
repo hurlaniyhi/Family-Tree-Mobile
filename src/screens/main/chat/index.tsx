@@ -8,7 +8,7 @@ import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { icons, chatData } from '@src/provider/config/constant'
 import { 
     BackgroundImage, 
-    ChatHeader,  
+    Header,  
     FamDataPicture,
     ChatMemberTextWrapper,
     MemberStatusCircle,
@@ -62,7 +62,7 @@ export const Chat: React.FC<any> = () => {
         <SafeAreaView>
             <Container>
                 <BackgroundImage source={chatBackground}>
-                    <ChatHeader>
+                    <Header>
                         <DataPictureWrapper customWidth="40" flexBottomMargin="0">
                             <FamDataPicture customWidth="40" source={icons.DP3} />
                             <MemberStatusCircle flowCircleColor="#00BF4D"/>
@@ -70,7 +70,7 @@ export const Chat: React.FC<any> = () => {
                         <ChatMemberTextWrapper textMargin="14">
                             <AppText fontSize="17" fontWeight="600">Imtiyaaz Ridwan</AppText>
                         </ChatMemberTextWrapper>
-                    </ChatHeader>                 
+                    </Header>                 
                     <ChatsWrapper>
                         <ScrollView>
                         {
@@ -97,7 +97,7 @@ export const Chat: React.FC<any> = () => {
                     </ChatsWrapper>
                     <EnterChatWrapper>
                         <ChatInputContainer>
-                            <Fontisto name="smiley" color="rgba(0,0,0,0.3)" size={22} onPress={toggleKeyboards} />
+                            <Fontisto name="smiley" color={theme.THEME_MODE === 'light' ? "rgba(0,0,0,0.3)" : "#8C8C8C"} size={22} onPress={toggleKeyboards} />
                             <ChatInput 
                                 autoCapitalize="none"
                                 value={input}

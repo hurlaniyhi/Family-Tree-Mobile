@@ -30,7 +30,7 @@ import { Feather, Entypo } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 
 
-export  const Dashboard: React.FC<any> = () => {
+export  const Dashboard: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     return (
         <SafeAreaView style={{flex: 1}}>
@@ -41,7 +41,7 @@ export  const Dashboard: React.FC<any> = () => {
                             Hi 
                             <AppText fontSize="18" fontWeight="bold"> Ridwan </AppText>
                         </AppText>
-                        <ProfilePicsWrapper>
+                        <ProfilePicsWrapper activeOpacity={1} onPress = {() => navigation.navigate("Others", {screen: 'Profile'})}>
                             <Picture source={icons.DP3} />
                         </ProfilePicsWrapper>
                     </UserIntroWrapper>
@@ -66,7 +66,7 @@ export  const Dashboard: React.FC<any> = () => {
                                             <StatusCircle flowCircleColor="#00BF4D"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay("Ridwan Kolawole", 14)}
+                                            {helpers.textToDisplay("Ridwan", 14)}
                                         </AppText>
                                         <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Father</AppText>
                                     </DataProfileChild>
@@ -76,7 +76,7 @@ export  const Dashboard: React.FC<any> = () => {
                                             <StatusCircle flowCircleColor="#C4C4C4"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay("Rahmoh Kolawole", 12)}
+                                            {helpers.textToDisplay("Haleemah", 12)}
                                         </AppText>
                                         <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Mother</AppText>
                                     </DataProfileChild>
@@ -93,7 +93,7 @@ export  const Dashboard: React.FC<any> = () => {
                                             <StatusCircle flowCircleColor="#00BF4D"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay("Roshan Kolawole", 12)}
+                                            {helpers.textToDisplay("Roshan", 12)}
                                         </AppText>
                                         <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Son</AppText>
                                     </DataProfileChild>
@@ -103,7 +103,7 @@ export  const Dashboard: React.FC<any> = () => {
                                             <StatusCircle flowCircleColor="#00BF4D"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay("Diyah Kolawole", 12)}
+                                            {helpers.textToDisplay("Diyah", 12)}
                                         </AppText>
                                         <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Daughter</AppText>
                                     </DataProfileChild>

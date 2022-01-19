@@ -22,9 +22,9 @@ export const UserIntroWrapper = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 30px
+    margin-top: 10px
 `
-export const ProfilePicsWrapper = styled.View`
+export const ProfilePicsWrapper = styled.TouchableOpacity`
     width: 50px;
     height: 50px;
     border-radius: 100px;
@@ -133,7 +133,7 @@ export const PostContainer = styled.View`
 `
 
 export const PostImage = styled.Image`
-    resize-mode: contain;
+    resize-mode: stretch;
     width: 100%;
     height: 144px;
     margin-bottom: 10px;

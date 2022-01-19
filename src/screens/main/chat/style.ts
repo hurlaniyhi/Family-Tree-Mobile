@@ -6,12 +6,13 @@ export const BackgroundImage  = styled.ImageBackground`
     height: 100%;
     flex: 1
 `
-export const ChatHeader = styled.View<Theme>`
+export const Header = styled.View<Theme>`
     width: 100%;
     height: 60px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: ${({justify}) => justify || 'flex-start'};
     padding-left: 3%;
     padding-right: 3%;
     position: absolute;
@@ -86,8 +87,8 @@ export const ChatButton = styled.TouchableOpacity<Theme>`
     align-items: center;
 `
 export const ChatInput = styled.TextInput.attrs((props: Theme) => ({
-    placeholderTextColor: "rgba(0,0,0,0.3)",
-    color: props.theme.THEME_MODE === 'light'? props.theme.TEXT_COLOR : props.theme.BORDER
+    placeholderTextColor: props.theme.THEME_MODE === 'light' ? "rgba(0,0,0,0.3)" : "#8C8C8C",
+    color: props.theme.TEXT_COLOR
   }))`
       width: 86%;
       height: 45px;

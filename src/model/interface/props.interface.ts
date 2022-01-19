@@ -19,7 +19,8 @@ export interface Theme {
     flowCircleColor?: string,
     isChecked?: boolean,
     selectedOption?: string;
-    customWidth?: string
+    customWidth?: string;
+    borderColor?: string
 }
 
 export interface TopLogoModel {

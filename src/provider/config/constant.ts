@@ -44,7 +44,9 @@ export const icons = {
     POST_IMAGE: require('@icons/post-image.png'),
     POST_IMAGE2: require('@icons/post2.jpeg'),
     POST_IMAGE3: require('@icons/post3.jpeg'),
-    POST_IMAGE1: require('@icons/post1.jpeg')
+    POST_IMAGE1: require('@icons/post1.jpeg'),
+    EDUCATION: require('@icons/education.png'),
+    EXPERIENCE: require('@icons/experience.png')
 }
 
 export const images = {
