@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Container, Card } from '@component'
+import { Container, Card, Button } from '@component'
 import helpers from '@src/utility/helper'
 import { 
     ProfileHeader, 
@@ -178,6 +178,7 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             </RemoveButton>
                         </Text_IconWrapper>
                     </Card>
+                    <Button text="Save" btnWidth="50" btnBottomMargin="15" onPress={()=> console.log("Edited")} />
                 </ScrollView>
             </Container>
         </SafeAreaView>

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { 
     UserIntroWrapper, 
@@ -21,12 +22,13 @@ import {
     PostContainer,
     PostImage,
     FlexRowBetween,
-    MemberListText
+    MemberListText,
+    AddPostButton
 } from '@styles'
 import { Container, Card } from '@component'
 import { icons } from '@src/provider/config/constant'
 import helpers from '@src/utility/helper'
-import { Feather, Entypo } from '@expo/vector-icons'
+import { Feather, Entypo, AntDesign } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 
 
@@ -34,6 +36,9 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     return (
         <SafeAreaView style={{flex: 1}}>
+            <AddPostButton>
+                <AntDesign name="pluscircle" size={37} color={theme.FOCUS_THEME_COLOR}/>
+            </AddPostButton>
             <ScrollView>
                 <Container>
                     <UserIntroWrapper>
@@ -113,48 +118,50 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                     </Card>
 
                     <Card>
-                        <AppText fontSize="14" fontWeight="bold">Messages</AppText>
-                        <ChatListWrapper activeOpacity={1} >
-                            <DataPictureWrapper customWidth="32" flexBottomMargin="0">
-                                <FamDataPicture customWidth="32" source={icons.DP3} />
-                                <StatusCircleSm flowCircleColor="#00BF4D"/>
-                            </DataPictureWrapper>
-                            <ChatMemberTextWrapper>
-                                <AppText fontSize="12" fontWeight="600">Habeeb Olanrewaju</AppText>
-                                <MemberListText fontSize="10" textColor="#A6A6A6" fontWeight="500">
-                                    {helpers.textToDisplay("Weldone Newton, we will start the design soon.", 66)}
-                                </MemberListText>
-                            </ChatMemberTextWrapper>
-                        </ChatListWrapper >
-                        <ChatListWrapper activeOpacity={1} >
-                            <DataPictureWrapper customWidth="32" flexBottomMargin="0">
-                                <FamDataPicture customWidth="32" source={icons.DP} />
-                                <StatusCircleSm  flowCircleColor="#00BF4D"/>
-                            </DataPictureWrapper>
-                            <ChatMemberTextWrapper>
-                                <AppText fontSize="12" fontWeight="600">Imtiyaaz Ridwan</AppText>
-                                <MemberListText fontSize="10" textColor="#A6A6A6" fontWeight="500">
-                                    {helpers.textToDisplay("Let us start developing the mobile app using React-native. We will use styled-components for CSS.", 65)}
-                                </MemberListText>
-                            </ChatMemberTextWrapper>
-                        </ChatListWrapper >
-                        <ChatListWrapper activeOpacity={1} >
-                            <DataPictureWrapper customWidth="32" flexBottomMargin="0">
-                                <FamDataPicture customWidth="32" source={icons.DP2} />
-                                <StatusCircleSm flowCircleColor="#00BF4D"/>
-                            </DataPictureWrapper>
-                            <ChatMemberTextWrapper>
-                                <AppText fontSize="12" fontWeight="600">Diyah Ridwan</AppText>
-                                <MemberListText fontSize="10" textColor="#A6A6A6" fontWeight="500">
-                                    {helpers.textToDisplay("Weldone Newton, we will start the design soon.", 65)}
-                                </MemberListText>
-                            </ChatMemberTextWrapper>
-                        </ChatListWrapper >
+                        <TouchableOpacity activeOpacity={0.8} onPress = {() => navigation.navigate("Messages")}>
+                            <AppText fontSize="14" fontWeight="bold">Messages</AppText>
+                            <ChatListWrapper activeOpacity={1} >
+                                <DataPictureWrapper customWidth="32" flexBottomMargin="0">
+                                    <FamDataPicture customWidth="32" source={icons.DP3} />
+                                    <StatusCircleSm flowCircleColor="#00BF4D"/>
+                                </DataPictureWrapper>
+                                <ChatMemberTextWrapper>
+                                    <AppText fontSize="12" fontWeight="600">Habeeb Olanrewaju</AppText>
+                                    <MemberListText fontSize="10" textColor="#A6A6A6" fontWeight="500">
+                                        {helpers.textToDisplay("Weldone Newton, we will start the design soon.", 66)}
+                                    </MemberListText>
+                                </ChatMemberTextWrapper>
+                            </ChatListWrapper >
+                            <ChatListWrapper activeOpacity={1} >
+                                <DataPictureWrapper customWidth="32" flexBottomMargin="0">
+                                    <FamDataPicture customWidth="32" source={icons.DP} />
+                                    <StatusCircleSm  flowCircleColor="#00BF4D"/>
+                                </DataPictureWrapper>
+                                <ChatMemberTextWrapper>
+                                    <AppText fontSize="12" fontWeight="600">Imtiyaaz Ridwan</AppText>
+                                    <MemberListText fontSize="10" textColor="#A6A6A6" fontWeight="500">
+                                        {helpers.textToDisplay("Let us start developing the mobile app using React-native. We will use styled-components for CSS.", 65)}
+                                    </MemberListText>
+                                </ChatMemberTextWrapper>
+                            </ChatListWrapper >
+                            <ChatListWrapper activeOpacity={1} >
+                                <DataPictureWrapper customWidth="32" flexBottomMargin="0">
+                                    <FamDataPicture customWidth="32" source={icons.DP2} />
+                                    <StatusCircleSm flowCircleColor="#00BF4D"/>
+                                </DataPictureWrapper>
+                                <ChatMemberTextWrapper>
+                                    <AppText fontSize="12" fontWeight="600">Diyah Ridwan</AppText>
+                                    <MemberListText fontSize="10" textColor="#A6A6A6" fontWeight="500">
+                                        {helpers.textToDisplay("Weldone Newton, we will start the design soon.", 65)}
+                                    </MemberListText>
+                                </ChatMemberTextWrapper>
+                            </ChatListWrapper >
+                        </TouchableOpacity>
                     </Card>
     
                     <Card cardPadding="0">
                         <PostContainer>
-                            <ChatListWrapper flexTopMargin="0" flexBottomMargin="12" >
+                            <ChatListWrapper activeOpacity={1} flexTopMargin="0" flexBottomMargin="12" >
                                 <DataPictureWrapper customWidth="34" flexBottomMargin="0">
                                     <FamDataPicture customWidth="34" source={icons.DP} />
                                     <StatusCircleSm flowCircleColor="#FF007C"/>
@@ -165,7 +172,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                         Sat - 27 Nov 2021
                                     </AppText>
                                 </ChatMemberTextWrapper>
-                            </ChatListWrapper >
+                            </ChatListWrapper>
                             <AppText fontWeight="600" fontSize="13">Y'all should checkout this sick wallpaper</AppText>
                             <PostImage source={icons.POST_IMAGE} />
                             <FlexRowBetween>
@@ -178,7 +185,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                     </Card>
                     <Card cardPadding="0">
                         <PostContainer>
-                            <ChatListWrapper flexTopMargin="0" flexBottomMargin="12" >
+                            <ChatListWrapper activeOpacity={1} flexTopMargin="0" flexBottomMargin="12" >
                                 <DataPictureWrapper customWidth="34" flexBottomMargin="0">
                                     <FamDataPicture customWidth="34" source={icons.DP3} />
                                     <StatusCircleSm flowCircleColor="#00BF4D"/>
@@ -202,7 +209,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                     </Card>
                     <Card cardBottomMargin="10">
                         <PostContainer>
-                            <ChatListWrapper flexTopMargin="0" flexBottomMargin="12" >
+                            <ChatListWrapper activeOpacity={1} flexTopMargin="0" flexBottomMargin="12" >
                                 <DataPictureWrapper customWidth="34" flexBottomMargin="0">
                                     <FamDataPicture customWidth="34" source={icons.DP3} />
                                     <StatusCircleSm flowCircleColor="#00BF4D"/>

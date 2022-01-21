@@ -5,12 +5,14 @@ export const ButtonContainer = styled.TouchableOpacity<Theme>`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: ${({customWidth}) => customWidth || 80}%;
     height: 45px;
     background-color: ${({theme}) => theme.FOCUS_THEME_COLOR};
     border-radius: 5px;
     margin-top: ${({flexTopMargin}) => flexTopMargin ?? 30}px;
-    margin-bottom: ${({flexBottomMargin}) => flexBottomMargin ?? 15}px
+    margin-bottom: ${({flexBottomMargin}) => flexBottomMargin ?? 15}px;
+    margin-left: auto;
+    margin-right: auto;
 `
 
 export const ButtonText = styled.Text`

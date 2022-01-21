@@ -31,7 +31,8 @@ export interface ButtonProps {
     onPress: ((event: GestureResponderEvent) => void) | undefined,
     text: string,
     btnTopMargin?: string,
-    btnBottomMargin?: string
+    btnBottomMargin?: string,
+    btnWidth?: string
 }
 
 export interface CardProps {

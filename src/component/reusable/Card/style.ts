@@ -6,5 +6,6 @@ export const Card = styled.View<Theme>`
     padding: ${props => props.textMargin ?? 15}px 20px;
     background-color: ${({theme}) => theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.CARD_BACKGROUND};
     margin-top: ${props => props.cardTopMargin ?? 15}px;
-    margin-bottom: ${props => props.cardBottomMargin ?? 0}px
+    margin-bottom: ${props => props.cardBottomMargin ?? 0}px;
+    border-radius: 5px
 ` 

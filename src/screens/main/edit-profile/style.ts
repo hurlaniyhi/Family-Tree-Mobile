@@ -42,7 +42,9 @@ export const DesignedTextInput = styled.TextInput.attrs((props: Theme) => ({
 export const AddButtonWrapper = styled.TouchableOpacity`
     position: absolute;
     right: -5px;
-    top: 12px
+    top: 12px;
+    background-color: #FFFFFF;
+    border-radius: 100px
 `
 
 export const Text_IconWrapper = styled.View<Theme>`
@@ -51,6 +53,6 @@ export const Text_IconWrapper = styled.View<Theme>`
     flex-direction: row;
     align-items: center;
 `
-export const RemoveButton = styled.TouchableOpacity`
-    margin-left: 15px
+export const RemoveButton = styled.TouchableOpacity<Theme>`
+    margin-left: 15px;
 `

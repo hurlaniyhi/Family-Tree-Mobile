@@ -139,3 +139,13 @@ export const PostImage = styled.Image`
     margin-bottom: 10px;
     margin-top: 8px
 `
+export const AddPostButton = styled.TouchableOpacity.attrs((props: Theme)=> ({
+    activeOpacity: 0.8
+}))`
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+    z-index: 20;
+    background-color: #FFFFFF;
+    border-radius: 100px
+`
