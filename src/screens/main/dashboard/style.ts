@@ -145,7 +145,7 @@ export const AddPostButton = styled.TouchableOpacity.attrs((props: Theme)=> ({
     position: absolute;
     bottom: 40px;
     right: 20px;
-    z-index: 20;
+    z-index: 10;
     background-color: #FFFFFF;
     border-radius: 100px
 `

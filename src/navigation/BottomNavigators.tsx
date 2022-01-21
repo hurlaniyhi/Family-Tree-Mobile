@@ -38,7 +38,7 @@ const BottomTabNavigator = () => {
       headerTitleStyle: {color: theme.TEXT_COLOR},
       animationEnabled: false
     })}>
-      <Tab.Screen name="Home" component={Dashboard} options={{headerShown: false}}/>
+      <Tab.Screen name="Home" component={Dashboard} options={{headerShown: false, tabBarStyle: { display: "flex" }}}/>
       <Tab.Screen name="Family Tree" component={FamilyTree}/>
       <Tab.Screen name="Messages" component={ChatMembers}/>
       <Tab.Screen name="Settings" component={Settings} options={{
@@ -47,7 +47,7 @@ const BottomTabNavigator = () => {
             theme.FOCUS_THEME_COLOR_LIGHT: 
             theme.CARD_BACKGROUND
         }, 
-        headerTitleStyle: {color: theme.TEXT_COLOR}
+        headerTitleStyle: {color: theme.TEXT_COLOR},
       }}
       />
     </Tab.Navigator>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { 
@@ -25,7 +25,7 @@ import {
     MemberListText,
     AddPostButton
 } from '@styles'
-import { Container, Card } from '@component'
+import { Container, Card, CreatePost } from '@component'
 import { icons } from '@src/provider/config/constant'
 import helpers from '@src/utility/helper'
 import { Feather, Entypo, AntDesign } from '@expo/vector-icons'
@@ -34,11 +34,16 @@ import ThemeContext from '@src/provider/state-manager/themeProvider'
 
 export  const Dashboard: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
+    const [showCreatePost, setShowCreatePost] = useState(false)
+
     return (
         <SafeAreaView style={{flex: 1}}>
-            <AddPostButton>
-                <AntDesign name="pluscircle" size={37} color={theme.FOCUS_THEME_COLOR}/>
+            <AddPostButton onPress= {() => setShowCreatePost(true)}>
+                <AntDesign name="pluscircle" size={42} color={theme.FOCUS_THEME_COLOR}/>
             </AddPostButton>
+
+            { showCreatePost ? <CreatePost onPress={()=> setShowCreatePost(false)}></CreatePost> : null}
+
             <ScrollView>
                 <Container>
                     <UserIntroWrapper>

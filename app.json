@@ -32,9 +32,9 @@
         "foregroundImage": "./assets/icons/fam-tree-icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "softwareKeyboardLayoutMode": "pan",
       "package": "com.lingonsoft.ShopWyse",
-      "versionCode": 1,
-      "icon": "./assets/icons/FamTree.png" 
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
