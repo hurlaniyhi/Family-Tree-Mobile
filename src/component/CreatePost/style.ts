@@ -34,7 +34,8 @@ export const PostCheckIcon = styled(AntDesign).attrs(({theme}: Theme)=> ({
     color: theme.FOCUS_THEME_COLOR,
     size: 27,
     name: 'checkcircle'
-}))``
+}))`
+`
 
 export const PostCloseLine = styled.TouchableOpacity<Theme>`
     width: 56px;

@@ -23,9 +23,13 @@ import {
     PostImage,
     FlexRowBetween,
     MemberListText,
-    AddPostButton
+    AddPostButton,
+    LikeCommentWrapper,
+    TransparentThumbUpIcon,
+    TransparentCommentIcon,
+    CommentIconWrapper
 } from '@styles'
-import { Container, Card, CreatePost } from '@component'
+import { Container, Card, CreatePost, AddComment } from '@component'
 import { icons } from '@src/provider/config/constant'
 import helpers from '@src/utility/helper'
 import { Feather, Entypo, AntDesign } from '@expo/vector-icons'
@@ -35,7 +39,7 @@ import VisibilityContext from '@src/provider/state-manager/visibilityProvider';
 
 export  const Dashboard: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const { visibility, toggledCreatePost } = useContext(VisibilityContext)
+    const { visibility, toggledCreatePost, toggledAddComment } = useContext(VisibilityContext)
 
     return (
         <SafeAreaView style={{flex: 1}}>
@@ -44,6 +48,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
             </AddPostButton>
 
             { visibility.isCreatePost ? <CreatePost onPress={() => toggledCreatePost(false)}></CreatePost> : null}
+            { visibility.isAddComment ? <AddComment onPress={() => toggledAddComment(false)}></AddComment> : null}
 
             <ScrollView>
                 <Container>
@@ -187,6 +192,16 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                 </AppText>
                                 <AppText fontWeight="600" fontSize="11">5 Comments</AppText>
                             </FlexRowBetween>
+                            <LikeCommentWrapper>
+                                <CommentIconWrapper>
+                                    <TransparentThumbUpIcon />
+                                    <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Like</AppText>
+                                </CommentIconWrapper>
+                                <CommentIconWrapper onPress={() => toggledAddComment(true)}>
+                                    <TransparentCommentIcon /> 
+                                    <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Comment</AppText>
+                                </CommentIconWrapper>
+                            </LikeCommentWrapper>
                         </PostContainer>
                     </Card>
                     <Card cardPadding="0">
@@ -211,6 +226,16 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                 </AppText>
                                 <AppText fontWeight="600" fontSize="11">25 Comments</AppText>
                             </FlexRowBetween>
+                            <LikeCommentWrapper>
+                                <CommentIconWrapper>
+                                    <TransparentThumbUpIcon />
+                                    <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Like</AppText>
+                                </CommentIconWrapper>
+                                <CommentIconWrapper onPress={() => toggledAddComment(true)}>
+                                    <TransparentCommentIcon /> 
+                                    <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Comment</AppText>
+                                </CommentIconWrapper>
+                            </LikeCommentWrapper>
                         </PostContainer>
                     </Card>
                     <Card cardBottomMargin="10">
@@ -235,6 +260,16 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                 </AppText>
                                 <AppText fontWeight="600" fontSize="11">10 Comments</AppText>
                             </FlexRowBetween>
+                            <LikeCommentWrapper>
+                                <CommentIconWrapper>
+                                    <TransparentThumbUpIcon />
+                                    <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Like</AppText>
+                                </CommentIconWrapper>
+                                <CommentIconWrapper onPress={() => toggledAddComment(true)}>
+                                    <TransparentCommentIcon /> 
+                                    <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Comment</AppText>
+                                </CommentIconWrapper>
+                            </LikeCommentWrapper>
                         </PostContainer>
                     </Card>
                 </Container>

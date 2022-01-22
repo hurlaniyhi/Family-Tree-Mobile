@@ -37,7 +37,8 @@ export interface FamilyDetails {
 }
 
 export interface VisibilityState {
-    isCreatePost: boolean
+    isCreatePost: boolean,
+    isAddComment: boolean
 }
 
 export interface VisibilityContextModel {

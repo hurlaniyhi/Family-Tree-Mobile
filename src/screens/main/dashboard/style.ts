@@ -1,5 +1,6 @@
 import styled from 'styled-components/native'
 import { Theme } from '@model'
+import { Feather, FontAwesome5 } from '@expo/vector-icons'
 
 export const DashboardText = styled.Text<Theme>`
     font-style: normal;
@@ -148,4 +149,37 @@ export const AddPostButton = styled.TouchableOpacity.attrs((props: Theme)=> ({
     z-index: 10;
     background-color: #FFFFFF;
     border-radius: 100px
+`
+export const LikeCommentWrapper = styled.View<Theme>`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: ${({theme}) => theme.THEME_MODE === 'light' ? '#F6F6F6' : 'rgba(0,0,0, 0.4)'};
+    height: 35px;
+    padding: 0px 15px;
+    margin-top: 10px;
+    border-radius: 5px
+`
+export const TransparentThumbUpIcon = styled(Feather).attrs(({theme}: Theme)=> ({
+    color: "#A6A6A6",
+    size: 18,
+    name: 'thumbs-up'
+}))`
+    margin-right: 8px
+`
+export const TransparentCommentIcon = styled(FontAwesome5).attrs(({theme}: Theme)=> ({
+    color: "#A6A6A6",
+    size: 16,
+    name: 'comment-alt'
+}))`
+    margin-right: 8px
+`
+export const CommentIconWrapper = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.8
+})<Theme>`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 `

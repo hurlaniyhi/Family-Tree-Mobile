@@ -43,7 +43,7 @@ const BottomTabNavigator = () => {
       <Tab.Screen name="Home" component={Dashboard} options={{
         headerShown: false, 
         tabBarStyle: { 
-          display: visibility.isCreatePost ? "none" : "flex",
+          display: visibility.isCreatePost || visibility.isAddComment ? "none" : "flex",
           backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY
         }
         }}
