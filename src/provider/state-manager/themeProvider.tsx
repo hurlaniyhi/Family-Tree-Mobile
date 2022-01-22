@@ -1,12 +1,12 @@
 import React, {useReducer} from 'react'
 import { LightTheme } from '@src/provider/config/theme'
-import { AppTheme, ContextTheme, AppMode, ThemeAction } from '@model'
+import { AppTheme, ContextTheme, AppMode, Action } from '@model'
 import helpers from '@src/utility/helper'
 
 
 const ThemeContext = React.createContext<ContextTheme | any>({})
 
-const ThemeReducer = (state: AppMode, action: ThemeAction) => {
+const ThemeReducer = (state: AppMode, action: Action<any>) => {
     switch(action.type){
         case "switch-theme":
             return {...state, ...action.payload}

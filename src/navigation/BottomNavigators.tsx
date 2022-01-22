@@ -3,11 +3,13 @@ import { AntDesign, Entypo, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dashboard, Settings, FamilyTree, ChatMembers } from "@screens/main";
 import ThemeContext from '@src/provider/state-manager/themeProvider'
+import VisibilityContext from "@src/provider/state-manager/visibilityProvider";
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
   const { theme } = useContext(ThemeContext)
+  const { visibility } = useContext(VisibilityContext)
 
   return (
     <Tab.Navigator detachInactiveScreens= {false} screenOptions={({ route }) => ({
@@ -38,7 +40,14 @@ const BottomTabNavigator = () => {
       headerTitleStyle: {color: theme.TEXT_COLOR},
       animationEnabled: false
     })}>
-      <Tab.Screen name="Home" component={Dashboard} options={{headerShown: false, tabBarStyle: { display: "flex" }}}/>
+      <Tab.Screen name="Home" component={Dashboard} options={{
+        headerShown: false, 
+        tabBarStyle: { 
+          display: visibility.isCreatePost ? "none" : "flex",
+          backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY
+        }
+        }}
+      />
       <Tab.Screen name="Family Tree" component={FamilyTree}/>
       <Tab.Screen name="Messages" component={ChatMembers}/>
       <Tab.Screen name="Settings" component={Settings} options={{

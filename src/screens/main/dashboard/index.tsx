@@ -30,19 +30,20 @@ import { icons } from '@src/provider/config/constant'
 import helpers from '@src/utility/helper'
 import { Feather, Entypo, AntDesign } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
+import VisibilityContext from '@src/provider/state-manager/visibilityProvider';
 
 
 export  const Dashboard: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const [showCreatePost, setShowCreatePost] = useState(false)
+    const { visibility, toggledCreatePost } = useContext(VisibilityContext)
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            <AddPostButton onPress= {() => setShowCreatePost(true)}>
+            <AddPostButton onPress= {() => toggledCreatePost(true)}>
                 <AntDesign name="pluscircle" size={42} color={theme.FOCUS_THEME_COLOR}/>
             </AddPostButton>
 
-            { showCreatePost ? <CreatePost onPress={()=> setShowCreatePost(false)}></CreatePost> : null}
+            { visibility.isCreatePost ? <CreatePost onPress={() => toggledCreatePost(false)}></CreatePost> : null}
 
             <ScrollView>
                 <Container>

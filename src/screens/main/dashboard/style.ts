@@ -132,10 +132,10 @@ export const PostContainer = styled.View`
 
 `
 
-export const PostImage = styled.Image`
+export const PostImage = styled.Image<Theme>`
     resize-mode: stretch;
     width: 100%;
-    height: 144px;
+    height: ${({elementHeight}) => elementHeight || 144}px;
     margin-bottom: 10px;
     margin-top: 8px
 `

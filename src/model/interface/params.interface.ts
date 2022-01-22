@@ -26,12 +26,21 @@ export interface ContextTheme {
     switchMode?: (mode: any) => void
 }
 
-export interface ThemeAction { 
+export interface Action<T> { 
     type: string, 
-    payload: any 
+    payload: T 
 }
 
 export interface FamilyDetails {
     country: string,
     state: string
+}
+
+export interface VisibilityState {
+    isCreatePost: boolean
+}
+
+export interface VisibilityContextModel {
+    visibility: VisibilityState,
+    toggledCreatePost: (data: boolean) => void
 }

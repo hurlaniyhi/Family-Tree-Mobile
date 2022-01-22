@@ -11,16 +11,17 @@ export interface Theme {
     justify?: string,
     flexWidth?: string,
     themeColor?: string,
-    textColor?: string;
+    textColor?: string,
     flexTopMargin?: string,
     flexBottomMargin?: string,
     textMargin?: string,
     flowCircleSize?: string,
     flowCircleColor?: string,
     isChecked?: boolean,
-    selectedOption?: string;
-    customWidth?: string;
-    borderColor?: string
+    selectedOption?: string,
+    customWidth?: string,
+    borderColor?: string,
+    elementHeight?: string
 }
 
 export interface TopLogoModel {
