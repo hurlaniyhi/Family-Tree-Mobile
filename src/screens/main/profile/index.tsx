@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Container, Card } from '@component'
 import helpers from '@src/utility/helper'
 import { 
@@ -8,7 +7,8 @@ import {
     ProfileDPContainer,
     ScrollView,
     ProfileDP,
-    TouchableOpacity
+    TouchableOpacity,
+    AppSafeAreaView
 } from '@styles'
 import { SimpleLineIcons } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
@@ -18,8 +18,9 @@ import { icons } from '@src/provider/config/constant'
 
 export const Profile: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
+    
     return (
-        <SafeAreaView>
+        <AppSafeAreaView>
             <Container>
                 <ScrollView>
                     <ProfileHeader>
@@ -72,6 +73,6 @@ export const Profile: React.FC<any> = ({ navigation }) => {
                     </Card>
                 </ScrollView>
             </Container>
-        </SafeAreaView>
+        </AppSafeAreaView>
     );
 }

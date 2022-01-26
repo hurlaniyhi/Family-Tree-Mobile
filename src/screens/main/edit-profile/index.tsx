@@ -15,7 +15,8 @@ import {
     DesignedTextInput,
     AddButtonWrapper,
     Text_IconWrapper,
-    RemoveButton
+    RemoveButton,
+    AppSafeAreaView
 } from '@styles'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
@@ -26,7 +27,7 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
 
     return (
-        <SafeAreaView>
+        <AppSafeAreaView>
             <Container>
                 <ScrollView>
                     <ProfileHeader>
@@ -181,6 +182,6 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                     <Button text="Save" btnWidth="50" btnBottomMargin="15" onPress={()=> console.log("Edited")} />
                 </ScrollView>
             </Container>
-        </SafeAreaView>
+        </AppSafeAreaView>
     );
 }

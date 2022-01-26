@@ -11,12 +11,14 @@ const VisibilityReducer = (state: any, action: Action<boolean>) => {
             return {...state, isCreatePost: action.payload }
         case "toggle-add-comment": 
             return { ...state, isAddComment: action.payload }
+        case "toggle-search-type": 
+            return { ...state, isSearchType: action.payload }
     }
 }
 
 export const VisibilityProvider = (props: any) => {
     const [state, dispatch] = useReducer(VisibilityReducer, {
-        isCreatePost: false, isAddComment: false
+        isCreatePost: false, isAddComment: false, isSearchType: false
     })
 
     async function toggledCreatePost (data: boolean) {
@@ -27,9 +29,14 @@ export const VisibilityProvider = (props: any) => {
         await dispatch({type: "toggle-add-comment", payload: data})
     }
 
+    async function toggleSearchType (data: boolean) {
+        await dispatch({type: "toggle-search-type", payload: data})
+    }
+
     const stateActions = {
         toggledCreatePost, 
-        toggledAddComment
+        toggledAddComment,
+        toggleSearchType
     }
 
     return (

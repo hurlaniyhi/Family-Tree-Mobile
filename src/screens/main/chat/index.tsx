@@ -1,6 +1,5 @@
 import React, { useContext, useState, useRef } from 'react'
 import EmojiBoard from 'react-native-emoji-board'
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Container } from '@component'
 import helpers from '@src/utility/helper'
 import { Ionicons, Fontisto } from '@expo/vector-icons'
@@ -22,7 +21,8 @@ import {
     ChatButton,
     ChatInputContainer,
     EnterChatWrapper,
-    ChatInput
+    ChatInput,
+    AppSafeAreaView
 } from '@styles'
 import { TextInput, Keyboard } from 'react-native';
 
@@ -59,7 +59,7 @@ export const Chat: React.FC<any> = () => {
     }
 
     return (
-        <SafeAreaView>
+        <AppSafeAreaView color={theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.CARD_BACKGROUND}>
             <Container>
                 <BackgroundImage source={chatBackground}>
                     <Header>
@@ -120,6 +120,6 @@ export const Chat: React.FC<any> = () => {
                     </EnterChatWrapper>
                 </BackgroundImage>
             </Container>
-        </SafeAreaView>
+        </AppSafeAreaView>
     );
 }

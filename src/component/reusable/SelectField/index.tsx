@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { InputContainer, InputIcon, SelectFieldText, ArrowDownIcon, DummyInput } from '@styles';
+import { InputContainer, InputIcon, SelectFieldText, ArrowDownIcon, DummyInput, SelectFieldContainer } from '@styles';
 import { SelectFieldProps } from '@model'
 import { MaterialIcons } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
@@ -19,16 +19,15 @@ export const SelectField: React.FC<SelectFieldProps> = React.memo(({ placeHolder
 
     return (
         <>
-            <InputContainer isFocus={focus}>
+            <SelectFieldContainer isFocus={focus} onPress={()=> setShowOptions(true)}>
                 <InputIcon source={icon} />
-                <SelectFieldText style={{zIndex: 10}} selectedOption={selectedText} onPress={()=> setShowOptions(true)}>
+                <SelectFieldText style={{zIndex: 10}} selectedOption={selectedText}>
                     {placeHolder}
                 </SelectFieldText>
                 <ArrowDownIcon onPress={()=> setShowOptions(true)} activeOpacity={0.9} >
                     <MaterialIcons name="keyboard-arrow-down" size={25} color={theme.BORDER} />
                 </ArrowDownIcon>
-                <DummyInput caretHidden={true} showSoftInputOnFocus={false} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
-            </InputContainer>
+            </SelectFieldContainer>
 
             <BottomSheet 
                 modalProps={{ onRequestClose: () => { setShowOptions(false)}, animationType: 'slide', }} 

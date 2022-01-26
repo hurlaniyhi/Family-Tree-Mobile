@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AntDesign, Entypo, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Dashboard, Settings, FamilyTree, ChatMembers } from "@screens/main";
+import { Dashboard, Settings, FamilyDetails, ChatMembers } from "@screens/main";
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import VisibilityContext from "@src/provider/state-manager/visibilityProvider";
 
@@ -20,7 +20,7 @@ const BottomTabNavigator = () => {
         } else if (route.name === 'Settings') {
             return focused ? <Ionicons name="settings-sharp" size={24} color={color} />:
                 <AntDesign name="setting" size={size} color={color} />
-        } else if (route.name === 'Family Tree') {
+        } else if (route.name === 'Family Profile') {
             return focused ? <MaterialIcons name="account-tree" size={24} color={color} />:
                 <Entypo name="flow-tree" size={size} color={color} />
         } else if (route.name === 'Messages') {
@@ -48,7 +48,7 @@ const BottomTabNavigator = () => {
         }
         }}
       />
-      <Tab.Screen name="Family Tree" component={FamilyTree}/>
+      <Tab.Screen name="Family Profile" component={FamilyDetails} options={{headerShown: false}} />
       <Tab.Screen name="Messages" component={ChatMembers}/>
       <Tab.Screen name="Settings" component={Settings} options={{
         headerStyle: {

@@ -51,7 +51,8 @@ export const icons = {
 
 export const images = {
     CHAT_BACKGROUND_LIGHT: require('@assets/img/light-chat.png'),
-    CHAT_BACKGROUND_DARK: require('@assets/img/dark-chat.png')
+    CHAT_BACKGROUND_DARK: require('@assets/img/dark-chat.png'),
+    FAMILY_PICS: require('@assets/img/family-pics.png')
 }
 
 export const initialState = {

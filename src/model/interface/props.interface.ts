@@ -21,7 +21,10 @@ export interface Theme {
     selectedOption?: string,
     customWidth?: string,
     borderColor?: string,
-    elementHeight?: string
+    elementHeight?: string,
+    horizontalPadding?: string,
+    toggleDisplay?: boolean,
+    color?: string,
 }
 
 export interface TopLogoModel {
@@ -40,7 +43,8 @@ export interface CardProps {
     children: React.ReactNode,
     cardTopMargin?: string,
     cardBottomMargin?: string,
-    cardPadding?: string
+    cardPadding?: string,
+    horizontalPadding?: string
 }
 
 interface DropDownOption {

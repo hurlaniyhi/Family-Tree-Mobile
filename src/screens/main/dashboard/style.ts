@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 import { Theme } from '@model'
 import { Feather, FontAwesome5 } from '@expo/vector-icons'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const DashboardText = styled.Text<Theme>`
     font-style: normal;
@@ -16,6 +17,10 @@ export const ScrollView = styled.ScrollView.attrs(
         contentContainerStyle: { flexGrow: 1 }   
     })
 )`
+`
+export const AppSafeAreaView = styled(SafeAreaView)<Theme>`
+    background-color: ${({theme, color}) => color || theme.BODY};
+    flex: 1
 `
 export const UserIntroWrapper = styled.View`
     width: 100%;
@@ -37,7 +42,9 @@ export const Picture = styled.Image`
     height: 50px;
     border-radius: 100px
 `
-export const ParentChildContainer = styled.View`
+export const ParentChildContainer = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.7
+})`
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -111,7 +118,9 @@ export const StatusCircleSm = styled.View<Theme>`
     bottom: 0px;
     right: 2px
 `
-export const SearchContainer = styled.View`
+export const SearchContainer = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.8
+})`
     width: 100%;
     height: 40px;
     display: flex;

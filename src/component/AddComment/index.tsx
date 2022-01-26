@@ -35,7 +35,7 @@ export const AddComment: React.FC<any> = ({onPress}) => {
                     <PostCloseLine activeOpacity={0.8} onPress={() => toggledAddComment(false)} />
                     <FlexRowBetween>
                         <PostBackIcon onPress={() => toggledAddComment(false)} />
-                        <AppText fontSize="20" fontWeight="bold">Add Comment</AppText>
+                        <AppText fontSize="20" fontWeight="bold">Comments</AppText>
                         <PostCheckIcon />
                     </FlexRowBetween>
                 </PostTitleBar>

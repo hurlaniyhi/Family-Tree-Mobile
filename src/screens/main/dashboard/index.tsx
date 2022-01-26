@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { TouchableOpacity } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackHandler } from 'react-native'
 import { 
     UserIntroWrapper, 
     ProfilePicsWrapper, 
@@ -27,7 +27,8 @@ import {
     LikeCommentWrapper,
     TransparentThumbUpIcon,
     TransparentCommentIcon,
-    CommentIconWrapper
+    CommentIconWrapper,
+    AppSafeAreaView
 } from '@styles'
 import { Container, Card, CreatePost, AddComment } from '@component'
 import { icons } from '@src/provider/config/constant'
@@ -41,8 +42,23 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const { visibility, toggledCreatePost, toggledAddComment } = useContext(VisibilityContext)
 
+    useEffect(()=> {
+        BackHandler.addEventListener('hardwareBackPress', handleBackPress)
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress', handleBackPress)
+        }
+    }, [visibility])
+
+    function handleBackPress(): any{
+        if(visibility.isCreatePost || visibility.isAddComment) {
+            toggledCreatePost(false)
+            toggledAddComment(false)
+            return true
+        }
+    }
+    
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <AppSafeAreaView>
             <AddPostButton onPress= {() => toggledCreatePost(true)}>
                 <AntDesign name="pluscircle" size={42} color={theme.FOCUS_THEME_COLOR}/>
             </AddPostButton>
@@ -63,14 +79,14 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                     </UserIntroWrapper>
 
                     <Card cardPadding="0">
-                        <SearchContainer>
+                        <SearchContainer onPress={() => navigation.navigate('Others', { screen: 'SearchPage'})}>
                             <Feather name="search" size={20} color="#CFCECC" />
                             <SearchText>Search</SearchText>
                         </SearchContainer>
                     </Card>
 
                     <Card>
-                        <ParentChildContainer>
+                        <ParentChildContainer onPress={() => navigation.navigate("Family Profile")}>
                             <SubContainer>
                                 <AppText fontWeight="bold" fontSize="14" justify="center">
                                     Parent
@@ -274,6 +290,6 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                     </Card>
                 </Container>
             </ScrollView>
-        </SafeAreaView>
+        </AppSafeAreaView>
     );
 }
