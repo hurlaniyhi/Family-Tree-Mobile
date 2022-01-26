@@ -6,7 +6,7 @@ export const ButtonContainer = styled.TouchableOpacity<Theme>`
     justify-content: center;
     align-items: center;
     width: ${({customWidth}) => customWidth || 80}%;
-    height: 45px;
+    height: ${({elementHeight}) => elementHeight || 45}px;
     background-color: ${({theme}) => theme.FOCUS_THEME_COLOR};
     border-radius: 5px;
     margin-top: ${({flexTopMargin}) => flexTopMargin ?? 30}px;
@@ -15,10 +15,10 @@ export const ButtonContainer = styled.TouchableOpacity<Theme>`
     margin-right: auto;
 `
 
-export const ButtonText = styled.Text`
+export const ButtonText = styled.Text<Theme>`
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
+    font-size: ${({fontSize}) => fontSize || 18}px;
     color: #FFFFFF
 `

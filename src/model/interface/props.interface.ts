@@ -36,7 +36,9 @@ export interface ButtonProps {
     text: string,
     btnTopMargin?: string,
     btnBottomMargin?: string,
-    btnWidth?: string
+    btnWidth?: string,
+    btnHeight?: string,
+    btnTextSize?: string 
 }
 
 export interface CardProps {

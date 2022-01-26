@@ -17,7 +17,7 @@ import {
     FillButton,
     OutlineButton
 } from '@styles';
-import { Container, Card, SearchTypeOptions } from '@component'
+import { Container, Card, SearchTypeOptions, Button } from '@component'
 import { icons } from '@src/provider/config/constant'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import VisibilityContext from '@src/provider/state-manager/visibilityProvider'
@@ -60,6 +60,7 @@ export const SearchPage: React.FC<any> = () => {
                     <SearchArrowDown onPress={() => toggleSearchType(true)} />
                 </SearchWrapper>
                 <ScrollView>
+                   { searchType === 'Family' ? <>
                     <Card cardPadding="10"cardTopMargin="10" >
                         <SearchedDataContainer>
                             <DataPictureWrapper customWidth="80" flexBottomMargin="0">
@@ -117,7 +118,7 @@ export const SearchPage: React.FC<any> = () => {
                             </ActionInfoWrapper>
                         </SearchedDataContainer>
                     </Card>
-                    <Card cardPadding="10" cardTopMargin="10">
+                    <Card cardPadding="10" cardTopMargin="10" cardBottomMargin="10">
                         <SearchedDataContainer>
                             <DataPictureWrapper customWidth="80" flexBottomMargin="0">
                                 <FamDataPicture customWidth="80" source={icons.DP} />
@@ -136,6 +137,49 @@ export const SearchPage: React.FC<any> = () => {
                             </ActionInfoWrapper>
                         </SearchedDataContainer>
                     </Card>
+                    </> :
+                    <>
+                    <Card cardPadding="10" cardTopMargin="10">
+                        <SearchedDataContainer>
+                            <DataPictureWrapper customWidth="80" flexBottomMargin="0">
+                                <FamDataPicture customWidth="80" source={icons.DP} />
+                            </DataPictureWrapper>
+                            <ActionInfoWrapper>
+                                <AppText fontSize="16" fontWeight="900">Akachukwu Ajulibe</AppText>
+                                <AppText fontSize="12" textColor="#A6A6A6" fontWeight="500">olaniyi.jibola152@gmail.com</AppText>
+                                <Button 
+                                    btnWidth="65" 
+                                    text="View Profile" 
+                                    btnTopMargin="15" 
+                                    btnBottomMargin="0" 
+                                    btnHeight="35"
+                                    btnTextSize="12"
+                                    onPress={() => console.log("Viewed")}
+                                />
+                            </ActionInfoWrapper>
+                        </SearchedDataContainer>
+                    </Card>
+                    <Card cardPadding="10" cardTopMargin="10" cardBottomMargin="10">
+                        <SearchedDataContainer>
+                            <DataPictureWrapper customWidth="80" flexBottomMargin="0">
+                                <FamDataPicture customWidth="80" source={icons.DP3} />
+                            </DataPictureWrapper>
+                            <ActionInfoWrapper>
+                                <AppText fontSize="16" fontWeight="900">Imtiyaaz Ridwan</AppText>
+                                <AppText fontSize="12" textColor="#A6A6A6" fontWeight="500">devrhydhur@gmail.com</AppText>
+                                <Button 
+                                    btnWidth="65" 
+                                    text="View Profile" 
+                                    btnTopMargin="15" 
+                                    btnBottomMargin="0" 
+                                    btnHeight="35"
+                                    btnTextSize="12"
+                                    onPress={() => console.log("Viewed")}
+                                />
+                            </ActionInfoWrapper>
+                        </SearchedDataContainer>
+                    </Card>
+                    </>}
                 </ScrollView>
             </Container>
         </AppSafeAreaView>
