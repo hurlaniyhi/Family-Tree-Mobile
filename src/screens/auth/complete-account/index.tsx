@@ -9,7 +9,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export const CompleteAccount: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const [input, setInput] = useState({gender: ''})
+    const [input, setInput] = useState({gender: '', dateOfBirth: ''})
 
     let userIcon: ImageSourcePropType = helpers.getUserIcon(theme)
 
@@ -26,7 +26,7 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
                     <ProfilePicture source={userIcon} />
                     <Input placeHolder="Address" icon={icons.ADDRESS} />
                     {/* <Input placeHolder="Date of Birth" icon={icons.DATE} /> */}
-                    <DateInput />
+                    <DateInput onChange={(data: string) => handleSelectedData(data, 'dateOfBirth')}  />
                     <SelectField 
                         placeHolder={input.gender || "Gender"} 
                         icon={icons.GENDER} 
