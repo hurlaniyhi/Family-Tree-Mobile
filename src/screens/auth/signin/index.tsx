@@ -20,6 +20,7 @@ import { Feather } from '@expo/vector-icons'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
+
 export  const SignIn: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const [isChecked, setIsChecked] = useState<boolean>(true)

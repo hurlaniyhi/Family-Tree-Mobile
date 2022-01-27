@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { ImageSourcePropType } from 'react-native'
 import { CenterHorizontallyContainer, CompleteAccountTitle, ProfilePicture, ScrollView } from '@styles';
 import { icons, dropDownOptions } from '@src/provider/config/constant'
-import { Input, Button, FlowIndicator, SelectField } from '@component'
+import { Input, Button, FlowIndicator, SelectField, DateInput } from '@component'
 import helpers from '@src/utility/helper'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -25,7 +25,8 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
                     <CompleteAccountTitle>Complete Your Account</CompleteAccountTitle>
                     <ProfilePicture source={userIcon} />
                     <Input placeHolder="Address" icon={icons.ADDRESS} />
-                    <Input placeHolder="Date of Birth" icon={icons.DATE} />
+                    {/* <Input placeHolder="Date of Birth" icon={icons.DATE} /> */}
+                    <DateInput />
                     <SelectField 
                         placeHolder={input.gender || "Gender"} 
                         icon={icons.GENDER} 
