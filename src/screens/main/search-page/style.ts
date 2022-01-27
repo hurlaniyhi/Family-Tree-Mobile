@@ -24,9 +24,9 @@ export const SearchInput = styled.TextInput.attrs((props: Theme) => ({
     width: 73%;
     height: 40px;
     padding: 5px 2% 5px 10%;
-    font-size: 17px;
+    font-size: 16px;
     font-family: Poppins;
-    font-weight: 600;
+    font-weight: 400;
     padding-top: 10px;
 `
 export const SearchIcon = styled(Feather).attrs({

@@ -3,7 +3,6 @@ import {
     ScrollView,
     DataPictureWrapper,
     AppText,
-    StatusCircleSm,
     FamDataPicture,
     ChatListWrapper,
     ChatMemberTextWrapper,

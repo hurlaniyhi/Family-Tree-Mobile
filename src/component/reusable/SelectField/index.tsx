@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { InputContainer, InputIcon, SelectFieldText, ArrowDownIcon, DummyInput, SelectFieldContainer } from '@styles';
+import { InputIcon, SelectFieldText, ArrowDownIcon, SelectFieldContainer } from '@styles';
 import { SelectFieldProps } from '@model'
 import { MaterialIcons } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'

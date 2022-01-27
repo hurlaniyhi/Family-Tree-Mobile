@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { 
   SignUp, 
@@ -11,7 +11,8 @@ import {
   ConfirmEmail,
   NewPassword
 } from "@screens/auth";
-import { Chat, Profile, EditProfile, SearchPage } from '@screens/main'
+import { Chat, Profile, EditProfile, SearchPage, FamilyMembers } from '@screens/main'
+import ThemeContext from '@src/provider/state-manager/themeProvider'
 
 
 const Stack = createStackNavigator();
@@ -43,12 +44,24 @@ const AuthStackNavigator = () => {
 }
 
 const OtherStackNavigator = () => {
+  const { theme } = useContext(ThemeContext)
+
   return (
     <Stack.Navigator detachInactiveScreens={false} screenOptions = {screenOptionStyle}>
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="SearchPage" component={SearchPage} />
+      <Stack.Screen name="FamilyMembers" component={FamilyMembers} options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.CARD_BACKGROUND
+        },
+        headerTitleStyle: {color: theme.TEXT_COLOR},
+        headerTitleAlign: 'center',
+        headerTitle: 'Family Members',
+        headerTintColor: theme.TEXT_COLOR
+      }} />
     </Stack.Navigator>
   )
 }

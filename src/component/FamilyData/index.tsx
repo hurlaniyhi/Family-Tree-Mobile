@@ -7,9 +7,9 @@ import {
 } from '@styles'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { images } from '@src/provider/config/constant'
-import { Card } from '@component'
+import { Card, Button } from '@component'
 
-export const FamilyData: React.FC<any> = () => {
+export const FamilyData: React.FC<any> = ({ onPress }) => {
     const { theme } = useContext(ThemeContext)
 
     return (
@@ -34,6 +34,15 @@ export const FamilyData: React.FC<any> = () => {
                 <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>Country</AppText>
                 <AppText fontWeight="bold">Nigeria</AppText>
             </Card>
+            <Button 
+                btnWidth="40" 
+                text="View Members" 
+                btnTopMargin="25" 
+                btnBottomMargin="10" 
+                btnHeight="40"
+                btnTextSize="14"
+                onPress={onPress}
+            />
         </>
     );
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { BackHandler } from 'react-native'
+import { BackHandler, Keyboard } from 'react-native'
 import { 
     AppSafeAreaView, 
     AppText, 
@@ -23,7 +23,7 @@ import ThemeContext from '@src/provider/state-manager/themeProvider'
 import VisibilityContext from '@src/provider/state-manager/visibilityProvider'
 
 
-export const SearchPage: React.FC<any> = () => {
+export const SearchPage: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const { visibility, toggleSearchType } = useContext(VisibilityContext)
     const [searchType, setSearchType] = useState('Family')
@@ -42,6 +42,11 @@ export const SearchPage: React.FC<any> = () => {
         }
     }
 
+    function handleSearchTypePopUp() {
+        Keyboard.dismiss()
+        toggleSearchType(true)
+    }
+
     return (
         <AppSafeAreaView>
             <Container>
@@ -54,10 +59,10 @@ export const SearchPage: React.FC<any> = () => {
                         autoCapitalize="none"
                         autoCorrect={false}
                     />
-                    <SearchTypeWrapper onPress={() => toggleSearchType(true)}>
+                    <SearchTypeWrapper onPress={handleSearchTypePopUp}>
                         <AppText fontSize="14">{searchType}</AppText>
                     </SearchTypeWrapper>
-                    <SearchArrowDown onPress={() => toggleSearchType(true)} />
+                    <SearchArrowDown onPress={handleSearchTypePopUp} />
                 </SearchWrapper>
                 <ScrollView>
                    { searchType === 'Family' ? <>
@@ -73,7 +78,7 @@ export const SearchPage: React.FC<any> = () => {
                                     <FillButton>
                                         <AppText fontSize="12" textColor="#FFFFFF">Set as Family</AppText>
                                     </FillButton>
-                                    <OutlineButton>
+                                    <OutlineButton onPress={() => navigation.navigate('Others', { screen: 'FamilyMembers'})}>
                                         <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>View Members</AppText>
                                     </OutlineButton>
                                 </ActionButtonWrapper >
@@ -154,7 +159,7 @@ export const SearchPage: React.FC<any> = () => {
                                     btnBottomMargin="0" 
                                     btnHeight="35"
                                     btnTextSize="12"
-                                    onPress={() => console.log("Viewed")}
+                                    onPress={() => navigation.navigate('Others', {screen: 'Profile'})}
                                 />
                             </ActionInfoWrapper>
                         </SearchedDataContainer>

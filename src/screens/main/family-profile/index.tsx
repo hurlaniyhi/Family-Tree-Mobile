@@ -12,7 +12,7 @@ import {
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 
 
-export  const FamilyDetails: React.FC<any> = () => {
+export  const FamilyDetails: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const [isFamilyTree, setIsFamilyTree] = useState<boolean>(false)
 
@@ -30,7 +30,7 @@ export  const FamilyDetails: React.FC<any> = () => {
                             <ToggleText onPress={() => setIsFamilyTree(true)}><AppText fontWeight="bold">Family Tree</AppText></ToggleText>
                         </ToggleFamilyDetails>
                     </Card>
-                    { isFamilyTree  ?  <FamilyTree/> : <FamilyData />}
+                    { isFamilyTree  ?  <FamilyTree /> : <FamilyData onPress={() => navigation.navigate('Others', {screen: 'FamilyMembers'})} />}
                 </ScrollView>
             </Container>
         </AppSafeAreaView>
