@@ -46,3 +46,5 @@ export interface VisibilityContextModel {
     visibility: VisibilityState,
     toggledCreatePost: (data: boolean) => void
 }
+
+export type OperationStatus = 'success'|'danger'|'warning'|'info'

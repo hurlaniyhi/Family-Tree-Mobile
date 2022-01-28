@@ -1,7 +1,8 @@
-import { AppMode, AppTheme } from '@model'
+import { AppMode, AppTheme, OperationStatus } from '@model'
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink} from '@src/provider/config/theme'
 import { ImageSourcePropType } from 'react-native'
 import { icons, images } from '@src/provider/config/constant'
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 const sortMode_Theme = (mode: string, themeData: AppTheme) => {
     let modeData = mode === 'dark' ? DarkTheme : LightTheme
@@ -55,11 +56,23 @@ const textToDisplay = (text: string, length: number): string => {
     else return text
 }
 
+const showNotification = (type: OperationStatus , message: string, description: string, theme: AppTheme) => {
+    showMessage({
+        message,
+        description,
+        type,
+        backgroundColor: type === 'success' ? theme.FOCUS_THEME_COLOR 
+        : type === 'danger' ? '#df4759' 
+        : type === 'warning' ? '#eed202' : theme.FOCUS_THEME_COLOR
+    });
+}
+
 export default {
     sortMode_Theme,
     logoImage,
     getCardColor,
     getUserIcon,
     textToDisplay,
-    getChatBackground
+    getChatBackground,
+    showNotification
 }

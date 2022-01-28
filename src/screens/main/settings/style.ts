@@ -1,5 +1,6 @@
 import { Theme } from '@model'
 import styled from 'styled-components/native'
+import FlashMessage from "react-native-flash-message"
 
 export const MildText = styled.Text`
     font-family: Poppins;
@@ -63,4 +64,14 @@ export const LogoutText = styled.Text`
     margin: 0px;
     padding-left: 3%;
     color: #FF007C
+`
+export const FlashNotification = styled(FlashMessage).attrs((props: Theme) => ({
+    position: {top: 60, left: 20, right: 20},
+    statusBarHeight: 30,
+    icon: "auto",
+    duration: 3000,
+    titleStyle: { fontWeight: 'bold', fontSize: 18 }
+}))<Theme>`
+    width: 100%;
+    border-radius: 10px;
 `

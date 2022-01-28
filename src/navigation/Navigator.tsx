@@ -7,6 +7,7 @@ import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { StatusBar } from 'expo-status-bar'
 import { fonts } from '@src/provider/config/constant'
 import { useFonts } from 'expo-font';
+import { FlashNotification } from '@styles'
 
 const Stack = createStackNavigator();
 
@@ -20,12 +21,13 @@ const MainStackNavigator = () => {
 
   return (
     <ThemeProvider theme={theme}>
-        <StatusBar style={theme.THEME_MODE === 'light' ? 'dark' : 'light'} backgroundColor="transparent" />
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Auth" component={AuthStackNavigator} options={{animationEnabled: false}} />
-          <Stack.Screen name="Dashboard" component={BottomTabNavigator} options={{animationEnabled: false}}/>
-          <Stack.Screen name="Others" component={OtherStackNavigator} options={{animationEnabled: false}}/>
-        </Stack.Navigator>
+      <StatusBar style={theme.THEME_MODE === 'light' ? 'dark' : 'light'} backgroundColor="transparent" />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Auth" component={AuthStackNavigator} options={{animationEnabled: false}} />
+        <Stack.Screen name="Dashboard" component={BottomTabNavigator} options={{animationEnabled: false}}/>
+        <Stack.Screen name="Others" component={OtherStackNavigator} options={{animationEnabled: false}}/>
+      </Stack.Navigator>
+      <FlashNotification />
     </ThemeProvider>
   );
 };
