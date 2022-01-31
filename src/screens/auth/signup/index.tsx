@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { TitleText, CenterContainer, ScrollView } from '@styles'
 import helpers from '@src/utility/helper'
-import { LogoTop, Input, Button, FlowIndicator } from '@component';
+import { LogoTop, Input, Button, FlowIndicator, LoadingView } from '@component';
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { ImageSourcePropType } from 'react-native';
 import { icons } from '@src/provider/config/constant'
@@ -15,6 +15,7 @@ export  const SignUp: React.FC<any> = ({ navigation }) => {
     
     return (
         <SafeAreaProvider>
+            <LoadingView />
             <ScrollView>
                 <CenterContainer>
                     <LogoTop img={ logoImg } />

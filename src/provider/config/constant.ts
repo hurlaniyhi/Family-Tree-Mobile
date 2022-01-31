@@ -54,6 +54,10 @@ export const images = {
     CHAT_BACKGROUND_DARK: require('@assets/img/dark-chat.png'),
     FAMILY_PICS: require('@assets/img/family-pics.png')
 }
+export const gif = {
+    LOADER_DARK: require('@assets/gif/loader-dark.mp4'),
+    LOADER_LIGHT: require('@assets/gif/loader-light.mp4')
+}
 
 export const initialState = {
     THEME: {
