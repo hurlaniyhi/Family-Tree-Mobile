@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { TitleText, CenterContainer, ScrollView } from '@styles'
 import helpers from '@src/utility/helper'
-import { LogoTop, Input, Button, FlowIndicator, LoadingView } from '@component';
+import { LogoTop, Input, Button, FlowIndicator } from '@component';
 import ThemeContext from '@src/provider/state-manager/themeProvider'
+import VisibilityContext from '@src/provider/state-manager/visibilityProvider'
 import { ImageSourcePropType } from 'react-native';
 import { icons } from '@src/provider/config/constant'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -10,12 +11,17 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export  const SignUp: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
+    const { toggleLoader } = useContext(VisibilityContext)
 
     let logoImg: ImageSourcePropType = helpers.logoImage(theme)
+
+    async function handleNavigation(){
+        await toggleLoader(true)
+        navigation.navigate("ConfirmAccount")
+    }
     
     return (
         <SafeAreaProvider>
-            <LoadingView />
             <ScrollView>
                 <CenterContainer>
                     <LogoTop img={ logoImg } />
@@ -25,7 +31,7 @@ export  const SignUp: React.FC<any> = ({ navigation }) => {
                     <Input placeHolder="Email" icon={icons.MAIL} />
                     <Input placeHolder="Password" icon={icons.LOCK} />
                     <Input placeHolder="Confirm Password" icon={icons.LOCK} />
-                    <Button text="Sign Up" onPress={() => navigation.navigate("ConfirmAccount")} />
+                    <Button text="Sign Up" onPress={handleNavigation} />
                     <FlowIndicator pageNumber={0} flows={5} />
                 </CenterContainer>
             </ScrollView>

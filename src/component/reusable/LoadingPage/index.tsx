@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { LoadingContainer, LoaderGif } from '@styles'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import { gif } from '@src/provider/config/constant'
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType, BackHandler } from 'react-native';
 import helpers from '@src/utility/helper'
 import { LogoTop } from '@component';
 
@@ -11,6 +11,17 @@ export const LoadingView: React.FC<any> = () => {
     const { theme } = useContext(ThemeContext)
     
     let logoImg: ImageSourcePropType = helpers.logoImage(theme)
+
+    useEffect(()=> {
+        BackHandler.addEventListener('hardwareBackPress', handleBackPress)
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress', handleBackPress)
+        }
+    }, [])
+
+    function handleBackPress(): any{
+        return true
+    }
 
     return (
         <LoadingContainer>

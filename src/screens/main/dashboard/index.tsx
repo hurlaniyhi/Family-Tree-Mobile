@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { TouchableOpacity } from 'react-native'
-import { BackHandler } from 'react-native'
+import { TouchableOpacity, BackHandler } from 'react-native'
 import { 
     UserIntroWrapper, 
     ProfilePicsWrapper, 
@@ -40,7 +39,7 @@ import VisibilityContext from '@src/provider/state-manager/visibilityProvider';
 
 export  const Dashboard: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const { visibility, toggledCreatePost, toggledAddComment } = useContext(VisibilityContext)
+    const { visibility, toggleCreatePost, toggleAddComment } = useContext(VisibilityContext)
 
     useEffect(()=> {
         BackHandler.addEventListener('hardwareBackPress', handleBackPress)
@@ -51,20 +50,20 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
 
     function handleBackPress(): any{
         if(visibility.isCreatePost || visibility.isAddComment) {
-            toggledCreatePost(false)
-            toggledAddComment(false)
+            toggleCreatePost(false)
+            toggleAddComment(false)
             return true
         }
     }
     
     return (
         <AppSafeAreaView>
-            <AddPostButton onPress= {() => toggledCreatePost(true)}>
+            <AddPostButton onPress= {() => toggleCreatePost(true)}>
                 <AntDesign name="pluscircle" size={42} color={theme.FOCUS_THEME_COLOR}/>
             </AddPostButton>
 
-            { visibility.isCreatePost ? <CreatePost onPress={() => toggledCreatePost(false)}></CreatePost> : null}
-            { visibility.isAddComment ? <AddComment onPress={() => toggledAddComment(false)}></AddComment> : null}
+            { visibility.isCreatePost ? <CreatePost onPress={() => toggleCreatePost(false)}></CreatePost> : null}
+            { visibility.isAddComment ? <AddComment onPress={() => toggleAddComment(false)}></AddComment> : null}
 
             <ScrollView>
                 <Container>
@@ -213,7 +212,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                     <TransparentThumbUpIcon />
                                     <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Like</AppText>
                                 </CommentIconWrapper>
-                                <CommentIconWrapper onPress={() => toggledAddComment(true)}>
+                                <CommentIconWrapper onPress={() => toggleAddComment(true)}>
                                     <TransparentCommentIcon /> 
                                     <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Comment</AppText>
                                 </CommentIconWrapper>
@@ -247,7 +246,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                     <TransparentThumbUpIcon />
                                     <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Like</AppText>
                                 </CommentIconWrapper>
-                                <CommentIconWrapper onPress={() => toggledAddComment(true)}>
+                                <CommentIconWrapper onPress={() => toggleAddComment(true)}>
                                     <TransparentCommentIcon /> 
                                     <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Comment</AppText>
                                 </CommentIconWrapper>
@@ -281,7 +280,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                     <TransparentThumbUpIcon />
                                     <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Like</AppText>
                                 </CommentIconWrapper>
-                                <CommentIconWrapper onPress={() => toggledAddComment(true)}>
+                                <CommentIconWrapper onPress={() => toggleAddComment(true)}>
                                     <TransparentCommentIcon /> 
                                     <AppText fontSize="12" fontWeight="bold" textColor="#A6A6A6">Comment</AppText>
                                 </CommentIconWrapper>
