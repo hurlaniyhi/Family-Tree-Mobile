@@ -1,8 +1,9 @@
 import { AppMode, AppTheme, OperationStatus } from '@model'
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink} from '@src/provider/config/theme'
 import { ImageSourcePropType } from 'react-native'
-import { icons, images } from '@src/provider/config/constant'
+import { icons, images, constant } from '@src/provider/config/constant'
 import { showMessage, hideMessage } from "react-native-flash-message";
+
 
 const sortMode_Theme = (mode: string, themeData: AppTheme) => {
     let modeData = mode === 'dark' ? DarkTheme : LightTheme
@@ -32,12 +33,12 @@ const logoImage = (theme: AppMode): ImageSourcePropType => {
     }
 }
 
-const getUserIcon = (theme: AppMode): ImageSourcePropType => {
-    if (theme.THEME === 'purple') return icons.USER_PURPLE
-    else if (theme.THEME === "yellow") return icons.USER_YELLOW
-    else if (theme.THEME === "pink") return icons.USER_PINK
-    else return icons.USER_GREEN
-}
+// const getUserIcon = (theme: AppMode): ImageSourcePropType => {
+//     if (theme.THEME === 'purple') return icons.USER_PURPLE
+//     else if (theme.THEME === "yellow") return icons.USER_YELLOW
+//     else if (theme.THEME === "pink") return icons.USER_PINK
+//     else return icons.USER_GREEN
+// }
 
 const getCardColor = (theme: string): string => {
     if (theme === 'purple') return Purple.CARD_BACKGROUND
@@ -75,13 +76,42 @@ const removeValuelessProperty = (data: any) => {
     return data
 }
 
+const imageUpload = async (base64: any) : Promise<string> => {
+    var [base64Img, response] = [`data:image/jpg;base64,${base64}`, '']; 
+        
+    const data = {
+        "file": base64Img,
+        "upload_preset": constant.CLOUDINARY_PRESET_NAME
+    }
+
+    await fetch(constant.CLOUDINARY_UPLOAD_URL, {
+        body: JSON.stringify(data),
+        headers: {
+            'content-type': 'application/json'
+        },
+        method: 'POST'
+    })
+    .then(async resp => {
+        let res = await resp.json()
+        response = res.secure_url
+    })
+    .catch(err => {
+        console.log({uploadError: err})
+        response = ''
+    })
+
+    return response
+}
+
+
 export default {
     sortMode_Theme,
     logoImage,
     getCardColor,
-    getUserIcon,
+    //getUserIcon,
     textToDisplay,
     getChatBackground,
     showNotification,
-    removeValuelessProperty
+    removeValuelessProperty,
+    imageUpload
 }

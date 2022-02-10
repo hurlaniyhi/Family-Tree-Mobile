@@ -1,23 +1,31 @@
 import React, { useContext, useState } from 'react'
-import { ImageSourcePropType } from 'react-native'
 import { CameraWrapper, CenterHorizontallyContainer, CompleteAccountTitle, ProfileDP, ProfileDPContainer, ProfilePicture, ScrollView } from '@styles';
 import { icons, dropDownOptions, initialState } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator, SelectField, DateInput } from '@component'
 import helpers from '@src/utility/helper'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import UserContext from '@src/provider/state-manager/userDataProvider'
+import VisibilityContext from '@src/provider/state-manager/visibilityProvider'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons'
 import { UserData } from '@model';
 
 export const CompleteAccount: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const { user, updateSignUpData } = useContext(UserContext)
+    const { toggleLoader } = useContext(VisibilityContext)
+    const { user, updateSignUpData, uploadPicture } = useContext(UserContext)
+
     const [input, setInput] = useState<UserData>(initialState.SIGN_UP)
 
     function handleInputData (data: string, name: string) {
         setInput({...input, [name]: data})
         console.log(name, data)
+    }
+
+    async function handleImageSelection () {
+        toggleLoader(true)
+        await uploadPicture(theme)
+        toggleLoader(false)
     }
 
     return (
@@ -28,9 +36,9 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
                     <ProfileDPContainer>
                        { !user.userData.profilePicture ? 
                             <ProfilePicture source={icons.USER_ICON} /> :
-                            <ProfileDP source={icons.DP3} /> 
+                            <ProfileDP source={{uri: user.userData.profilePicture}} /> 
                         }
-                        <CameraWrapper activeOpacity={0.8}>
+                        <CameraWrapper onPress={handleImageSelection}>
                             <Ionicons name="camera-outline" size={18} color="#FFFFFF" />
                         </CameraWrapper>
                     </ProfileDPContainer>

@@ -9,9 +9,6 @@ import UserContext from '@src/provider/state-manager/userDataProvider'
 import { ImageSourcePropType } from 'react-native';
 import { icons, initialState } from '@src/provider/config/constant'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-// import * as ImagePicker from 'expo-image-picker'
-// import * as FileSystem from 'expo-file-system'
-// import axios from 'axios'
 import { UserData } from '@model';
 
 

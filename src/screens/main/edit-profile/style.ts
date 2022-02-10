@@ -1,7 +1,9 @@
 import styled from 'styled-components/native'
 import { Theme } from '@model'
 
-export const CameraWrapper = styled.TouchableOpacity<Theme>`
+export const CameraWrapper = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.7
+})<Theme>`
     width: 25px;
     height: 25px;
     border-radius: 100px;

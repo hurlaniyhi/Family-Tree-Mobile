@@ -119,6 +119,13 @@ export const dropDownOptions = {
     ]
 }
 
+export const constant = {
+    MAX_FILE_SIZE: 2000000,
+    CLOUDINARY_CLOUD_NAME: 'newcoretechnologies',
+    CLOUDINARY_PRESET_NAME: 'familyTree',
+    CLOUDINARY_UPLOAD_URL: `https://api.cloudinary.com/v1_1/newcoretechnologies/upload`
+}
+
 export const chatData = [
     {
         chatText: "Hello Ridwan, I wont be coming to work tomorrow",
