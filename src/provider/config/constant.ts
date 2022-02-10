@@ -1,3 +1,5 @@
+import { UserData } from "@model"
+
 export const fonts = {
     Poppins: require("@assets/fonts/Poppins-Medium.ttf"),
     Roboto: require("@assets/fonts/Roboto-Medium.ttf")
@@ -31,10 +33,11 @@ export const icons = {
     FAMILY_NAME: require('@icons/family-name.png'),
     NAME: require('@icons/name.png'),
     KEY: require('@icons/key.png'),
-    USER_GREEN: require('@icons/user-green.png'),
-    USER_PINK: require('@icons/user-pink.png'),
-    USER_PURPLE: require('@icons/user-purple.png'),
-    USER_YELLOW: require('@icons/user-yellow.png'),
+    // USER_GREEN: require('@icons/user-green.png'),
+    // USER_PINK: require('@icons/user-pink.png'),
+    // USER_PURPLE: require('@icons/user-purple.png'),
+    // USER_YELLOW: require('@icons/user-yellow.png'),
+    USER_ICON: require('@icons/user-icon.png'),
     DP_SM: require('@icons/profile-pics-small.png'),
     DP_LG: require('@icons/profile-pics-large.png'),
     DP3: require('@icons/dp3.jpg'),
@@ -73,6 +76,27 @@ export const initialState = {
     FAMILY_DETAILS: {
         country: '',
         state: ''
+    },
+    SIGN_UP: <UserData>{
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        fatherName: '',
+        fatherPhoneNo: '',
+        motherName: '',
+        motherPhoneNo: '',
+        familyId: '',
+        address: '',
+        password: '',
+        confirmPassword: '',
+        gender: '',
+        dateOfBirth: '',
+        profilePicture: '',
+        children: [],
+        education: [],
+        workExperience: [],
+        interest: []
     }
 }
 

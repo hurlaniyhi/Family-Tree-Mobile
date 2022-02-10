@@ -1,19 +1,21 @@
 import React, { useContext, useState } from 'react'
 import { ImageSourcePropType } from 'react-native'
-import { CenterHorizontallyContainer, CompleteAccountTitle, ProfilePicture, ScrollView } from '@styles';
-import { icons, dropDownOptions } from '@src/provider/config/constant'
+import { CameraWrapper, CenterHorizontallyContainer, CompleteAccountTitle, ProfileDP, ProfileDPContainer, ProfilePicture, ScrollView } from '@styles';
+import { icons, dropDownOptions, initialState } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator, SelectField, DateInput } from '@component'
 import helpers from '@src/utility/helper'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
+import UserContext from '@src/provider/state-manager/userDataProvider'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons'
+import { UserData } from '@model';
 
 export const CompleteAccount: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const [input, setInput] = useState({gender: '', dateOfBirth: ''})
+    const { user, updateSignUpData } = useContext(UserContext)
+    const [input, setInput] = useState<UserData>(initialState.SIGN_UP)
 
-    let userIcon: ImageSourcePropType = helpers.getUserIcon(theme)
-
-    function handleSelectedData (data: string, name: string) {
+    function handleInputData (data: string, name: string) {
         setInput({...input, [name]: data})
         console.log(name, data)
     }
@@ -23,18 +25,30 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
             <ScrollView>
                 <CenterHorizontallyContainer>
                     <CompleteAccountTitle>Complete Your Account</CompleteAccountTitle>
-                    <ProfilePicture source={userIcon} />
-                    <Input placeHolder="Address" icon={icons.ADDRESS} />
-                    {/* <Input placeHolder="Date of Birth" icon={icons.DATE} /> */}
-                    <DateInput onChange={(data: string) => handleSelectedData(data, 'dateOfBirth')}  />
+                    <ProfileDPContainer>
+                       { !user.userData.profilePicture ? 
+                            <ProfilePicture source={icons.USER_ICON} /> :
+                            <ProfileDP source={icons.DP3} /> 
+                        }
+                        <CameraWrapper activeOpacity={0.8}>
+                            <Ionicons name="camera-outline" size={18} color="#FFFFFF" />
+                        </CameraWrapper>
+                    </ProfileDPContainer>
+                    <Input 
+                        placeHolder="Address" 
+                        icon={icons.ADDRESS} 
+                        value={input.address}
+                        handleInputData={(val: string) => handleInputData(val, "address")}
+                    />
+                    <DateInput onChange={(data: string) => handleInputData(data, 'dateOfBirth')}  />
                     <SelectField 
                         placeHolder={input.gender || "Gender"} 
                         icon={icons.GENDER} 
                         selectOptions={dropDownOptions.GENDER} 
                         selectedText={input.gender} 
-                        handleSelectedData={(data) => handleSelectedData(data, 'gender')} />
-                    <Button text="Continue" onPress={() => navigation.navigate("Dashboard")} />
-                    <FlowIndicator pageNumber={4} flows={5} />
+                        handleSelectedData={(data) => handleInputData(data, 'gender')} />
+                    <Button text="Continue" onPress={() => navigation.navigate("FamilyDetails")} />
+                    <FlowIndicator pageNumber={3} flows={5} />
                 </CenterHorizontallyContainer>
             </ScrollView>
         </SafeAreaProvider>

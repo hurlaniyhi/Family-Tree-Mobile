@@ -27,15 +27,15 @@ import { icons } from '@src/provider/config/constant'
 
 
 export const CreatePost: React.FC<any> = ({onPress}) => {
-    const { visibility, toggledCreatePost } = useContext(VisibilityContext)
+    const { visibility, toggleCreatePost } = useContext(VisibilityContext)
 
     return (
         <CreatePostContainer>
             <PostPopUp>
                 <PostTitleBar>
-                    <PostCloseLine activeOpacity={0.8} onPress={() => toggledCreatePost(false)} />
+                    <PostCloseLine activeOpacity={0.8} onPress={() => toggleCreatePost(false)} />
                     <FlexRowBetween>
-                        <PostBackIcon onPress={() => toggledCreatePost(false)} />
+                        <PostBackIcon onPress={() => toggleCreatePost(false)} />
                         <AppText fontSize="20" fontWeight="bold">Create Post</AppText>
                         <PostCheckIcon />
                     </FlexRowBetween>

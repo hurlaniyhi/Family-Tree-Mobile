@@ -32,8 +32,8 @@ export const FamilyDetails: React.FC<any> = ({ navigation }) => {
                         selectedText={input.state} 
                         handleSelectedData={(data) => handleSelectedData(data, 'state')} />
                     <Input placeHolder="HomeTown" icon={icons.HOME} />
-                    <Button text="Continue" onPress={() => navigation.navigate("RelativeData")} />
-                    <FlowIndicator pageNumber={2} flows={5} />
+                    <Button text="Continue" onPress={() => navigation.navigate("Dashboard")} />
+                    <FlowIndicator pageNumber={4} flows={5} />
                 </CenterHorizontallyContainer>
             </ScrollView>
         </SafeAreaProvider>

@@ -67,6 +67,14 @@ const showNotification = (type: OperationStatus , message: string, description: 
     });
 }
 
+const removeValuelessProperty = (data: any) => {
+    for(let key in data){
+        if (!data[key] || !data[key].length) delete data[key]
+    }
+
+    return data
+}
+
 export default {
     sortMode_Theme,
     logoImage,
@@ -74,5 +82,6 @@ export default {
     getUserIcon,
     textToDisplay,
     getChatBackground,
-    showNotification
+    showNotification,
+    removeValuelessProperty
 }

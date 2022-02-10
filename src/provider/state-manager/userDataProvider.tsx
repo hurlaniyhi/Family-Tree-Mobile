@@ -1,31 +1,37 @@
 import React, { useReducer } from 'react'
 import { Action } from '@model'
+import { initialState } from '@src/provider/config/constant'
 
 
 const UserContext = React.createContext<any>(null)
 
-const UserReducer = (state: any, action: Action<boolean>) => {
+const UserReducer = (state: any, action: Action<any>) => {
     switch(action.type){
-        case "toggle-create-post":
-            return {...state, isCreatePost: action.payload }
+        case "update-user-data":
+            return { ...state, userData: {...state.userData, ...action.payload} }
     }
 }
 
 export const UserProvider = (props: any) => {
     const [state, dispatch] = useReducer(UserReducer, {
-        isCreatePost: false
+        userData: {...initialState.SIGN_UP}
     })
 
-    async function toggleCreatePost (data: boolean) {
-        await dispatch({type: "toggle-create-post", payload: data})
+    async function signUp (data: any) {
+        await dispatch({type: "update-user-data", payload: data})
+    }
+    
+    async function updateSignUpData (payload: any) {
+        await dispatch({type: "update-user-data", payload})
     }
 
     const stateActions = {
-        toggleCreatePost
+        signUp,
+        updateSignUpData
     }
 
     return (
-        <UserContext.Provider value={{visibility: state, ...stateActions}} >
+        <UserContext.Provider value={{user: state, ...stateActions}} >
             {props.children}
         </UserContext.Provider>
     )

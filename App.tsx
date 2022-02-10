@@ -3,15 +3,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import MainStackNavigator from '@navigation/Navigator'
 import { ThemeProvider as ThemeManager } from '@src/provider/state-manager/themeProvider'
 import { VisibilityProvider } from "@src/provider/state-manager/visibilityProvider";
+import { UserProvider } from '@src/provider/state-manager/userDataProvider'
 
 const App = () => {
   return (
     <ThemeManager>
-      <VisibilityProvider>
-        <NavigationContainer>
-          <MainStackNavigator/>
-        </NavigationContainer>
-      </VisibilityProvider>
+      <UserProvider>
+        <VisibilityProvider>
+          <NavigationContainer>
+            <MainStackNavigator/>
+          </NavigationContainer>
+        </VisibilityProvider>
+      </UserProvider>
     </ThemeManager>
   );
 }

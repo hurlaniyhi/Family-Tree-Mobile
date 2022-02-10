@@ -26,15 +26,15 @@ import { icons } from '@src/provider/config/constant'
 
 
 export const AddComment: React.FC<any> = ({onPress}) => {
-    const { toggledAddComment } = useContext(VisibilityContext)
+    const { toggleAddComment } = useContext(VisibilityContext)
 
     return (
         <CreatePostContainer>
             <PostPopUp>
                 <PostTitleBar>
-                    <PostCloseLine activeOpacity={0.8} onPress={() => toggledAddComment(false)} />
+                    <PostCloseLine activeOpacity={0.8} onPress={() => toggleAddComment(false)} />
                     <FlexRowBetween>
-                        <PostBackIcon onPress={() => toggledAddComment(false)} />
+                        <PostBackIcon onPress={() => toggleAddComment(false)} />
                         <AppText fontSize="20" fontWeight="bold">Comments</AppText>
                         <PostCheckIcon />
                     </FlexRowBetween>

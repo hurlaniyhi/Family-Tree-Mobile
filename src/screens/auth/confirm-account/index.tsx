@@ -17,7 +17,7 @@ export const ConfirmAccount: React.FC<any> = ({ navigation }) => {
                     </OtpNotificationText>
                     <OtpNotificationText textMargin="-5">to your Phone Number</OtpNotificationText>
                     <Input placeHolder="Enter OTP" icon={icons.LOCK} />
-                    <Button text="Continue" onPress={() => navigation.navigate("FamilyDetails")} />
+                    <Button text="Continue" onPress={() => navigation.navigate("RelativeData")} />
                     <FlowIndicator pageNumber={1} flows={5} />
                 </CenterHorizontallyContainer>
             </ScrollView>

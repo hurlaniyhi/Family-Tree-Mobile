@@ -1,5 +1,5 @@
 import { LightTheme} from '@src/provider/config/theme'
-import { GestureResponderEvent, ImageSourcePropType } from 'react-native';
+import { GestureResponderEvent, ImageSourcePropType, KeyboardTypeOptions } from 'react-native';
 
 export interface Theme {
     theme: typeof LightTheme,
@@ -55,7 +55,11 @@ interface DropDownOption {
 
 export interface InputProps {
     placeHolder: string,
-    icon: ImageSourcePropType
+    icon: ImageSourcePropType,
+    handleInputData?: ((event: string, name?: string) => void) | undefined,
+    secureTextEntry?: boolean,
+    keyboardType?: KeyboardTypeOptions | undefined,
+    value?: any
 }
 
 export interface SelectFieldProps extends InputProps {

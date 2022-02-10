@@ -48,3 +48,27 @@ export interface VisibilityContextModel {
 }
 
 export type OperationStatus = 'success'|'danger'|'warning'|'info'
+
+export interface UserData {
+    firstName: string,
+    lastName: string,
+    email: string,
+    phoneNumber: string,
+    fatherName: string,
+    fatherPhoneNo: string,
+    motherName: string,
+    motherPhoneNo: string,
+    familyId: string,
+    address: string,
+    password: string,
+    gender: string,
+    dateOfBirth: string,
+    registrationDate?: string,
+    profilePicture: string,
+    children?: Array<any>,
+    education?: Array<any>,
+    workExperience?: Array<any>,
+    interest?: Array<any>,
+    confirmPassword?: string,
+    _id?: string
+}

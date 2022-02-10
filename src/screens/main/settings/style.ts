@@ -69,7 +69,7 @@ export const FlashNotification = styled(FlashMessage).attrs((props: Theme) => ({
     position: {top: 60, left: 20, right: 20},
     statusBarHeight: 30,
     icon: "auto",
-    duration: 3000,
+    duration: 5000,
     titleStyle: { fontWeight: 'bold', fontSize: 18 }
 }))<Theme>`
     width: 100%;

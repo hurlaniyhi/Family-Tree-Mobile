@@ -11,8 +11,9 @@ export const CompleteAccountTitle = styled.Text<Theme>`
     color: ${({theme}) => theme.TEXT_COLOR}
 `
 
-export const ProfilePicture = styled.Image`
-    resize-mode: contain;
-    margin-top: 30px;
-    margin-bottom: 20px
+export const ProfilePicture = styled.Image<Theme>`
+    width: 135px;
+    height: 135px;
+    resize-mode: cover;
+    background-color: ${({theme}) => theme.THEME_MODE === 'light' ? '#FFFFFF' : theme.BODY}
 ` 
