@@ -21,11 +21,14 @@ import { Container, Card, SearchTypeOptions, Button } from '@component'
 import { icons } from '@src/provider/config/constant'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import VisibilityContext from '@src/provider/state-manager/visibilityProvider'
+import UserContext from '@src/provider/state-manager/userDataProvider'
 
 
 export const SearchPage: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const { visibility, toggleSearchType } = useContext(VisibilityContext)
+    const { user } = useContext(UserContext)
+
     const [searchType, setSearchType] = useState('Family')
 
     useEffect(()=> {
@@ -47,101 +50,63 @@ export const SearchPage: React.FC<any> = ({ navigation }) => {
         toggleSearchType(true)
     }
 
+    var count = 0
+    var families = React.Children.toArray(
+        user?.searchedFamilies.map((family: any) => {
+            count++
+            const val = count === user.searchedFamilies.length ? '10' : undefined
+            return (
+                <Card cardPadding="10"cardTopMargin="10" cardBottomMargin={val} >
+                    <SearchedDataContainer>
+                        <DataPictureWrapper customWidth="80" flexBottomMargin="0">
+                            <FamDataPicture customWidth="80" source={icons.DP3} />
+                        </DataPictureWrapper>
+                        <ActionInfoWrapper>
+                            <AppText fontSize="16" fontWeight="900">{family.familyData.familyName} Family</AppText>
+                            <AppText fontSize="12" textColor="#A6A6A6" fontWeight="500">{family.familyMembers.length} Member(s)</AppText>
+                            <ActionButtonWrapper>
+                                <FillButton>
+                                    <AppText fontSize="12" textColor="#FFFFFF">Set as Family</AppText>
+                                </FillButton>
+                                <OutlineButton onPress={() => navigation.navigate('Others', 
+                                    {
+                                        screen: 'FamilyMembers', 
+                                        params: family.familyMembers
+                                    }
+                                )}>
+                                    <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>View Members</AppText>
+                                </OutlineButton>
+                            </ActionButtonWrapper >
+                        </ActionInfoWrapper>
+                    </SearchedDataContainer>
+                </Card>
+            )
+        })
+    )
+
     return (
         <AppSafeAreaView>
             <Container>
 
                 { visibility.isSearchType ? <SearchTypeOptions onPress={(data: string)=> setSearchType(data)} /> : null}
 
-                <SearchWrapper>
-                    <SearchIcon/>
-                    <SearchInput
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                    />
-                    <SearchTypeWrapper onPress={handleSearchTypePopUp}>
-                        <AppText fontSize="14">{searchType}</AppText>
-                    </SearchTypeWrapper>
-                    <SearchArrowDown onPress={handleSearchTypePopUp} />
-                </SearchWrapper>
+                {   user.token ? 
+                    <SearchWrapper>
+                        <SearchIcon/>
+                        <SearchInput
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                        />
+                        <SearchTypeWrapper onPress={handleSearchTypePopUp}>
+                            <AppText fontSize="14">{searchType}</AppText>
+                        </SearchTypeWrapper>
+                        <SearchArrowDown onPress={handleSearchTypePopUp} />
+                    </SearchWrapper> : null
+                }
                 <ScrollView>
-                   { searchType === 'Family' ? <>
-                    <Card cardPadding="10"cardTopMargin="10" >
-                        <SearchedDataContainer>
-                            <DataPictureWrapper customWidth="80" flexBottomMargin="0">
-                                <FamDataPicture customWidth="80" source={icons.DP3} />
-                            </DataPictureWrapper>
-                            <ActionInfoWrapper>
-                                <AppText fontSize="16" fontWeight="900">Kolawole Family</AppText>
-                                <AppText fontSize="12" textColor="#A6A6A6" fontWeight="500">10 Members</AppText>
-                                <ActionButtonWrapper>
-                                    <FillButton>
-                                        <AppText fontSize="12" textColor="#FFFFFF">Set as Family</AppText>
-                                    </FillButton>
-                                    <OutlineButton onPress={() => navigation.navigate('Others', { screen: 'FamilyMembers'})}>
-                                        <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>View Members</AppText>
-                                    </OutlineButton>
-                                </ActionButtonWrapper >
-                            </ActionInfoWrapper>
-                        </SearchedDataContainer>
-                    </Card>
-                    <Card cardPadding="10" cardTopMargin="10">
-                        <SearchedDataContainer>
-                            <DataPictureWrapper customWidth="80" flexBottomMargin="0">
-                                <FamDataPicture customWidth="80" source={icons.DP4} />
-                            </DataPictureWrapper>
-                            <ActionInfoWrapper>
-                                <AppText fontSize="16" fontWeight="900">Aweda Family</AppText>
-                                <AppText fontSize="12" textColor="#A6A6A6" fontWeight="500">15 Members</AppText>
-                                <ActionButtonWrapper>
-                                    <FillButton>
-                                        <AppText fontSize="12" textColor="#FFFFFF">Set as Family</AppText>
-                                    </FillButton>
-                                    <OutlineButton>
-                                        <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>View Members</AppText>
-                                    </OutlineButton>
-                                </ActionButtonWrapper >
-                            </ActionInfoWrapper>
-                        </SearchedDataContainer>
-                    </Card>
-                    <Card cardPadding="10" cardTopMargin="10">
-                        <SearchedDataContainer>
-                            <DataPictureWrapper customWidth="80" flexBottomMargin="0">
-                                <FamDataPicture customWidth="80" source={icons.DP2} />
-                            </DataPictureWrapper>
-                            <ActionInfoWrapper>
-                                <AppText fontSize="16" fontWeight="900">Olanrewaju Family</AppText>
-                                <AppText fontSize="12" textColor="#A6A6A6" fontWeight="500">8 Members</AppText>
-                                <ActionButtonWrapper>
-                                    <FillButton>
-                                        <AppText fontSize="12" textColor="#FFFFFF">Set as Family</AppText>
-                                    </FillButton>
-                                    <OutlineButton>
-                                        <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>View Members</AppText>
-                                    </OutlineButton>
-                                </ActionButtonWrapper >
-                            </ActionInfoWrapper>
-                        </SearchedDataContainer>
-                    </Card>
-                    <Card cardPadding="10" cardTopMargin="10" cardBottomMargin="10">
-                        <SearchedDataContainer>
-                            <DataPictureWrapper customWidth="80" flexBottomMargin="0">
-                                <FamDataPicture customWidth="80" source={icons.DP} />
-                            </DataPictureWrapper>
-                            <ActionInfoWrapper>
-                                <AppText fontSize="16" fontWeight="900">Ajulibe Family</AppText>
-                                <AppText fontSize="12" textColor="#A6A6A6" fontWeight="500">6 Members</AppText>
-                                <ActionButtonWrapper>
-                                    <FillButton>
-                                        <AppText fontSize="12" textColor="#FFFFFF">Set as Family</AppText>
-                                    </FillButton>
-                                    <OutlineButton>
-                                        <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>View Members</AppText>
-                                    </OutlineButton>
-                                </ActionButtonWrapper >
-                            </ActionInfoWrapper>
-                        </SearchedDataContainer>
-                    </Card>
+                   { searchType === 'Family' ? 
+                    <>
+                        {user.searchedFamilies.length ? families : null}
                     </> :
                     <>
                     <Card cardPadding="10" cardTopMargin="10">

@@ -3,17 +3,16 @@ import { CameraWrapper, CenterHorizontallyContainer, CompleteAccountTitle, Profi
 import { icons, dropDownOptions, initialState } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator, SelectField, DateInput } from '@component'
 import helpers from '@src/utility/helper'
+import validator from '@src/utility/inputValidator'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import UserContext from '@src/provider/state-manager/userDataProvider'
-import VisibilityContext from '@src/provider/state-manager/visibilityProvider'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons'
 import { UserData } from '@model';
 
 export const CompleteAccount: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const { toggleLoader } = useContext(VisibilityContext)
-    const { user, updateSignUpData, uploadPicture } = useContext(UserContext)
+    const { user, updateSignUpData, uploadPicture, searchFamily } = useContext(UserContext)
 
     const [input, setInput] = useState<UserData>(initialState.SIGN_UP)
 
@@ -23,9 +22,18 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
     }
 
     async function handleImageSelection () {
-        toggleLoader(true)
-        await uploadPicture(theme)
-        toggleLoader(false)
+        await uploadPicture()
+    }
+
+    async function handleNext(){
+        var payload = helpers.removeValuelessProperty(input)
+        payload = { ...payload, profilePicture: user.userData.profilePicture }
+        const isValidated = validator.otherPersonalData(payload, theme)
+        if (isValidated) {
+            await updateSignUpData(payload)
+            setInput(initialState.SIGN_UP)
+            searchFamily(user.userData, navigation)
+        }
     }
 
     return (
@@ -55,7 +63,7 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
                         selectOptions={dropDownOptions.GENDER} 
                         selectedText={input.gender} 
                         handleSelectedData={(data) => handleInputData(data, 'gender')} />
-                    <Button text="Continue" onPress={() => navigation.navigate("FamilyDetails")} />
+                    <Button text="Continue" onPress={handleNext} />
                     <FlowIndicator pageNumber={3} flows={5} />
                 </CenterHorizontallyContainer>
             </ScrollView>

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { TitleText, CenterContainer, ScrollView } from '@styles'
 import helpers from '@src/utility/helper'
-import validator from '@src/utility/Inputvalidator'
+import validator from '@src/utility/inputValidator'
 import { LogoTop, Input, Button, FlowIndicator } from '@component';
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 //import VisibilityContext from '@src/provider/state-manager/visibilityProvider'

@@ -8,13 +8,13 @@ import { UserProvider } from '@src/provider/state-manager/userDataProvider'
 const App = () => {
   return (
     <ThemeManager>
-      <UserProvider>
-        <VisibilityProvider>
+      <VisibilityProvider>
+        <UserProvider>
           <NavigationContainer>
             <MainStackNavigator/>
           </NavigationContainer>
-        </VisibilityProvider>
-      </UserProvider>
+        </UserProvider>
+      </VisibilityProvider>
     </ThemeManager>
   );
 }

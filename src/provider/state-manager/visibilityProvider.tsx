@@ -35,7 +35,7 @@ export const VisibilityProvider = (props: any) => {
         await dispatch({type: "toggle-search-type", payload: data})
     }
 
-    async function toggleLoader (data: boolean) {
+    async function loader (data: boolean) {
         await dispatch({type: "toggle-loader", payload: data})
     }
 
@@ -43,7 +43,7 @@ export const VisibilityProvider = (props: any) => {
         toggleCreatePost, 
         toggleAddComment,
         toggleSearchType,
-        toggleLoader
+        loader
     }
 
     return (

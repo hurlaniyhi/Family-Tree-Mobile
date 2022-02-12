@@ -8,7 +8,7 @@ import {
     ScrollView 
 } from '@styles';
 import helpers from '@src/utility/helper'
-import validator from '@src/utility/Inputvalidator'
+import validator from '@src/utility/inputValidator'
 import { icons, initialState } from '@src/provider/config/constant'
 import { Input, Button, FlowIndicator } from '@component'
 import { SafeAreaProvider } from 'react-native-safe-area-context';

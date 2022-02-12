@@ -1,4 +1,6 @@
-import { UserData } from "@model"
+import { FamilyData, UserData } from "@model"
+
+let isLive = false
 
 export const fonts = {
     Poppins: require("@assets/fonts/Poppins-Medium.ttf"),
@@ -33,10 +35,6 @@ export const icons = {
     FAMILY_NAME: require('@icons/family-name.png'),
     NAME: require('@icons/name.png'),
     KEY: require('@icons/key.png'),
-    // USER_GREEN: require('@icons/user-green.png'),
-    // USER_PINK: require('@icons/user-pink.png'),
-    // USER_PURPLE: require('@icons/user-purple.png'),
-    // USER_YELLOW: require('@icons/user-yellow.png'),
     USER_ICON: require('@icons/user-icon.png'),
     DP_SM: require('@icons/profile-pics-small.png'),
     DP_LG: require('@icons/profile-pics-large.png'),
@@ -73,10 +71,6 @@ export const initialState = {
         light: false,
         dark: false
     },
-    FAMILY_DETAILS: {
-        country: '',
-        state: ''
-    },
     SIGN_UP: <UserData>{
         firstName: '',
         lastName: '',
@@ -97,6 +91,12 @@ export const initialState = {
         education: [],
         workExperience: [],
         interest: []
+    },
+    FAMILY_DETAILS: <FamilyData>{
+        familyName: '',
+        country: '',
+        state: '',
+        homeTown: ''
     }
 }
 
@@ -123,7 +123,29 @@ export const constant = {
     MAX_FILE_SIZE: 2000000,
     CLOUDINARY_CLOUD_NAME: 'newcoretechnologies',
     CLOUDINARY_PRESET_NAME: 'familyTree',
-    CLOUDINARY_UPLOAD_URL: `https://api.cloudinary.com/v1_1/newcoretechnologies/upload`
+    CLOUDINARY_UPLOAD_URL: `https://api.cloudinary.com/v1_1/newcoretechnologies/upload`,
+    BASE_URL: isLive ? 'https://shopwyse-backend.herokuapp.com' : 'http://192.168.65.45:5000',
+    SEARCHFAMILY_PHONENUMBER: "1",
+    SEARCHFAMILY_FAMILYDETAILS: "2",
+    SEARCHFAMILY_NAME_HOMETOWN: "3" ,
+    SEARCHFAMILY_USERNAME: "4",
+}
+
+export const route = {
+    CREATE_USER: 'user/create-user',
+    SEARCH_FAMILY: 'family/search-family'
+}
+
+export const ResponseCode = {
+    SUCCESS: '00',
+    NO_RECORD: '45',
+    FOUND_RECORD: '59',
+    PROCESS_FAILED: '25',
+    CATCH_ERROR: '101',
+    BAD_REQUEST: '400',
+    NOT_FOUND: '404',
+    INVALID_USER: '99',
+    LARGE_FILE: '403'
 }
 
 export const chatData = [

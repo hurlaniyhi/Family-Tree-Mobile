@@ -1,4 +1,4 @@
-import { AppMode, AppTheme, OperationStatus } from '@model'
+import { AppMode, AppTheme, OperationStatus, UserData } from '@model'
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink} from '@src/provider/config/theme'
 import { ImageSourcePropType } from 'react-native'
 import { icons, images, constant } from '@src/provider/config/constant'
@@ -32,13 +32,6 @@ const logoImage = (theme: AppMode): ImageSourcePropType => {
         return theme.THEME_MODE === 'dark' ? icons.GREEN_DARK : icons.GREEN_LIGHT
     }
 }
-
-// const getUserIcon = (theme: AppMode): ImageSourcePropType => {
-//     if (theme.THEME === 'purple') return icons.USER_PURPLE
-//     else if (theme.THEME === "yellow") return icons.USER_YELLOW
-//     else if (theme.THEME === "pink") return icons.USER_PINK
-//     else return icons.USER_GREEN
-// }
 
 const getCardColor = (theme: string): string => {
     if (theme === 'purple') return Purple.CARD_BACKGROUND
@@ -103,6 +96,31 @@ const imageUpload = async (base64: any) : Promise<string> => {
     return response
 }
 
+const getSearchPhoneNumbers = (param: UserData): string[] => {
+    let phoneNumbers: string[] = [param.fatherPhoneNo, param.motherPhoneNo]
+    console.log({passedData: phoneNumbers})
+    if(param.children) {
+        for (let child of param.children) {
+            if (child.childPhoneNo) phoneNumbers.push(child.childPhoneNo)
+        }
+    }
+
+    phoneNumbers = [...new Set(phoneNumbers)]
+    return phoneNumbers
+}
+
+const removeFamilyDataDuplicate = (data: Array<any>) => {
+    var [vettedElements, vettedData]: Array<Array<any>> = [[], []]
+
+    for (let item of data) {
+        if (!vettedElements.includes(item.familyData._id)) {
+            vettedElements.push(item.familyData._id)
+            vettedData.push(item)
+        }
+    }
+    return vettedData
+}
+
 
 export default {
     sortMode_Theme,
@@ -113,5 +131,7 @@ export default {
     getChatBackground,
     showNotification,
     removeValuelessProperty,
-    imageUpload
+    imageUpload,
+    getSearchPhoneNumbers,
+    removeFamilyDataDuplicate
 }

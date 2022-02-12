@@ -31,11 +31,6 @@ export interface Action<T> {
     payload: T 
 }
 
-export interface FamilyDetails {
-    country: string,
-    state: string
-}
-
 export interface VisibilityState {
     isCreatePost: boolean,
     isAddComment: boolean,
@@ -70,5 +65,13 @@ export interface UserData {
     workExperience?: Array<any>,
     interest?: Array<any>,
     confirmPassword?: string,
+    _id?: string
+}
+
+export interface FamilyData {
+    familyName: string,
+    country: string,
+    state: string,
+    homeTown: string,
     _id?: string
 }
