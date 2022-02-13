@@ -75,3 +75,8 @@ export interface FamilyData {
     homeTown: string,
     _id?: string
 }
+
+export interface LoginParams {
+    phoneNumber: string,
+    password: string
+}

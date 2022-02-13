@@ -4,7 +4,6 @@ import helpers from '@src/utility/helper'
 import validator from '@src/utility/inputValidator'
 import { LogoTop, Input, Button, FlowIndicator } from '@component';
 import ThemeContext from '@src/provider/state-manager/themeProvider'
-//import VisibilityContext from '@src/provider/state-manager/visibilityProvider'
 import UserContext from '@src/provider/state-manager/userDataProvider'
 import { ImageSourcePropType } from 'react-native';
 import { icons, initialState } from '@src/provider/config/constant'

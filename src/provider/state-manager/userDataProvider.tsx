@@ -39,8 +39,9 @@ export const UserProvider = (props: any) => {
             loader(true)
             const response = await APICaller.post(route.CREATE_USER, payload)
             loader(false)
-            console.log({response: response.data.data.userData})
+
             if(response.data.responseCode === ResponseCode.SUCCESS) {
+                console.log({response: response.data.data.userData})
                 await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data.userData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: response.data.data.familyData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
@@ -53,6 +54,29 @@ export const UserProvider = (props: any) => {
         catch (err) {
             loader(false)
             helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
+        }
+    }
+
+    async function signIn (params: any, navigation: any) {
+        try {
+            loader(true)
+            const response = await APICaller.post(route.LOGIN, params)
+            loader(false)
+
+            if(response.data.responseCode === ResponseCode.SUCCESS) {
+                console.log({response: response.data.data})
+                await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data.userData}})
+                await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: response.data.data.familyData}})
+                await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
+                navigation.navigate('Dashboard')
+            }
+            else {
+                helpers.showNotification('danger', 'Failed!', response.data.responseDescription, theme)
+            }
+        }
+        catch (err) {
+            loader(false)
+            helpers.showNotification('danger', 'Error Occured', `Something went wrong. ${err}`, theme)
         }
     }
 
@@ -156,6 +180,7 @@ export const UserProvider = (props: any) => {
 
     const stateActions = {
         signUp,
+        signIn,
         updateSignUpData,
         uploadPicture,
         searchFamilyByPhoneNumber,

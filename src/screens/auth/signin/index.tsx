@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import helpers from '@src/utility/helper'
+import validator from '@src/utility/inputValidator'
 import { CenterContainer, 
     WelcomeText, 
     InstructionText, 
@@ -14,17 +15,33 @@ import { CenterContainer,
 } from '@styles'
 import { LogoTop, Input, Button } from '@component';
 import ThemeContext from '@src/provider/state-manager/themeProvider'
+import UserContext from '@src/provider/state-manager/userDataProvider'
 import { ImageSourcePropType } from 'react-native';
-import { icons } from '@src/provider/config/constant'
+import { icons, initialState } from '@src/provider/config/constant'
 import { Feather } from '@expo/vector-icons'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { LoginParams } from '@model';
 
 
 export  const SignIn: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
+    const { signIn } = useContext(UserContext)
     const [isChecked, setIsChecked] = useState<boolean>(true)
+    const [input, setInput] = useState<LoginParams>(initialState.SIGN_IN)
 
     let logoImg: ImageSourcePropType = helpers.logoImage(theme)
+
+    function handleInput(val: string, name: string) {
+        setInput({...input, [name]: val})
+    }
+
+    async function handleSubmit(){
+        const isValidated = validator.login(input, theme)
+        if (isValidated) {
+            setInput(initialState.SIGN_UP)
+            signIn(input, navigation)
+        }
+    }
 
     return (
         <SafeAreaProvider>
@@ -33,8 +50,19 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
                     <LogoTop img={ logoImg } />
                     <WelcomeText>Welcome Back</WelcomeText>
                     <InstructionText>Sign in to continue</InstructionText>
-                    <Input placeHolder="Phone Number" icon={icons.CALL} />
-                    <Input placeHolder="Password" icon={icons.LOCK} />
+                    <Input 
+                        placeHolder="Phone Number" 
+                        icon={icons.CALL} 
+                        value={input.phoneNumber}
+                        handleInputData = {(val) => handleInput(val, "phoneNumber")}
+                    />
+                    <Input 
+                        placeHolder="Password" 
+                        icon={icons.LOCK} 
+                        secureTextEntry
+                        value={input.password}
+                        handleInputData = {(val) => handleInput(val, "password")}
+                    />
                     <LoginOptionContainer>
                         <RememberContainer>
                             <RememberCheckWrapper isChecked={isChecked} onPress = {() => setIsChecked(!isChecked)}>
@@ -44,7 +72,7 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
                         </RememberContainer>
                         <ForgetPassText onPress = {() => navigation.navigate("EnterEmail")}>Forget Password?</ForgetPassText>
                     </LoginOptionContainer>
-                    <Button text="Sign In" onPress={() => navigation.navigate("Dashboard")} />
+                    <Button text="Sign In" onPress={handleSubmit} />
                     <SignUpLinkContainer>
                         Don't have an account? 
                         <SignUpLink onPress={() => navigation.navigate("SignUp")}> Sign up</SignUpLink>
