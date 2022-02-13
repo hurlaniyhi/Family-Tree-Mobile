@@ -13,7 +13,7 @@ import { FamilyData } from '@model'
 export const FamilyDetails: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const { loader } = useContext(VisibilityContext)
-    const { updateSignUpData } = useContext(UserContext)
+    const { searchFamilyByDetails } = useContext(UserContext)
 
     const [input, setInput] = useState<FamilyData>(initialState.FAMILY_DETAILS)
 
@@ -25,9 +25,8 @@ export const FamilyDetails: React.FC<any> = ({ navigation }) => {
         var payload = helpers.removeValuelessProperty(input)
         const isValidated = validator.familyData(payload, theme)
         if (isValidated) {
-            await updateSignUpData(payload)
             setInput(initialState.FAMILY_DETAILS)
-            navigation.navigate("Dashboard")
+            searchFamilyByDetails(payload, navigation)
         }
     }
 

@@ -40,7 +40,12 @@ export const FamilyMembers: React.FC<any> = (props) => {
                                                 btnBottomMargin="0" 
                                                 btnHeight="35"
                                                 btnTextSize="12"
-                                                onPress={() => props.navigation.navigate('Others', {screen: 'Profile'})}
+                                                onPress={() => props.navigation.navigate('Others', 
+                                                    {
+                                                        screen: 'Profile',
+                                                        params: member
+                                                    }
+                                                )}
                                             />
                                         </ActionInfoWrapper>
                                     </SearchedDataContainer>

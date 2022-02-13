@@ -27,7 +27,7 @@ import UserContext from '@src/provider/state-manager/userDataProvider'
 export const SearchPage: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const { visibility, toggleSearchType } = useContext(VisibilityContext)
-    const { user } = useContext(UserContext)
+    const { user, signUp } = useContext(UserContext)
 
     const [searchType, setSearchType] = useState('Family')
 
@@ -65,7 +65,7 @@ export const SearchPage: React.FC<any> = ({ navigation }) => {
                             <AppText fontSize="16" fontWeight="900">{family.familyData.familyName} Family</AppText>
                             <AppText fontSize="12" textColor="#A6A6A6" fontWeight="500">{family.familyMembers.length} Member(s)</AppText>
                             <ActionButtonWrapper>
-                                <FillButton>
+                                <FillButton onPress={() => signUp(user.userData, navigation, family.familyData._id)}>
                                     <AppText fontSize="12" textColor="#FFFFFF">Set as Family</AppText>
                                 </FillButton>
                                 <OutlineButton onPress={() => navigation.navigate('Others', 

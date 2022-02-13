@@ -121,6 +121,22 @@ const removeFamilyDataDuplicate = (data: Array<any>) => {
     return vettedData
 }
 
+const restructureFamilySearchResponse = (data: Array<any>) => {
+    const result = []
+
+    for (let item of data) {
+        const newObject = {
+            _id: item._id,
+            familyName: item.familyName,
+            country: item.country,
+            state: item.state,
+            homeTown: item.homeTown,
+        }
+
+        result.push({familyData: newObject, familyMembers: item.familyMembers})
+    }
+    return result
+}
 
 export default {
     sortMode_Theme,
@@ -133,5 +149,6 @@ export default {
     removeValuelessProperty,
     imageUpload,
     getSearchPhoneNumbers,
-    removeFamilyDataDuplicate
+    removeFamilyDataDuplicate,
+    restructureFamilySearchResponse
 }

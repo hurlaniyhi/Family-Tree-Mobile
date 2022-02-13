@@ -124,7 +124,7 @@ export const constant = {
     CLOUDINARY_CLOUD_NAME: 'newcoretechnologies',
     CLOUDINARY_PRESET_NAME: 'familyTree',
     CLOUDINARY_UPLOAD_URL: `https://api.cloudinary.com/v1_1/newcoretechnologies/upload`,
-    BASE_URL: isLive ? 'https://shopwyse-backend.herokuapp.com' : 'http://192.168.65.45:5000',
+    BASE_URL: isLive ? 'https://shopwyse-backend.herokuapp.com' : 'http://192.168.244.45:5000',
     SEARCHFAMILY_PHONENUMBER: "1",
     SEARCHFAMILY_FAMILYDETAILS: "2",
     SEARCHFAMILY_NAME_HOMETOWN: "3" ,
@@ -133,7 +133,8 @@ export const constant = {
 
 export const route = {
     CREATE_USER: 'user/create-user',
-    SEARCH_FAMILY: 'family/search-family'
+    SEARCH_FAMILY: 'family/search-family',
+    CREATE_FAMILY: 'family/create-family'
 }
 
 export const ResponseCode = {

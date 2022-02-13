@@ -12,7 +12,7 @@ import { UserData } from '@model';
 
 export const CompleteAccount: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const { user, updateSignUpData, uploadPicture, searchFamily } = useContext(UserContext)
+    const { user, updateSignUpData, uploadPicture, searchFamilyByPhoneNumber } = useContext(UserContext)
 
     const [input, setInput] = useState<UserData>(initialState.SIGN_UP)
 
@@ -32,7 +32,7 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
         if (isValidated) {
             await updateSignUpData(payload)
             setInput(initialState.SIGN_UP)
-            searchFamily(user.userData, navigation)
+            searchFamilyByPhoneNumber(user.userData, navigation)
         }
     }
 

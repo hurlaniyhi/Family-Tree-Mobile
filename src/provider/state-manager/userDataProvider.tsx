@@ -1,5 +1,5 @@
 import React, { useReducer, useContext } from 'react'
-import { Action, AppMode, UserData } from '@model'
+import { Action, AppMode, FamilyData, UserData } from '@model'
 import { initialState, route, constant, ResponseCode } from '@src/provider/config/constant'
 import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system'
@@ -33,21 +33,30 @@ export const UserProvider = (props: any) => {
     const {theme} = useContext(ThemeContext)
     const {loader} = useContext(VisibilityContext)
 
-    async function signUp (params: UserData, navigation: any) {
+    async function signUp (params: UserData, navigation: any, familyId: string) {
+        const payload = { ...params, familyId}
         try {
             loader(true)
-            const response = await APICaller.post(route.CREATE_USER, params)
+            const response = await APICaller.post(route.CREATE_USER, payload)
             loader(false)
             console.log({response: response.data.data.userData})
+            if(response.data.responseCode === ResponseCode.SUCCESS) {
+                await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data.userData}})
+                await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: response.data.data.familyData}})
+                await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
+                navigation.navigate('Dashboard')
+            }
+            else {
+                helpers.showNotification('danger', 'Failed!', response.data.responseDescription, theme)
+            }
         }
         catch (err) {
             loader(false)
-            console.log({err})
             helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
         }
     }
 
-    async function searchFamily (params: UserData, navigation: any) {
+    async function searchFamilyByPhoneNumber (params: UserData, navigation: any) {
         var searchedFamilies = []
         const phoneNumbers: string[] = helpers.getSearchPhoneNumbers(params)
         console.log({params})
@@ -67,13 +76,51 @@ export const UserProvider = (props: any) => {
                 searchedFamilies = helpers.removeFamilyDataDuplicate(searchedFamilies)
                 await dispatch({type: "set-property-completely", payload: {key: 'searchedFamilies', value: searchedFamilies}})
                 return navigation.navigate("Others", {screen: 'SearchPage'})
-                //signUp({...state.userData, familyId: searchedFamilies[0].familyData._id}, navigation)
             }
             else return navigation.navigate('FamilyDetails')
         }
         catch (err) {
             loader(false)
-            console.log({err})
+            helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
+        }
+    }
+
+    async function searchFamilyByDetails (params: FamilyData, navigation: any) {
+        var searchedFamilies: any;
+        loader(true)
+        try{
+            const payload = { ...params, searchType: constant.SEARCHFAMILY_FAMILYDETAILS }
+            const response = await APICaller.post(route.SEARCH_FAMILY, payload)
+            loader(false)
+    
+            if (response.data.responseCode === ResponseCode.SUCCESS) {
+                searchedFamilies = helpers.restructureFamilySearchResponse(response.data.data.familiesData) 
+                await dispatch({type: "set-property-completely", payload: {key: 'searchedFamilies', value: searchedFamilies}})
+                return navigation.navigate("Others", {screen: 'SearchPage'})
+            }
+            else {
+               createFamily(params, navigation)
+            }
+        }
+        catch (err) {
+            loader(false)
+            helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
+        }
+    }
+
+    async function createFamily (params: FamilyData, navigation: any) {
+        try {
+            loader(true)
+            const response = await APICaller.post(route.CREATE_FAMILY, params)
+            loader(false)
+
+            if (response.data.responseCode === ResponseCode.SUCCESS) {
+                await signUp(state.userData, navigation, response.data.data._id)
+            }
+            else return helpers.showNotification('danger', 'Failed!', response.data.responseDescription, theme)
+        }
+        catch (err) {
+            loader(false)
             helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
         }
     }
@@ -111,7 +158,9 @@ export const UserProvider = (props: any) => {
         signUp,
         updateSignUpData,
         uploadPicture,
-        searchFamily
+        searchFamilyByPhoneNumber,
+        searchFamilyByDetails,
+        createFamily
     }
 
     return (
