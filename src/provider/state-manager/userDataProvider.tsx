@@ -178,6 +178,45 @@ export const UserProvider = (props: any) => {
         else updateSignUpData({ profilePicture: imageUrl })
     }
 
+    async function sendOtp (email: string, emailType: string) {
+        const payload = {email, emailType}
+        try {
+            loader(true)
+            const response = await APICaller.post(route.SEND_OTP, payload)
+            loader(false)
+
+            if(response.data.responseCode != ResponseCode.SUCCESS) {
+                helpers.showNotification('danger', 'Failed!', 'Invalid email address', theme)
+            }
+            return response.data.token
+        }
+        catch (err) {
+            loader(false)
+            helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
+        }
+    } 
+
+    async function changePassword (payload: any, navigation: any) {
+        try {
+            loader(true)
+            const response = await APICaller.post(route.CHANGE_PASSWORD, payload)
+            loader(false)
+
+            if(response.data.responseCode === ResponseCode.SUCCESS) {
+                return navigation.navigate('Dashboard')
+            }
+            else {
+                helpers.showNotification('danger', 'Failed!', response.data.responseDescription, theme)
+                return navigation.navigate('SignIn')
+            }
+        }
+        catch (err) {
+            loader(false)
+            helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
+            return navigation.navigate('SignIn')
+        }
+    }
+
     const stateActions = {
         signUp,
         signIn,
@@ -185,7 +224,9 @@ export const UserProvider = (props: any) => {
         uploadPicture,
         searchFamilyByPhoneNumber,
         searchFamilyByDetails,
-        createFamily
+        createFamily,
+        sendOtp, 
+        changePassword
     }
 
     return (

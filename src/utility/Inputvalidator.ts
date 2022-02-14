@@ -90,10 +90,42 @@ const login = (data: LoginParams, theme: AppMode): boolean => {
     return true
 }
 
+const otp = (data: any, theme: AppMode): boolean => {
+    if (!data.otp || data.otp.length != 6 || data.otp != data.sentOtp ) {
+        helpers.showNotification('danger', 'Invalid Input', 'Kindly provide a valid Otp sent to your email', theme)
+        return false
+    }
+    return true
+}
+
+const emailData = (email: string, theme: AppMode): boolean => {
+    if (!email || !email.includes('@')) {
+        helpers.showNotification('danger', 'Invalid Input', 'Kindly provide a valid email address', theme)
+        return false
+    }
+    return true
+}
+
+const changePassword = (data: any, theme: AppMode): boolean => {
+    if (!data.password || !data.confirmPassword) {
+        helpers.showNotification('danger', 'Invalid Input', 'Kindly provide all required information', theme)
+        return false
+    }
+
+    if (data.password != data.confirmPassword) {
+        helpers.showNotification('danger', 'Invalid Input', 'Password did not match. kindly confirm your password', theme)
+        return false
+    }
+    return true
+}
+
 export default {
     personalData,
     relativeData,
     otherPersonalData,
     familyData,
-    login
+    login,
+    otp,
+    emailData,
+    changePassword
 }

@@ -80,3 +80,14 @@ export interface LoginParams {
     phoneNumber: string,
     password: string
 }
+
+export interface OtpParams {
+    otp: string, 
+    sentOtp: string
+}
+
+export interface ChangePassword {
+    password: string, 
+    confirmPassword?: string,
+    email: string
+}

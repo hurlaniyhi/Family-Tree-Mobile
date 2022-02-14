@@ -1,4 +1,4 @@
-import { FamilyData, LoginParams, UserData } from "@model"
+import { ChangePassword, FamilyData, LoginParams, OtpParams, UserData } from "@model"
 
 let isLive = false
 
@@ -101,6 +101,16 @@ export const initialState = {
     SIGN_IN: <LoginParams>{
         phoneNumber: '',
         password: ''
+    },
+    OTP_PARAM: <OtpParams>{
+        otp: '', 
+        sentOtp: '',
+        email: ''
+    },
+    CHANGE_PASSWORD: <ChangePassword>{
+        password: '', 
+        confirmPassword: '',
+        email: ''
     }
 }
 
@@ -128,16 +138,20 @@ export const constant = {
     CLOUDINARY_CLOUD_NAME: 'newcoretechnologies',
     CLOUDINARY_PRESET_NAME: 'familyTree',
     CLOUDINARY_UPLOAD_URL: `https://api.cloudinary.com/v1_1/newcoretechnologies/upload`,
-    BASE_URL: isLive ? 'https://shopwyse-backend.herokuapp.com' : 'http://192.168.238.45:5000',
+    BASE_URL: isLive ? 'https://shopwyse-backend.herokuapp.com' : 'http://192.168.185.45:5000',
     SEARCHFAMILY_PHONENUMBER: "1",
     SEARCHFAMILY_FAMILYDETAILS: "2",
     SEARCHFAMILY_NAME_HOMETOWN: "3" ,
     SEARCHFAMILY_USERNAME: "4",
+    EMAIL_FORGET_PASSWORD: "2",
+    EMAIL_ONBOARDING: '1',
 }
 
 export const route = {
     CREATE_USER: 'user/create-user',
     LOGIN: 'user/login',
+    SEND_OTP: 'user/send-otp',
+    CHANGE_PASSWORD: 'user/change-password',
     SEARCH_FAMILY: 'family/search-family',
     CREATE_FAMILY: 'family/create-family'
 }
