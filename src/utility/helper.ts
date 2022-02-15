@@ -138,6 +138,17 @@ const restructureFamilySearchResponse = (data: Array<any>) => {
     return result
 }
 
+const filterUserDataEdit = (body: UserData, part: any): UserData => {
+    var name: string = ''
+    var childPhoneNo: string = ''
+    name = part.includes('||') ? part.split(',')[0] : part 
+    childPhoneNo = part.includes('||') ? part.split(',')[1] : ''
+    
+    body.children = [...body.children!, ]
+
+    return body
+}
+
 export default {
     sortMode_Theme,
     logoImage,

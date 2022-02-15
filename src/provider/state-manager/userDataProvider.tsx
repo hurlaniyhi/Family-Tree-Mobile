@@ -45,6 +45,7 @@ export const UserProvider = (props: any) => {
                 await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data.userData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: response.data.data.familyData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
+                await dispatch({type: "set-property-completely", payload: {key: 'token', value: response.data.token}})
                 navigation.navigate('Dashboard')
             }
             else {
@@ -68,6 +69,7 @@ export const UserProvider = (props: any) => {
                 await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data.userData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: response.data.data.familyData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
+                await dispatch({type: "set-property-completely", payload: {key: 'token', value: response.data.token}})
                 navigation.navigate('Dashboard')
             }
             else {
@@ -203,12 +205,12 @@ export const UserProvider = (props: any) => {
             loader(false)
 
             if(response.data.responseCode === ResponseCode.SUCCESS) {
-                return navigation.navigate('Dashboard')
+                helpers.showNotification('success', 'Password Changed!', "Password has been successfully changed", theme)
             }
             else {
                 helpers.showNotification('danger', 'Failed!', response.data.responseDescription, theme)
-                return navigation.navigate('SignIn')
             }
+            return navigation.navigate('SignIn')
         }
         catch (err) {
             loader(false)

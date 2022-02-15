@@ -13,7 +13,6 @@ import {
 import { SimpleLineIcons } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import UserContext from '@src/provider/state-manager/userDataProvider'
-import { icons } from '@src/provider/config/constant'
 
 
 export const Profile: React.FC<any> = (props) => {

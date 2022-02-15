@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Container, Card, Button } from '@component'
 import helpers from '@src/utility/helper'
@@ -20,11 +20,28 @@ import {
 } from '@styles'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
+import UserContext from '@src/provider/state-manager/userDataProvider'
 import { icons } from '@src/provider/config/constant'
+import { UserData } from '@model';
+import validator from '@src/utility/inputValidator'
 
 
 export const EditProfile: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
+    const { user } = useContext(UserContext)
+    const [input, setInput] = useState<UserData>(user.userData)
+
+    function handleInput (data: string, name: string): void {
+        setInput({...input, [name]: data})
+    }
+
+    async function handleNext(){
+        var payload = helpers.removeValuelessProperty(input)
+        const isValidated = validator.familyData(payload, theme)
+        if (isValidated) {
+            //searchFamilyByDetails(payload, navigation)
+        }
+    }
 
     return (
         <AppSafeAreaView>
@@ -37,8 +54,8 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                         </TouchableOpacity>
                     </ProfileHeader>
                     <ProfileDPContainer>
-                        <ProfileDP source={icons.DP3} />
-                        <CameraWrapper activeOpacity={0.8}>
+                        <ProfileDP source={user.userData.profilePicture}/>
+                        <CameraWrapper>
                             <Ionicons name="camera-outline" size={18} color="#FFFFFF" />
                         </CameraWrapper>
                     </ProfileDPContainer>
@@ -46,8 +63,19 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                         <DesignedInputContainer>
                             <DesignedInputIcon source={icons.NAME} />
                             <DesignedTextInput 
-                                placeholder="Full Name"
-                                value="Imtiyaaz Ridwan"
+                                placeholder="First Name"
+                                value={input.firstName}
+                                onChangeText={(data) => handleInput(data, 'firstName')}
+                            />
+                        </DesignedInputContainer>
+                    </Card>
+                    <Card cardTopMargin="35" cardPadding="0">
+                        <DesignedInputContainer>
+                            <DesignedInputIcon source={icons.NAME} />
+                            <DesignedTextInput 
+                                placeholder="Last Name"
+                                value={input.lastName}
+                                onChangeText={(data) => handleInput(data, 'lastName')}
                             />
                         </DesignedInputContainer>
                     </Card>
@@ -56,7 +84,9 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.CALL} />
                             <DesignedTextInput 
                                 placeholder="Phone Number"
-                                value="07087994127"
+                                value={input.phoneNumber}
+                                keyboardType="phone-pad"
+                                onChangeText={(data) => handleInput(data, 'phoneNumber')}
                             />
                         </DesignedInputContainer>
                     </Card>
@@ -65,7 +95,9 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.MAIL} />
                             <DesignedTextInput 
                                 placeholder="Email"
-                                value="olaniyi.jibola152@gmail.com"
+                                value={input.email}
+                                keyboardType="email-address"
+                                onChangeText={(data) => handleInput(data, 'email')}
                             />
                         </DesignedInputContainer>
                     </Card>
@@ -74,7 +106,8 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.MAIL} />
                             <DesignedTextInput 
                                 placeholder="Address"
-                                value="21, Sari Iganmu, orile, Lagos"
+                                value={input.address}
+                                onChangeText={(data) => handleInput(data, 'address')}
                             />
                         </DesignedInputContainer>
                     </Card>
@@ -88,18 +121,18 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
                             </AddButtonWrapper>
                         </DesignedInputContainer>
-                        <Text_IconWrapper>
-                            <AppText fontSize="15">Roshan</AppText>
-                            <RemoveButton>
-                                <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
-                            </RemoveButton>
-                        </Text_IconWrapper>
-                        <Text_IconWrapper>
-                            <AppText fontSize="15">Diyaah</AppText>
-                            <RemoveButton>
-                                <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
-                            </RemoveButton>
-                        </Text_IconWrapper>
+                        {
+                            React.Children.toArray(input.children!.map((child: any) => {
+                                return (
+                                    <Text_IconWrapper>
+                                        <AppText fontSize="15">{child.name}</AppText>
+                                        <RemoveButton>
+                                            <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
+                                        </RemoveButton>
+                                    </Text_IconWrapper>
+                                )
+                            }))
+                        }
                     </Card>
 
                     <Card cardTopMargin="15" cardPadding="5">
@@ -112,18 +145,18 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
                             </AddButtonWrapper>
                         </DesignedInputContainer>
-                        <Text_IconWrapper>
-                            <AppText fontSize="14">{helpers.textToDisplay("Kwara State University.", 40)}</AppText>
-                            <RemoveButton>
-                                <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
-                            </RemoveButton>
-                        </Text_IconWrapper>
-                        <Text_IconWrapper>
-                            <AppText fontSize="14">{helpers.textToDisplay("Kwara State Polytechnic.", 40)}</AppText>
-                            <RemoveButton>
-                                <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
-                            </RemoveButton>
-                        </Text_IconWrapper>
+                        {
+                            React.Children.toArray(input.education!.map((item: any) => {
+                                return (
+                                    <Text_IconWrapper>
+                                        <AppText fontSize="14">{helpers.textToDisplay(`${item}`, 40)}</AppText>
+                                        <RemoveButton>
+                                            <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
+                                        </RemoveButton>
+                                    </Text_IconWrapper>
+                                )
+                            }))
+                        }
                     </Card>
 
                     <Card cardTopMargin="15" cardPadding="5">
@@ -136,18 +169,18 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
                             </AddButtonWrapper>
                         </DesignedInputContainer>
-                        <Text_IconWrapper>
-                            <AppText fontSize="14">{helpers.textToDisplay("Software Engineer, Access Bank.", 40)}</AppText>
-                            <RemoveButton>
-                                <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
-                            </RemoveButton>
-                        </Text_IconWrapper>
-                        <Text_IconWrapper>
-                            <AppText fontSize="14">{helpers.textToDisplay("Software Engineer, Newcore Technologies.", 40)}</AppText>
-                            <RemoveButton>
-                                <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
-                            </RemoveButton>
-                        </Text_IconWrapper>
+                        {
+                            React.Children.toArray(input.workExperience!.map((item: any) => {
+                                return (
+                                    <Text_IconWrapper>
+                                        <AppText fontSize="14">{helpers.textToDisplay(`${item}`, 40)}</AppText>
+                                        <RemoveButton>
+                                            <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
+                                        </RemoveButton>
+                                    </Text_IconWrapper>
+                                )
+                            }))
+                        }
                     </Card>
 
                     <Card cardTopMargin="15" cardBottomMargin="10" cardPadding="5">
@@ -160,24 +193,18 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
                             </AddButtonWrapper>
                         </DesignedInputContainer>
-                        <Text_IconWrapper>
-                            <AppText fontSize="14">{helpers.textToDisplay("Programming", 40)}</AppText>
-                            <RemoveButton>
-                                <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
-                            </RemoveButton>
-                        </Text_IconWrapper>
-                        <Text_IconWrapper>
-                            <AppText fontSize="14">{helpers.textToDisplay("Football", 40)}</AppText>
-                            <RemoveButton>
-                                <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
-                            </RemoveButton>
-                        </Text_IconWrapper>
-                        <Text_IconWrapper>
-                            <AppText fontSize="14">{helpers.textToDisplay("Game", 40)}</AppText>
-                            <RemoveButton>
-                                <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
-                            </RemoveButton>
-                        </Text_IconWrapper>
+                        {
+                            React.Children.toArray(input.interest!.map((item: any) => {
+                                return (
+                                    <Text_IconWrapper>
+                                        <AppText fontSize="14">{helpers.textToDisplay(`${item}`, 40)}</AppText>
+                                        <RemoveButton>
+                                            <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
+                                        </RemoveButton>
+                                    </Text_IconWrapper>
+                                )
+                            }))
+                        }
                     </Card>
                     <Button text="Save" btnWidth="50" btnBottomMargin="15" onPress={()=> console.log("Edited")} />
                 </ScrollView>

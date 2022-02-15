@@ -34,11 +34,13 @@ import { icons } from '@src/provider/config/constant'
 import helpers from '@src/utility/helper'
 import { Feather, Entypo, AntDesign } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
+import UserContext from '@src/provider/state-manager/userDataProvider'
 import VisibilityContext from '@src/provider/state-manager/visibilityProvider';
 
 
 export  const Dashboard: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
+    const { user } = useContext(UserContext)
     const { visibility, toggleCreatePost, toggleAddComment } = useContext(VisibilityContext)
 
     useEffect(()=> {
@@ -70,7 +72,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                     <UserIntroWrapper>
                         <AppText fontSize="18">
                             Hi 
-                            <AppText fontSize="18" fontWeight="bold"> Ridwan </AppText>
+                            <AppText fontSize="18" fontWeight="bold"> {user.userData.firstName} </AppText>
                         </AppText>
                         <ProfilePicsWrapper activeOpacity={1} onPress = {() => navigation.navigate("Others", {screen: 'Profile'})}>
                             <Picture source={icons.DP3} />
@@ -97,7 +99,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                             <StatusCircle flowCircleColor="#00BF4D"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay("Ridwan", 14)}
+                                            {helpers.textToDisplay(`${user.userData.fatherName}`, 14)}
                                         </AppText>
                                         <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Father</AppText>
                                     </DataProfileChild>
@@ -107,7 +109,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                             <StatusCircle flowCircleColor="#C4C4C4"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay("Haleemah", 12)}
+                                            {helpers.textToDisplay(`${user.userData.motherName}`, 12)}
                                         </AppText>
                                         <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Mother</AppText>
                                     </DataProfileChild>
