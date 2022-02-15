@@ -152,6 +152,7 @@ export const route = {
     LOGIN: 'user/login',
     SEND_OTP: 'user/send-otp',
     CHANGE_PASSWORD: 'user/change-password',
+    EDIT_USER: 'user/update-user-details',
     SEARCH_FAMILY: 'family/search-family',
     CREATE_FAMILY: 'family/create-family'
 }

@@ -1,4 +1,4 @@
-import { AppMode, LoginParams } from '@model'
+import { AppMode, LoginParams, UserData } from '@model'
 import helpers from '@src/utility/helper'
 
 const personalData = (data: any, theme: AppMode): boolean => {
@@ -119,6 +119,30 @@ const changePassword = (data: any, theme: AppMode): boolean => {
     return true
 }
 
+const userData = (data: UserData, theme: AppMode): boolean => {
+    const {
+        firstName, lastName, email, phoneNumber, 
+        address, profilePicture
+    } = data
+
+    if (!firstName || !lastName || !email || !phoneNumber || !profilePicture || !address) {
+        helpers.showNotification('danger', 'Invalid Input', 'Kindly provide all required data for update', theme)
+        return false
+    }
+
+    if (!email.includes('@')) {
+        helpers.showNotification('danger', 'Invalid Input', 'Kindly provide a valid email address', theme)
+        return false
+    }
+
+    if (phoneNumber.length < 11) {
+        helpers.showNotification('danger', 'Invalid Input', 'Kindly provide a valid phone number', theme)
+        return false
+    }
+
+    return true
+}
+
 export default {
     personalData,
     relativeData,
@@ -127,5 +151,6 @@ export default {
     login,
     otp,
     emailData,
-    changePassword
+    changePassword,
+    userData
 }

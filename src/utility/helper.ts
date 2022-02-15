@@ -138,13 +138,18 @@ const restructureFamilySearchResponse = (data: Array<any>) => {
     return result
 }
 
-const filterUserDataEdit = (body: UserData, part: any): UserData => {
-    var name: string = ''
-    var childPhoneNo: string = ''
-    name = part.includes('||') ? part.split(',')[0] : part 
-    childPhoneNo = part.includes('||') ? part.split(',')[1] : ''
-    
-    body.children = [...body.children!, ]
+const filterUserDataEdit = (body: UserData, data: string, property: 'children'|'education'|'interest'|'workExperience'): UserData => {
+    if (property === 'children') {
+        var name: string = ''
+        var childPhoneNo: string = ''
+        name = data.includes('||') ? data.split('||')[0] : data 
+        childPhoneNo = data.includes('||') ? data.split('||')[1] : ''
+        body.children = [...body.children!, {name, childPhoneNo} ]
+    }
+
+    else {
+        body[property] = [...body[property]!, data]
+    }
 
     return body
 }
@@ -153,7 +158,6 @@ export default {
     sortMode_Theme,
     logoImage,
     getCardColor,
-    //getUserIcon,
     textToDisplay,
     getChatBackground,
     showNotification,
@@ -161,5 +165,6 @@ export default {
     imageUpload,
     getSearchPhoneNumbers,
     removeFamilyDataDuplicate,
-    restructureFamilySearchResponse
+    restructureFamilySearchResponse,
+    filterUserDataEdit
 }

@@ -22,7 +22,9 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
     }
 
     async function handleImageSelection () {
-        await uploadPicture()
+       const picture = await uploadPicture()
+       //setInput({...input, profilePicture: picture})
+       await updateSignUpData({ profilePicture: picture })
     }
 
     async function handleNext(){

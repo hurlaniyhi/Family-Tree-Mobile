@@ -177,7 +177,7 @@ export const UserProvider = (props: any) => {
 
         if(!imageUrl) 
             return helpers.showNotification('danger', 'Picture Error', 'Profile picture could not be uploaded. kindly check your network', theme)
-        else updateSignUpData({ profilePicture: imageUrl })
+        else return imageUrl
     }
 
     async function sendOtp (email: string, emailType: string) {
@@ -219,6 +219,26 @@ export const UserProvider = (props: any) => {
         }
     }
 
+    async function editUser (params: UserData, navigation: any) {
+        try {
+            loader(true)
+            const response = await APICaller.post(route.EDIT_USER, params)
+            loader(false)
+
+            if(response.data.responseCode === ResponseCode.SUCCESS) {
+                helpers.showNotification('success', 'Success', "User successfully updated", theme)
+                navigation.navigate('Dashboard')
+            }
+            else {
+                helpers.showNotification('danger', 'Failed!', response.data.responseDescription, theme)
+            }
+        }
+        catch (err) {
+            loader(false)
+            helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
+        }
+    }
+
     const stateActions = {
         signUp,
         signIn,
@@ -228,7 +248,8 @@ export const UserProvider = (props: any) => {
         searchFamilyByDetails,
         createFamily,
         sendOtp, 
-        changePassword
+        changePassword,
+        editUser
     }
 
     return (

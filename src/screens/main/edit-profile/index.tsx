@@ -28,18 +28,27 @@ import validator from '@src/utility/inputValidator'
 
 export const EditProfile: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const { user } = useContext(UserContext)
+    const { user, editUser, uploadPicture } = useContext(UserContext)
     const [input, setInput] = useState<UserData>(user.userData)
 
     function handleInput (data: string, name: string): void {
         setInput({...input, [name]: data})
     }
 
-    async function handleNext(){
-        var payload = helpers.removeValuelessProperty(input)
-        const isValidated = validator.familyData(payload, theme)
+    function handleExtraData (data: string, name: any): void {
+        const sortedData = helpers.filterUserDataEdit(input, data, name)
+        setInput(sortedData)
+    }
+
+    async function handleImageSelection () {
+        const picture = await uploadPicture()
+        setInput({...input, profilePicture: picture})
+     }
+
+    async function handleSubmit(){
+        const isValidated = validator.userData(input, theme)
         if (isValidated) {
-            //searchFamilyByDetails(payload, navigation)
+            editUser(input, navigation)
         }
     }
 
@@ -54,8 +63,8 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                         </TouchableOpacity>
                     </ProfileHeader>
                     <ProfileDPContainer>
-                        <ProfileDP source={user.userData.profilePicture}/>
-                        <CameraWrapper>
+                        <ProfileDP source={{uri: input.profilePicture}}/>
+                        <CameraWrapper onPress={handleImageSelection}>
                             <Ionicons name="camera-outline" size={18} color="#FFFFFF" />
                         </CameraWrapper>
                     </ProfileDPContainer>
@@ -116,6 +125,7 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.NAME} />
                             <DesignedTextInput 
                                 placeholder="Add Child"
+                                onChangeText={(data) => handleExtraData(data, 'children')}
                             />
                             <AddButtonWrapper activeOpacity={0.8}>
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
@@ -140,6 +150,7 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.EDUCATION} />
                             <DesignedTextInput 
                                 placeholder="Add Education"
+                                onChangeText={(data) => handleExtraData(data, 'education')}
                             />
                             <AddButtonWrapper activeOpacity={0.8}>
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
@@ -164,6 +175,7 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.EXPERIENCE} />
                             <DesignedTextInput 
                                 placeholder="Add Work Experience"
+                                onChangeText={(data) => handleExtraData(data, 'workExperience')}
                             />
                             <AddButtonWrapper activeOpacity={0.8}>
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
@@ -188,6 +200,7 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.EDUCATION} />
                             <DesignedTextInput 
                                 placeholder="Add Interest"
+                                onChangeText={(data) => handleExtraData(data, 'interest')}
                             />
                             <AddButtonWrapper activeOpacity={0.8}>
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
@@ -206,7 +219,7 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             }))
                         }
                     </Card>
-                    <Button text="Save" btnWidth="50" btnBottomMargin="15" onPress={()=> console.log("Edited")} />
+                    <Button text="Save" btnWidth="50" btnBottomMargin="15" onPress={handleSubmit} />
                 </ScrollView>
             </Container>
         </AppSafeAreaView>
