@@ -21,8 +21,8 @@ import {
 import { Ionicons, AntDesign } from '@expo/vector-icons'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
 import UserContext from '@src/provider/state-manager/userDataProvider'
-import { icons } from '@src/provider/config/constant'
-import { UserData } from '@model';
+import { icons, initialState } from '@src/provider/config/constant'
+import { ExtraDataKey, ExtraUserData, UserData } from '@model';
 import validator from '@src/utility/inputValidator'
 
 
@@ -30,13 +30,27 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const { user, editUser, uploadPicture } = useContext(UserContext)
     const [input, setInput] = useState<UserData>(user.userData)
+    const [extraInput, setExtraInput] = useState<ExtraUserData>(initialState.EXTRA_USER_DATA)
+    var [childIndex, educationIndex, workExperienceIndex, interestIndex] = [0, 0, 0, 0]
 
     function handleInput (data: string, name: string): void {
         setInput({...input, [name]: data})
     }
 
-    function handleExtraData (data: string, name: any): void {
-        const sortedData = helpers.filterUserDataEdit(input, data, name)
+    function handleExtraInput (data: string, name: string): void {
+        setExtraInput({...extraInput, [name]: data})
+    }
+
+    function handleAddData (name: ExtraDataKey): void {
+        if (extraInput[name]) {
+            const sortedData = helpers.addUserDataEdit(input, extraInput[name], name)
+            setInput(sortedData)
+            setExtraInput(initialState.EXTRA_USER_DATA)
+        }
+    }
+
+    function handleRemoveData (name: ExtraDataKey, index: number) {
+        const sortedData = helpers.removeUserDataEdit(input, name, index)
         setInput(sortedData)
     }
 
@@ -48,6 +62,8 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
     async function handleSubmit(){
         const isValidated = validator.userData(input, theme)
         if (isValidated) {
+            console.log({editData: input})
+            setInput(user.userData)
             editUser(input, navigation)
         }
     }
@@ -125,18 +141,20 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.NAME} />
                             <DesignedTextInput 
                                 placeholder="Add Child"
-                                onChangeText={(data) => handleExtraData(data, 'children')}
+                                value={extraInput.children}
+                                onChangeText={(data) => handleExtraInput(data, 'children')}
                             />
-                            <AddButtonWrapper activeOpacity={0.8}>
+                            <AddButtonWrapper activeOpacity={0.8} onPress={() => handleAddData('children')}>
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
                             </AddButtonWrapper>
                         </DesignedInputContainer>
                         {
                             React.Children.toArray(input.children!.map((child: any) => {
+                                childIndex++
                                 return (
                                     <Text_IconWrapper>
                                         <AppText fontSize="15">{child.name}</AppText>
-                                        <RemoveButton>
+                                        <RemoveButton onPress={() => handleRemoveData('children', childIndex)}>
                                             <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
                                         </RemoveButton>
                                     </Text_IconWrapper>
@@ -150,18 +168,20 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.EDUCATION} />
                             <DesignedTextInput 
                                 placeholder="Add Education"
-                                onChangeText={(data) => handleExtraData(data, 'education')}
+                                value={extraInput.education}
+                                onChangeText={(data) => handleExtraInput(data, 'education')}
                             />
-                            <AddButtonWrapper activeOpacity={0.8}>
+                            <AddButtonWrapper activeOpacity={0.8} onPress={() => handleAddData('education')}>
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
                             </AddButtonWrapper>
                         </DesignedInputContainer>
                         {
                             React.Children.toArray(input.education!.map((item: any) => {
+                                educationIndex++
                                 return (
                                     <Text_IconWrapper>
                                         <AppText fontSize="14">{helpers.textToDisplay(`${item}`, 40)}</AppText>
-                                        <RemoveButton>
+                                        <RemoveButton onPress={() => handleRemoveData('education', educationIndex)}>
                                             <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
                                         </RemoveButton>
                                     </Text_IconWrapper>
@@ -175,18 +195,20 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.EXPERIENCE} />
                             <DesignedTextInput 
                                 placeholder="Add Work Experience"
-                                onChangeText={(data) => handleExtraData(data, 'workExperience')}
+                                value={extraInput.workExperience}
+                                onChangeText={(data) => handleExtraInput(data, 'workExperience')}
                             />
-                            <AddButtonWrapper activeOpacity={0.8}>
+                            <AddButtonWrapper activeOpacity={0.8} onPress={() => handleAddData('workExperience')}>
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
                             </AddButtonWrapper>
                         </DesignedInputContainer>
                         {
                             React.Children.toArray(input.workExperience!.map((item: any) => {
+                                workExperienceIndex++
                                 return (
                                     <Text_IconWrapper>
                                         <AppText fontSize="14">{helpers.textToDisplay(`${item}`, 40)}</AppText>
-                                        <RemoveButton>
+                                        <RemoveButton onPress={() => handleRemoveData('workExperience', workExperienceIndex)}>
                                             <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
                                         </RemoveButton>
                                     </Text_IconWrapper>
@@ -200,18 +222,20 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             <DesignedInputIcon source={icons.EDUCATION} />
                             <DesignedTextInput 
                                 placeholder="Add Interest"
-                                onChangeText={(data) => handleExtraData(data, 'interest')}
+                                value={extraInput.interest}
+                                onChangeText={(data) => handleExtraInput(data, 'interest')}
                             />
-                            <AddButtonWrapper activeOpacity={0.8}>
+                            <AddButtonWrapper activeOpacity={0.8} onPress={() => handleAddData('interest')}>
                                 <AntDesign name="pluscircle" size={22} color={theme.FOCUS_THEME_COLOR}/>
                             </AddButtonWrapper>
                         </DesignedInputContainer>
                         {
                             React.Children.toArray(input.interest!.map((item: any) => {
+                                interestIndex++
                                 return (
                                     <Text_IconWrapper>
                                         <AppText fontSize="14">{helpers.textToDisplay(`${item}`, 40)}</AppText>
-                                        <RemoveButton>
+                                        <RemoveButton onPress={() => handleRemoveData('interest', interestIndex)}>
                                             <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
                                         </RemoveButton>
                                     </Text_IconWrapper>

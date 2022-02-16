@@ -1,4 +1,4 @@
-import { ChangePassword, FamilyData, LoginParams, OtpParams, UserData } from "@model"
+import { ChangePassword, ExtraUserData, FamilyData, LoginParams, OtpParams, UserData } from "@model"
 
 let isLive = true
 
@@ -111,6 +111,12 @@ export const initialState = {
         password: '', 
         confirmPassword: '',
         email: ''
+    },
+    EXTRA_USER_DATA: <ExtraUserData>{
+        children: '', 
+        education: '', 
+        workExperience: '', 
+        interest: ''
     }
 }
 

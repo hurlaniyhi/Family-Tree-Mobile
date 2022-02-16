@@ -1,4 +1,4 @@
-import { AppMode, AppTheme, OperationStatus, UserData } from '@model'
+import { AppMode, AppTheme, ExtraDataKey, OperationStatus, UserData } from '@model'
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink} from '@src/provider/config/theme'
 import { ImageSourcePropType } from 'react-native'
 import { icons, images, constant } from '@src/provider/config/constant'
@@ -138,7 +138,7 @@ const restructureFamilySearchResponse = (data: Array<any>) => {
     return result
 }
 
-const filterUserDataEdit = (body: UserData, data: string, property: 'children'|'education'|'interest'|'workExperience'): UserData => {
+const addUserDataEdit = (body: UserData, data: string, property: ExtraDataKey): UserData => {
     if (property === 'children') {
         var name: string = ''
         var childPhoneNo: string = ''
@@ -154,6 +154,11 @@ const filterUserDataEdit = (body: UserData, data: string, property: 'children'|'
     return body
 }
 
+const removeUserDataEdit = (body: UserData, property: ExtraDataKey, index: number): UserData => {
+    body[property]?.splice(index-1, 1)
+    return body;
+}
+
 export default {
     sortMode_Theme,
     logoImage,
@@ -166,5 +171,6 @@ export default {
     getSearchPhoneNumbers,
     removeFamilyDataDuplicate,
     restructureFamilySearchResponse,
-    filterUserDataEdit
+    addUserDataEdit,
+    removeUserDataEdit
 }

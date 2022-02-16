@@ -227,6 +227,7 @@ export const UserProvider = (props: any) => {
 
             if(response.data.responseCode === ResponseCode.SUCCESS) {
                 helpers.showNotification('success', 'Success', "User successfully updated", theme)
+                await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data}})
                 navigation.navigate('Dashboard')
             }
             else {

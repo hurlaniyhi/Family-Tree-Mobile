@@ -91,3 +91,12 @@ export interface ChangePassword {
     confirmPassword?: string,
     email: string
 }
+
+export interface ExtraUserData {
+    children: string,
+    education: string,
+    workExperience: string,
+    interest: string
+}
+
+export type ExtraDataKey = "children" | "education" | "interest" | "workExperience"
