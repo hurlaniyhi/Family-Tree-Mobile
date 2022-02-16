@@ -155,7 +155,7 @@ const addUserDataEdit = (body: UserData, data: string, property: ExtraDataKey): 
 }
 
 const removeUserDataEdit = (body: UserData, property: ExtraDataKey, index: number): UserData => {
-    body[property]?.splice(index-1, 1)
+    body[property]!.splice(index, 1)
     return body;
 }
 

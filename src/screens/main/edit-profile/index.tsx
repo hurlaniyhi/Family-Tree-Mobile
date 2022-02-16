@@ -1,5 +1,4 @@
-import React, { useContext, useState} from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useContext, useState } from 'react'
 import { Container, Card, Button } from '@component'
 import helpers from '@src/utility/helper'
 import { 
@@ -31,7 +30,6 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
     const { user, editUser, uploadPicture } = useContext(UserContext)
     const [input, setInput] = useState<UserData>(user.userData)
     const [extraInput, setExtraInput] = useState<ExtraUserData>(initialState.EXTRA_USER_DATA)
-    var [childIndex, educationIndex, workExperienceIndex, interestIndex] = [0, 0, 0, 0]
 
     function handleInput (data: string, name: string): void {
         setInput({...input, [name]: data})
@@ -44,14 +42,16 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
     function handleAddData (name: ExtraDataKey): void {
         if (extraInput[name]) {
             const sortedData = helpers.addUserDataEdit(input, extraInput[name], name)
-            setInput(sortedData)
+            setInput({...sortedData})
             setExtraInput(initialState.EXTRA_USER_DATA)
         }
     }
 
     function handleRemoveData (name: ExtraDataKey, index: number) {
-        const sortedData = helpers.removeUserDataEdit(input, name, index)
-        setInput(sortedData)
+        const sorted = helpers.removeUserDataEdit(input, name, index)
+        setInput({...sorted})
+        console.log({sorted: sorted[name]})
+        console.log({state: input[name]})
     }
 
     async function handleImageSelection () {
@@ -74,7 +74,7 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                 <ScrollView>
                     <ProfileHeader>
                         <AppText fontSize="22" fontWeight="bold">Edit Profile</AppText>
-                        <TouchableOpacity activeOpacity={0.8}>
+                        <TouchableOpacity activeOpacity={0.8} onPress={handleSubmit}>
                             <Ionicons name="checkmark" size={25} color={theme.TEXT_COLOR} />
                         </TouchableOpacity>
                     </ProfileHeader>
@@ -149,12 +149,11 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             </AddButtonWrapper>
                         </DesignedInputContainer>
                         {
-                            React.Children.toArray(input.children!.map((child: any) => {
-                                childIndex++
+                            React.Children.toArray(input.children!.map((child: any, index: number) => {
                                 return (
                                     <Text_IconWrapper>
                                         <AppText fontSize="15">{child.name}</AppText>
-                                        <RemoveButton onPress={() => handleRemoveData('children', childIndex)}>
+                                        <RemoveButton onPress={() => handleRemoveData('children', index)}>
                                             <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
                                         </RemoveButton>
                                     </Text_IconWrapper>
@@ -176,12 +175,11 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             </AddButtonWrapper>
                         </DesignedInputContainer>
                         {
-                            React.Children.toArray(input.education!.map((item: any) => {
-                                educationIndex++
+                            React.Children.toArray(input.education!.map((item: any, index: number) => {
                                 return (
                                     <Text_IconWrapper>
                                         <AppText fontSize="14">{helpers.textToDisplay(`${item}`, 40)}</AppText>
-                                        <RemoveButton onPress={() => handleRemoveData('education', educationIndex)}>
+                                        <RemoveButton onPress={() => handleRemoveData('education', index)}>
                                             <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
                                         </RemoveButton>
                                     </Text_IconWrapper>
@@ -203,12 +201,11 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             </AddButtonWrapper>
                         </DesignedInputContainer>
                         {
-                            React.Children.toArray(input.workExperience!.map((item: any) => {
-                                workExperienceIndex++
+                            React.Children.toArray(input.workExperience!.map((item: any, index: number) => {
                                 return (
                                     <Text_IconWrapper>
                                         <AppText fontSize="14">{helpers.textToDisplay(`${item}`, 40)}</AppText>
-                                        <RemoveButton onPress={() => handleRemoveData('workExperience', workExperienceIndex)}>
+                                        <RemoveButton onPress={() => handleRemoveData('workExperience', index)}>
                                             <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
                                         </RemoveButton>
                                     </Text_IconWrapper>
@@ -230,12 +227,11 @@ export const EditProfile: React.FC<any> = ({ navigation }) => {
                             </AddButtonWrapper>
                         </DesignedInputContainer>
                         {
-                            React.Children.toArray(input.interest!.map((item: any) => {
-                                interestIndex++
+                            React.Children.toArray(input.interest!.map((item: any, index: number) => {
                                 return (
                                     <Text_IconWrapper>
                                         <AppText fontSize="14">{helpers.textToDisplay(`${item}`, 40)}</AppText>
-                                        <RemoveButton onPress={() => handleRemoveData('interest', interestIndex)}>
+                                        <RemoveButton onPress={() => handleRemoveData('interest', index)}>
                                             <Ionicons name="remove-circle" size={17} color={theme.FOCUS_THEME_COLOR} />
                                         </RemoveButton>
                                     </Text_IconWrapper>

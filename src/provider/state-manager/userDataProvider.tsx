@@ -27,6 +27,7 @@ export const UserProvider = (props: any) => {
         familyDetails: { ...initialState.FAMILY_DETAILS },
         familyMembers: [],
         searchedFamilies: [],
+        searchedUsers: [],
         token: ''
     })
     
@@ -41,11 +42,11 @@ export const UserProvider = (props: any) => {
             loader(false)
 
             if(response.data.responseCode === ResponseCode.SUCCESS) {
-                console.log({response: response.data.data.userData})
                 await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data.userData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: response.data.data.familyData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
                 await dispatch({type: "set-property-completely", payload: {key: 'token', value: response.data.token}})
+                await dispatch({type: "set-property-completely", payload: {key: 'searchedFamilies', value: []}})
                 navigation.navigate('Dashboard')
             }
             else {
@@ -65,11 +66,11 @@ export const UserProvider = (props: any) => {
             loader(false)
 
             if(response.data.responseCode === ResponseCode.SUCCESS) {
-                console.log({response: response.data.data})
                 await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data.userData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: response.data.data.familyData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
                 await dispatch({type: "set-property-completely", payload: {key: 'token', value: response.data.token}})
+                await dispatch({type: "set-property-completely", payload: {key: 'searchedFamilies', value: []}})
                 navigation.navigate('Dashboard')
             }
             else {
@@ -85,7 +86,6 @@ export const UserProvider = (props: any) => {
     async function searchFamilyByPhoneNumber (params: UserData, navigation: any) {
         var searchedFamilies = []
         const phoneNumbers: string[] = helpers.getSearchPhoneNumbers(params)
-        console.log({params})
 
         loader(true)
         try {
@@ -126,6 +126,50 @@ export const UserProvider = (props: any) => {
             }
             else {
                createFamily(params, navigation)
+            }
+        }
+        catch (err) {
+            loader(false)
+            helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
+        }
+    }
+
+    async function searchFamilyByFamilyName (familyName: string, navigation: any) {
+        var searchedFamilies: any;
+        loader(true)
+        try{
+            const payload = { familyName, searchType: constant.SEARCHFAMILY_NAME_HOMETOWN }
+            const response = await APICaller.post(route.SEARCH_FAMILY, payload)
+            loader(false)
+    
+            if (response.data.responseCode === ResponseCode.SUCCESS) {
+                searchedFamilies = helpers.restructureFamilySearchResponse(response.data.data.familiesData) 
+                await dispatch({type: "set-property-completely", payload: {key: 'searchedFamilies', value: searchedFamilies}})
+                return navigation.navigate("Others", {screen: 'SearchPage'})
+            }
+            else {
+                helpers.showNotification('info', 'Not Found!', 'No Family found with this name', theme)
+            }
+        }
+        catch (err) {
+            loader(false)
+            helpers.showNotification('danger', 'Error Occured', 'Something went wrong. Kindly check your network', theme)
+        }
+    }
+
+    async function searchUserFamilyByUserName (userName:string, navigation: any) {
+        loader(true)
+        try{
+            const payload = { userName, searchType: constant.SEARCHFAMILY_USERNAME }
+            const response = await APICaller.post(route.SEARCH_FAMILY, payload)
+            loader(false)
+    
+            if (response.data.responseCode === ResponseCode.SUCCESS) {
+                await dispatch({type: "set-property-completely", payload: {key: 'searchedUsers', value: response.data.data}})
+                return navigation.navigate("Others", {screen: 'SearchPage'})
+            }
+            else {
+                helpers.showNotification('info', 'Not Found!', 'No User found with this name', theme)
             }
         }
         catch (err) {
@@ -250,7 +294,9 @@ export const UserProvider = (props: any) => {
         createFamily,
         sendOtp, 
         changePassword,
-        editUser
+        editUser,
+        searchFamilyByFamilyName,
+        searchUserFamilyByUserName
     }
 
     return (

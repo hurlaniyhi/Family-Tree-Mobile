@@ -8,7 +8,6 @@ import {
     ActionInfoWrapper,
 } from '@styles'
 import { Container, Card, Button } from '@component'
-import { icons } from '@src/provider/config/constant'
 
 
 export const FamilyMembers: React.FC<any> = (props) => {

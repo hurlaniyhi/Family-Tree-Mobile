@@ -75,7 +75,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                             <AppText fontSize="18" fontWeight="bold"> {user.userData.firstName} </AppText>
                         </AppText>
                         <ProfilePicsWrapper activeOpacity={1} onPress = {() => navigation.navigate("Others", {screen: 'Profile'})}>
-                            <Picture source={icons.DP3} />
+                            <Picture source={{uri: user.userData.profilePicture}} />
                         </ProfilePicsWrapper>
                     </UserIntroWrapper>
 
