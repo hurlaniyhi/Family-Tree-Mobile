@@ -19,7 +19,7 @@ export const Profile: React.FC<any> = (props) => {
     const { theme } = useContext(ThemeContext)
     const { user } = useContext(UserContext)
 
-    const profile = user.token ? user.userData : props.route.params
+    const profile =  props.route.params ? props.route.params : user.userData
     
     return (
         <AppSafeAreaView>

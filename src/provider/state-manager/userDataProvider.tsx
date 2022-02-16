@@ -134,7 +134,7 @@ export const UserProvider = (props: any) => {
         }
     }
 
-    async function searchFamilyByFamilyName (familyName: string, navigation: any) {
+    async function searchFamilyByFamilyName (familyName: string) {
         var searchedFamilies: any;
         loader(true)
         try{
@@ -145,7 +145,6 @@ export const UserProvider = (props: any) => {
             if (response.data.responseCode === ResponseCode.SUCCESS) {
                 searchedFamilies = helpers.restructureFamilySearchResponse(response.data.data.familiesData) 
                 await dispatch({type: "set-property-completely", payload: {key: 'searchedFamilies', value: searchedFamilies}})
-                return navigation.navigate("Others", {screen: 'SearchPage'})
             }
             else {
                 helpers.showNotification('info', 'Not Found!', 'No Family found with this name', theme)
@@ -157,7 +156,7 @@ export const UserProvider = (props: any) => {
         }
     }
 
-    async function searchUserFamilyByUserName (userName:string, navigation: any) {
+    async function searchUserFamilyByUserName (userName: string) {
         loader(true)
         try{
             const payload = { userName, searchType: constant.SEARCHFAMILY_USERNAME }
@@ -166,7 +165,6 @@ export const UserProvider = (props: any) => {
     
             if (response.data.responseCode === ResponseCode.SUCCESS) {
                 await dispatch({type: "set-property-completely", payload: {key: 'searchedUsers', value: response.data.data}})
-                return navigation.navigate("Others", {screen: 'SearchPage'})
             }
             else {
                 helpers.showNotification('info', 'Not Found!', 'No User found with this name', theme)

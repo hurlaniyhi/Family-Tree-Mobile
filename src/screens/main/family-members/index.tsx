@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { 
     ScrollView,
     AppText,
@@ -8,10 +8,12 @@ import {
     ActionInfoWrapper,
 } from '@styles'
 import { Container, Card, Button } from '@component'
+import UserContext from '@src/provider/state-manager/userDataProvider'
 
 
 export const FamilyMembers: React.FC<any> = (props) => {
-    const members = props.route.params
+    const {user} = useContext(UserContext)
+    const members = props.route.params ? props.route.params : user.familyMembers
     console.log({navParams: members})
     var count = 0
 
