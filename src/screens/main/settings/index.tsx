@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
+import UserContext from '@src/provider/state-manager/userDataProvider'
 import { DarkTheme, LightTheme, Green, Purple, Yellow, Pink } from '@src/provider/config/theme'
 import { AppTheme } from '@model'
 import { Container, Card } from '@component'
@@ -11,6 +12,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export  const Settings: React.FC<any> = ({ navigation }) => {
     const {theme, switchTheme, switchMode} = useContext(ThemeContext)
+    const {logout} = useContext(UserContext)
     const [themeStatus, setThemeStatus] = useState<typeof initialState.THEME>({...initialState.THEME, [theme.THEME]: true})
     const [modeStatus, setModeStatus] = useState<typeof initialState.THEME_MODE>({...initialState.THEME_MODE, [theme.THEME_MODE]: true})
 
@@ -95,7 +97,7 @@ export  const Settings: React.FC<any> = ({ navigation }) => {
                     <Card cardBottomMargin="20">
                         <FlexRow flexTopMargin="0">
                             <SettingIcon source={icons.LOGOUT}/>
-                            <LogoutText onPress = {() => navigation.navigate("SignIn")}>Logout</LogoutText>
+                            <LogoutText onPress = {() => logout(navigation)}>Logout</LogoutText>
                         </FlexRow>
                     </Card>
                 </Container>

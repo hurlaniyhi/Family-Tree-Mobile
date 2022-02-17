@@ -9,13 +9,9 @@ import {
     ToggleText,
     AppSafeAreaView
 } from '@styles'
-import ThemeContext from '@src/provider/state-manager/themeProvider'
-import UserContext from '@src/provider/state-manager/userDataProvider'
 
 
 export  const FamilyDetails: React.FC<any> = ({ navigation }) => {
-    const { theme } = useContext(ThemeContext)
-    const { user } = useContext(UserContext)
     const [isFamilyTree, setIsFamilyTree] = useState<boolean>(false)
 
     return (
@@ -34,12 +30,7 @@ export  const FamilyDetails: React.FC<any> = ({ navigation }) => {
                     </Card>
                     { isFamilyTree  ?  
                         <FamilyTree /> : 
-                        <FamilyData data={user.familyDetails} onPress={() => navigation.navigate('Others', 
-                            {
-                                screen: 'FamilyMembers',
-                                params: user.familyMembers
-                            }
-                        )} />
+                        <FamilyData navigation={navigation} />
                     }
                 </ScrollView>
             </Container>

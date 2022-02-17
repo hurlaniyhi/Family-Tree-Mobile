@@ -18,6 +18,8 @@ const UserReducer = (state: any, action: Action<any>) => {
             return { ...state, userData: {...state.userData, ...action.payload} }
         case "set-property-completely": 
             return { ...state, [action.payload.key]: action.payload.value }
+        case "reset-state":
+            return { ...action.payload }
     }
 }
 
@@ -31,7 +33,7 @@ export const UserProvider = (props: any) => {
         token: ''
     })
     
-    const {theme} = useContext(ThemeContext)
+    const {theme, switchTheme} = useContext(ThemeContext)
     const {loader} = useContext(VisibilityContext)
 
     async function signUp (params: UserData, navigation: any, familyId: string) {
@@ -47,6 +49,7 @@ export const UserProvider = (props: any) => {
                 await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
                 await dispatch({type: "set-property-completely", payload: {key: 'token', value: response.data.token}})
                 await dispatch({type: "set-property-completely", payload: {key: 'searchedFamilies', value: []}})
+                await storeUserInfo(response.data)
                 navigation.navigate('Dashboard')
             }
             else {
@@ -71,6 +74,7 @@ export const UserProvider = (props: any) => {
                 await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
                 await dispatch({type: "set-property-completely", payload: {key: 'token', value: response.data.token}})
                 await dispatch({type: "set-property-completely", payload: {key: 'searchedFamilies', value: []}})
+                await storeUserInfo(response.data)
                 navigation.navigate('Dashboard')
             }
             else {
@@ -282,6 +286,50 @@ export const UserProvider = (props: any) => {
         }
     }
 
+    async function storeUserInfo (data: any) {
+        const storeData = {
+            userData: data.data.userData,
+            familyDetails: data.data.familyData,
+            familyMembers: data.data.familyMembers,
+            token: data.token
+        }
+        await AsyncStorage.setItem('user', JSON.stringify(storeData))
+    }
+
+    async function getStoredData (navigation: any) {
+        var storedTheme = await AsyncStorage.getItem('theme')
+        console.log({theme: storedTheme})
+        if(storedTheme) {
+            await switchTheme(JSON.parse(storedTheme))
+        }
+
+        var storedData = await AsyncStorage.getItem('user')
+        if( storedData ) {
+            const info = JSON.parse(storedData!)
+
+            await dispatch({type: "set-property-completely", payload: {key: 'userData', value: info!.userData}})
+            await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: info.familyData}})
+            await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: info.familyMembers}})
+            await dispatch({type: "set-property-completely", payload: {key: 'token', value: info.token}})
+            navigation.navigate('Dashboard')
+        }
+        else return navigation.navigate('SignIn')
+    }
+
+    async function logout (navigation: any) {
+        AsyncStorage.clear()
+        const clearState = {
+            userData: { ...initialState.SIGN_UP },
+            familyDetails: { ...initialState.FAMILY_DETAILS },
+            familyMembers: [],
+            searchedFamilies: [],
+            searchedUsers: [],
+            token: ''
+        }
+        await dispatch({type: 'reset-state', payload: clearState})
+        return navigation.navigate('SignIn')
+    }
+
     const stateActions = {
         signUp,
         signIn,
@@ -294,7 +342,9 @@ export const UserProvider = (props: any) => {
         changePassword,
         editUser,
         searchFamilyByFamilyName,
-        searchUserFamilyByUserName
+        searchUserFamilyByUserName,
+        getStoredData,
+        logout
     }
 
     return (

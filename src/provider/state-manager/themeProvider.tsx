@@ -2,6 +2,7 @@ import React, {useReducer} from 'react'
 import { LightTheme } from '@src/provider/config/theme'
 import { AppTheme, ContextTheme, AppMode, Action } from '@model'
 import helpers from '@src/utility/helper'
+import { AsyncStorage } from 'react-native'
 
 
 const ThemeContext = React.createContext<ContextTheme | any>({})
@@ -22,11 +23,15 @@ export const ThemeProvider = (props: any) => {
 
     async function switchTheme(themeData: AppTheme){
         await dispatch({type: "switch-theme", payload: themeData})
+        const currentTheme = { ...state, ...themeData }
+        await AsyncStorage.setItem('theme', JSON.stringify(currentTheme))
     }
 
     async function switchMode(mode: string){
         const data = helpers.sortMode_Theme(mode, state)
         await dispatch({type: "switch-mode", payload: data})
+        await AsyncStorage.setItem('theme', JSON.stringify(data))
+
     }
 
     return (

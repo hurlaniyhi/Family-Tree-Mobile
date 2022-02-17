@@ -87,7 +87,7 @@ export const SearchPage: React.FC<any> = ({ navigation }) => {
                                 : 
                                 <Button 
                                     btnWidth="65" 
-                                    text="View Profile" 
+                                    text="View Members" 
                                     btnTopMargin="15" 
                                     btnBottomMargin="0" 
                                     btnHeight="35"
@@ -156,7 +156,7 @@ export const SearchPage: React.FC<any> = ({ navigation }) => {
 
                 {   user.token ? 
                     <SearchWrapper>
-                        <SearchIcon/>
+                        <SearchIcon onPress={handleSubmit} />
                         <SearchInput
                             autoCapitalize="none"
                             autoCorrect={false}

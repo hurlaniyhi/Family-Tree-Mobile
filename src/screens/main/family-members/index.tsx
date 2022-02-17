@@ -12,9 +12,10 @@ import UserContext from '@src/provider/state-manager/userDataProvider'
 
 
 export const FamilyMembers: React.FC<any> = (props) => {
-    const {user} = useContext(UserContext)
-    const members = props.route.params ? props.route.params : user.familyMembers
-    console.log({navParams: members})
+    const { user } = useContext(UserContext)
+
+    const members = props.route.params
+    console.log(members)
     var count = 0
 
     return (

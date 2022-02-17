@@ -27,7 +27,7 @@ export const Profile: React.FC<any> = (props) => {
                 <ScrollView>
                     <ProfileHeader>
                         <AppText fontSize="22" fontWeight="bold">Profile</AppText>
-                       { user.token ?
+                       { user.userData._id === profile._id ?
                             <TouchableOpacity activeOpacity={0.8} onPress={() => props.navigation.navigate('Others', { screen: 'EditProfile'})}>
                                 <SimpleLineIcons name="pencil" size={20} color={theme.TEXT_COLOR} />
                             </TouchableOpacity>
@@ -38,9 +38,9 @@ export const Profile: React.FC<any> = (props) => {
                         <ProfileDP source={{uri: profile.profilePicture}} />
                     </ProfileDPContainer>
                     <AppText fontSize="22" fontWeight="bold" justify="center">{`${profile.firstName} ${profile.lastName}`}</AppText>
-                    { user.token ? <AppText fontSize="14" justify="center" textColor={theme.FOCUS_THEME_COLOR} onPress={() => props.navigation.navigate("EnterEmail")}>
+                    {/* { user.userData._id === profile._id ? <AppText fontSize="14" justify="center" textColor={theme.FOCUS_THEME_COLOR} onPress={() => props.navigation.navigate("EnterEmail")}>
                         Forget Password?
-                    </AppText>: null}
+                    </AppText>: null} */}
                     <Card cardTopMargin="40" cardPadding="8">
                         <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>Phone Number</AppText>
                         <AppText fontWeight="bold" >{profile.phoneNumber}</AppText>
