@@ -298,7 +298,6 @@ export const UserProvider = (props: any) => {
 
     async function getStoredData (navigation: any) {
         var storedTheme = await AsyncStorage.getItem('theme')
-        console.log({theme: storedTheme})
         if(storedTheme) {
             await switchTheme(JSON.parse(storedTheme))
         }
@@ -317,7 +316,7 @@ export const UserProvider = (props: any) => {
     }
 
     async function logout (navigation: any) {
-        AsyncStorage.clear()
+        await AsyncStorage.setItem('user', '')
         const clearState = {
             userData: { ...initialState.SIGN_UP },
             familyDetails: { ...initialState.FAMILY_DETAILS },
