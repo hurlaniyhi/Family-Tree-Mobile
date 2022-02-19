@@ -30,7 +30,8 @@ export const UserProvider = (props: any) => {
         familyMembers: [],
         searchedFamilies: [],
         searchedUsers: [],
-        token: ''
+        token: '',
+        members: []
     })
     
     const {theme, switchTheme} = useContext(ThemeContext)
@@ -201,6 +202,10 @@ export const UserProvider = (props: any) => {
         await dispatch({type: "update-user-data", payload})
     }
 
+    async function setStateProperty (key: string, value: any) {
+        await dispatch({type: "set-property-completely", payload: {key, value}})
+    }
+
     async function uploadPicture () {
         const image = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
@@ -296,7 +301,7 @@ export const UserProvider = (props: any) => {
         await AsyncStorage.setItem('user', JSON.stringify(storeData))
     }
 
-    async function getStoredData (navigation: any) {
+    async function getStoredData () {
         var storedTheme = await AsyncStorage.getItem('theme')
         if(storedTheme) {
             await switchTheme(JSON.parse(storedTheme))
@@ -310,9 +315,13 @@ export const UserProvider = (props: any) => {
             await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: info.familyData}})
             await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: info.familyMembers}})
             await dispatch({type: "set-property-completely", payload: {key: 'token', value: info.token}})
-            navigation.navigate('Dashboard')
+            //navigation.navigate('Dashboard')
+            return true
         }
-        else return navigation.navigate('SignIn')
+        else {
+            //navigation.navigate('SignIn')
+            return false
+        }
     }
 
     async function logout (navigation: any) {
@@ -342,6 +351,7 @@ export const UserProvider = (props: any) => {
         editUser,
         searchFamilyByFamilyName,
         searchUserFamilyByUserName,
+        setStateProperty,
         getStoredData,
         logout
     }

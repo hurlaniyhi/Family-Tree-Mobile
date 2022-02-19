@@ -18,7 +18,6 @@ export const CompleteAccount: React.FC<any> = ({ navigation }) => {
 
     function handleInputData (data: string, name: string) {
         setInput({...input, [name]: data})
-        console.log(name, data)
     }
 
     async function handleImageSelection () {

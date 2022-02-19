@@ -12,7 +12,12 @@ import UserContext from '@src/provider/state-manager/userDataProvider'
 
 export const FamilyData: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const { user } = useContext(UserContext)
+    const { user, setStateProperty } = useContext(UserContext)
+
+    async function handleMembers () {
+        await setStateProperty("members", user.familyMembers)
+        navigation.navigate('Others', {screen: 'FamilyMembers'})
+    }
 
     return (
         <>
@@ -43,12 +48,7 @@ export const FamilyData: React.FC<any> = ({ navigation }) => {
                 btnBottomMargin="10" 
                 btnHeight="40"
                 btnTextSize="14"
-                onPress={() => navigation.navigate('Others', 
-                    {
-                        screen: 'FamilyMembers',
-                        params: user.familyMembers
-                    }
-                )}
+                onPress={handleMembers}
             />
         </>
     );

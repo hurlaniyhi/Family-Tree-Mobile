@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useLayoutEffect } from 'react'
 import helpers from '@src/utility/helper'
 import validator from '@src/utility/inputValidator'
 import { CenterContainer, 
@@ -25,15 +25,11 @@ import { LoginParams } from '@model';
 
 export  const SignIn: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
-    const { user, signIn, getStoredData } = useContext(UserContext)
+    const { signIn } = useContext(UserContext)
     const [isChecked, setIsChecked] = useState<boolean>(true)
     const [input, setInput] = useState<LoginParams>(initialState.SIGN_IN)
 
     let logoImg: ImageSourcePropType = helpers.logoImage(theme)
-
-    useEffect(()=> {
-        getStoredData(navigation)
-    }, [])
 
     function handleInput(val: string, name: string) {
         setInput({...input, [name]: val})
@@ -48,8 +44,8 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaProvider>
-            {!user.token ? <ScrollView>
+        <SafeAreaProvider >
+            <ScrollView>
                 <CenterContainer>
                     <LogoTop img={ logoImg } />
                     <WelcomeText>Welcome Back</WelcomeText>
@@ -82,7 +78,7 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
                         <SignUpLink onPress={() => navigation.navigate("SignUp")}> Sign up</SignUpLink>
                     </SignUpLinkContainer>
                 </CenterContainer>
-            </ScrollView> : null}
+            </ScrollView>
         </SafeAreaProvider>
     );
 }

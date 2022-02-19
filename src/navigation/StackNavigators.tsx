@@ -9,7 +9,8 @@ import {
   RelativeData,
   CompleteAccount,
   ConfirmEmail,
-  NewPassword
+  NewPassword,
+  ResolveAuth
 } from "@screens/auth";
 import { Chat, Profile, EditProfile, SearchPage, FamilyMembers } from '@screens/main'
 import ThemeContext from '@src/provider/state-manager/themeProvider'
@@ -30,6 +31,7 @@ const screenOptionStyle = {
 const AuthStackNavigator = () => {
   return (
     <Stack.Navigator detachInactiveScreens={false} screenOptions = {screenOptionStyle}>
+      {/* <Stack.Screen name="ResolveAuth" component={ResolveAuth} /> */}
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="EnterEmail" component={EnterEmail} />

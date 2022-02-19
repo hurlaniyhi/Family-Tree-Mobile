@@ -27,7 +27,7 @@ import UserContext from '@src/provider/state-manager/userDataProvider'
 export const SearchPage: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const { visibility, toggleSearchType } = useContext(VisibilityContext)
-    const { user, signUp, searchFamilyByFamilyName, searchUserFamilyByUserName } = useContext(UserContext)
+    const { user, signUp, searchFamilyByFamilyName, searchUserFamilyByUserName, setStateProperty } = useContext(UserContext)
 
     const [searchType, setSearchType] = useState('Family')
     const [input, setInput] = useState('')
@@ -58,6 +58,11 @@ export const SearchPage: React.FC<any> = ({ navigation }) => {
         else searchUserFamilyByUserName(input)
     }
 
+    async function handleMembers (data: any) {
+        await setStateProperty('members', data)
+        navigation.navigate('Others', {screen: 'FamilyMembers'})
+    }
+
     var count = 0
     var families = React.Children.toArray(
         user?.searchedFamilies.map((family: any) => {
@@ -73,17 +78,15 @@ export const SearchPage: React.FC<any> = ({ navigation }) => {
                             <AppText fontSize="16" fontWeight="900">{family.familyData.familyName} Family</AppText>
                             <AppText fontSize="12" textColor="#A6A6A6" fontWeight="500">{family.familyMembers.length} Member(s)</AppText>
                             <ActionButtonWrapper>
-                                { !user.token ? <FillButton onPress={() => signUp(user.userData, navigation, family.familyData._id)}>
-                                    <AppText fontSize="12" textColor="#FFFFFF">Set as Family</AppText>
-                                </FillButton> : null}
-                                { !user.token ? <OutlineButton onPress={() => navigation.navigate('Others', 
-                                    {
-                                        screen: 'FamilyMembers', 
-                                        params: family.familyMembers
-                                    }
-                                )}>
-                                    <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>View Members</AppText>
-                                </OutlineButton>
+                                { !user.token ? 
+                                <> 
+                                    <FillButton onPress={() => signUp(user.userData, navigation, family.familyData._id)}>
+                                        <AppText fontSize="12" textColor="#FFFFFF">Set as Family</AppText>
+                                    </FillButton>
+                                    <OutlineButton onPress={() => handleMembers(family.familyMembers)}>
+                                        <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>View Members</AppText>
+                                    </OutlineButton> 
+                                </>
                                 : 
                                 <Button 
                                     btnWidth="65" 
@@ -92,12 +95,7 @@ export const SearchPage: React.FC<any> = ({ navigation }) => {
                                     btnBottomMargin="0" 
                                     btnHeight="35"
                                     btnTextSize="12"
-                                    onPress={() => navigation.navigate('Others', 
-                                        {
-                                            screen: 'FamilyMembers',
-                                            params: family.familyMembers
-                                        }
-                                    )}
+                                    onPress={() => handleMembers(family.familyMembers)}
                                 />
                                 }
                             </ActionButtonWrapper >
@@ -131,12 +129,7 @@ export const SearchPage: React.FC<any> = ({ navigation }) => {
                                     })}>
                                     <AppText fontSize="12" textColor="#FFFFFF">View Profile</AppText>
                                 </FillButton>
-                                <OutlineButton onPress={() => navigation.navigate('Others', 
-                                    {
-                                        screen: 'FamilyMembers', 
-                                        params: item.familyMembers
-                                    }
-                                )}>
+                                <OutlineButton onPress={() => handleMembers(item.familyMembers)}>
                                     <AppText fontSize="12" textColor={theme.FOCUS_THEME_COLOR}>View Members</AppText>
                                 </OutlineButton>
                             </ActionButtonWrapper >

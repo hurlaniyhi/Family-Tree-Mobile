@@ -43,7 +43,7 @@ export const Picture = styled.Image`
     border-radius: 100px
 `
 export const ParentChildContainer = styled.TouchableOpacity.attrs({
-    activeOpacity: 0.7
+    activeOpacity: 0.9
 })`
     width: 100%;
     display: flex;
@@ -51,12 +51,12 @@ export const ParentChildContainer = styled.TouchableOpacity.attrs({
     justify-content: space-between;
     align-items: center
 `
-export const SubContainer = styled.View`
+export const SubContainer = styled.View<Theme>`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 47%;
+    width: ${({customWidth}) => customWidth || 47}%;
 `
 export const DataProfileWrapper = styled.View`
     display: flex;
@@ -72,7 +72,12 @@ export const DataProfileChild = styled.View`
     align-items: center;
     width: 47%;
 `
-export const DataPictureWrapper = styled.View<Theme>`
+export const DataProfileChildPlus = styled.View`
+   margin: 0 8px;
+`
+export const DataPictureWrapper = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.9
+})<Theme>`
     width: ${({customWidth}) => customWidth || 66}px;
     height: ${({customWidth}) => customWidth || 66}px;
     border-radius: 100px;

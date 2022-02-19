@@ -50,6 +50,15 @@ const textToDisplay = (text: string, length: number): string => {
     else return text
 }
 
+const getFirstName = (name: string): string => {
+    let result = name
+
+    if(name.includes(' ')) {
+        result = name.split(' ')[0]
+    }
+    return result
+}
+
 const showNotification = (type: OperationStatus , message: string, description: string, theme: AppTheme) => {
     showMessage({
         message,
@@ -172,5 +181,6 @@ export default {
     removeFamilyDataDuplicate,
     restructureFamilySearchResponse,
     addUserDataEdit,
-    removeUserDataEdit
+    removeUserDataEdit,
+    getFirstName
 }

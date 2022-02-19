@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { TouchableOpacity, BackHandler } from 'react-native'
+import { TouchableOpacity, BackHandler, FlatList } from 'react-native'
 import { 
     UserIntroWrapper, 
     ProfilePicsWrapper, 
@@ -10,6 +10,7 @@ import {
     DataProfileWrapper,
     DataProfileChild,
     DataPictureWrapper,
+    DataProfileChildPlus,
     AppText,
     StatusCircle,
     StatusCircleSm,
@@ -88,7 +89,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
 
                     <Card>
                         <ParentChildContainer onPress={() => navigation.navigate("Family Profile")}>
-                            <SubContainer>
+                            <SubContainer customWidth={!user.userData.children.length ? '100' : '47'}>
                                 <AppText fontWeight="bold" fontSize="14" justify="center">
                                     Parent
                                 </AppText>
@@ -99,7 +100,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                             <StatusCircle flowCircleColor="#00BF4D"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay(`${user.userData.fatherName}`, 14)}
+                                            {helpers.textToDisplay(helpers.getFirstName(`${user.userData.fatherName}`), 12)}
                                         </AppText>
                                         <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Father</AppText>
                                     </DataProfileChild>
@@ -109,39 +110,39 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
                                             <StatusCircle flowCircleColor="#C4C4C4"/>
                                         </DataPictureWrapper>
                                         <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay(`${user.userData.motherName}`, 12)}
+                                            {helpers.textToDisplay(helpers.getFirstName(`${user.userData.motherName}`), 12)}
                                         </AppText>
                                         <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Mother</AppText>
                                     </DataProfileChild>
                                 </DataProfileWrapper>
                             </SubContainer>
-                            <SubContainer>
-                                <AppText fontWeight="bold" fontSize="14">
-                                    Children
-                                </AppText>
-                                <DataProfileWrapper>
-                                    <DataProfileChild>
-                                        <DataPictureWrapper>
-                                            <FamDataPicture source={icons.DP} />
-                                            <StatusCircle flowCircleColor="#00BF4D"/>
-                                        </DataPictureWrapper>
-                                        <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay("Roshan", 12)}
-                                        </AppText>
-                                        <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Son</AppText>
-                                    </DataProfileChild>
-                                    <DataProfileChild>
-                                        <DataPictureWrapper>
-                                            <FamDataPicture source={icons.DP2} />
-                                            <StatusCircle flowCircleColor="#00BF4D"/>
-                                        </DataPictureWrapper>
-                                        <AppText fontWeight="600" fontSize="12">
-                                            {helpers.textToDisplay("Diyah", 12)}
-                                        </AppText>
-                                        <AppText fontWeight="600" fontSize="10" textColor="#A6A6A6">Daughter</AppText>
-                                    </DataProfileChild>
-                                </DataProfileWrapper>
-                            </SubContainer>
+                            { user.userData.children.length ?
+                                <SubContainer>
+                                    <AppText fontWeight="bold" fontSize="14">
+                                        Children
+                                    </AppText>
+                                    <FlatList
+                                        data={user.userData.children}
+                                        horizontal
+                                        style={{marginTop: 15}}
+                                        showsHorizontalScrollIndicator={false}
+                                        keyExtractor={(item) => item._id}
+                                        renderItem={({item}) => {
+                                        return (
+                                            <DataProfileChildPlus>
+                                                <DataPictureWrapper>
+                                                    <FamDataPicture source={icons.DP3} />
+                                                    <StatusCircle flowCircleColor="#00BF4D"/>
+                                                </DataPictureWrapper>
+                                                <AppText justify='center' fontWeight="600" fontSize="12">
+                                                    {helpers.textToDisplay(`${item.name}`, 12)}
+                                                </AppText>
+                                                <AppText justify='center' fontWeight="600" fontSize="10" textColor="#A6A6A6">Child</AppText>
+                                            </DataProfileChildPlus>
+                                        )}}
+                                    />
+                                 </SubContainer> : null 
+                            }
                         </ParentChildContainer>
                     </Card>
 
