@@ -30,6 +30,7 @@ import {
     CommentIconWrapper,
     AppSafeAreaView
 } from '@styles'
+import {useRoute} from '@react-navigation/native';
 import { Container, Card, CreatePost, AddComment } from '@component'
 import { icons } from '@src/provider/config/constant'
 import helpers from '@src/utility/helper'
@@ -42,6 +43,7 @@ import VisibilityContext from '@src/provider/state-manager/visibilityProvider';
 export  const Dashboard: React.FC<any> = ({ navigation }) => {
     const { theme } = useContext(ThemeContext)
     const { user } = useContext(UserContext)
+    const route = useRoute()
     const { visibility, toggleCreatePost, toggleAddComment } = useContext(VisibilityContext)
 
     useEffect(()=> {
@@ -52,12 +54,15 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
     }, [visibility])
 
     function handleBackPress(): any{
+        console.log({name: route.name})
         if(visibility.isCreatePost || visibility.isAddComment) {
             toggleCreatePost(false)
             toggleAddComment(false)
             return true
         }
-        else BackHandler.exitApp();
+        else if (route.name === 'Home') {
+            BackHandler.exitApp();
+        }
     }
     
     return (

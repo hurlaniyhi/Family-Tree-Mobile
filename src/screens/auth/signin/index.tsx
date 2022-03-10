@@ -1,4 +1,4 @@
-import React, { useContext, useState, useLayoutEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import helpers from '@src/utility/helper'
 import validator from '@src/utility/inputValidator'
 import { CenterContainer, 
@@ -33,13 +33,14 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
 
     let logoImg: ImageSourcePropType = helpers.logoImage(theme)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         checkAuth
     }, [])
     async function checkAuth () {
         let isAuthenticated = await AsyncStorage.getItem('token')
+        console.log({auth: isAuthenticated})
         if(isAuthenticated) setIsAuth(true)
-        else navigation.navigate('Dashboard')
+        else navigation.navigate('Home')
     }
     function handleInput(val: string, name: string) {
         setInput({...input, [name]: val})
@@ -67,6 +68,7 @@ export  const SignIn: React.FC<any> = ({ navigation }) => {
                                     placeHolder="Phone Number" 
                                     icon={icons.CALL} 
                                     value={input.phoneNumber}
+                                    keyboardType="phone-pad"
                                     handleInputData = {(val) => handleInput(val, "phoneNumber")}
                                 />
                                 <Input 

@@ -336,8 +336,8 @@ export const UserProvider = (props: any) => {
             searchedUsers: [],
             token: ''
         }
-        await dispatch({type: 'reset-state', payload: clearState})
-        return navigation.navigate('SignIn')
+        navigation.navigate('SignIn')
+        return dispatch({type: 'reset-state', payload: clearState})
     }
 
     const stateActions = {
