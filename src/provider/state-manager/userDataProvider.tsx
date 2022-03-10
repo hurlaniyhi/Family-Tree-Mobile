@@ -42,9 +42,9 @@ export const UserProvider = (props: any) => {
         try {
             loader(true)
             const response = await APICaller.post(route.CREATE_USER, payload)
-            loader(false)
 
             if(response.data.responseCode === ResponseCode.SUCCESS) {
+                await AsyncStorage.setItem('token', response.data.token)
                 await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data.userData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: response.data.data.familyData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
@@ -56,6 +56,7 @@ export const UserProvider = (props: any) => {
             else {
                 helpers.showNotification('danger', 'Failed!', response.data.responseDescription, theme)
             }
+            loader(false)
         }
         catch (err) {
             loader(false)
@@ -67,9 +68,9 @@ export const UserProvider = (props: any) => {
         try {
             loader(true)
             const response = await APICaller.post(route.LOGIN, params)
-            loader(false)
 
             if(response.data.responseCode === ResponseCode.SUCCESS) {
+                await AsyncStorage.setItem('token', response.data.token)
                 await dispatch({type: "set-property-completely", payload: {key: 'userData', value: response.data.data.userData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyDetails', value: response.data.data.familyData}})
                 await dispatch({type: "set-property-completely", payload: {key: 'familyMembers', value: response.data.data.familyMembers}})
@@ -81,6 +82,7 @@ export const UserProvider = (props: any) => {
             else {
                 helpers.showNotification('danger', 'Failed!', response.data.responseDescription, theme)
             }
+            loader(false)
         }
         catch (err) {
             loader(false)
@@ -325,7 +327,7 @@ export const UserProvider = (props: any) => {
     }
 
     async function logout (navigation: any) {
-        await AsyncStorage.setItem('user', '')
+        await AsyncStorage.clear()
         const clearState = {
             userData: { ...initialState.SIGN_UP },
             familyDetails: { ...initialState.FAMILY_DETAILS },

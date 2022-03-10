@@ -57,6 +57,7 @@ export  const Dashboard: React.FC<any> = ({ navigation }) => {
             toggleAddComment(false)
             return true
         }
+        else BackHandler.exitApp();
     }
     
     return (
